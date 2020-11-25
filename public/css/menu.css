@@ -1,0 +1,284 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    position: relative;
+    
+    /* display: flex; */
+}
+.container#blur.active{
+  
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    pointer-events: none;
+    user-select: none;
+}
+/* Estilo para las referencias */
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+
+/* Estilos para la clase contenedor del menu.html */
+.contenedor{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 90px auto;
+    grid-template-rows: 60px auto;
+    /* El menu abarque dos columnas */
+    grid-template-areas: "header header"
+                        "menu contenido";
+    transition: all .3s ease;
+}
+
+/* Cuando el contenedor tenga la clase active aparesca desplegado*/
+.contenedor.active{
+    grid-template-columns: 300px auto;
+}
+
+/* -------------------------HEADER----------------------------- */
+.header{
+    /* Para el area que abarcara el header todo el espacio */
+    grid-area: header;
+    padding: 0 25px;
+    display: grid;
+    /* Dividir tres columnas */
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    /* Justificar el contenido  */
+    justify-content: space-between;
+    /* Espaciados */
+    grid-gap: 20px;
+    /* Creando las areas */
+    grid-template-areas: "logo busqueda iconos";
+    background: #313545;
+}
+
+/* Estilos al boton menu */
+.header .contenedor-logo .boton-menu{
+    border: none;
+    color: #fff;
+    padding: 10px;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    /* Quita linea de recuadro al precionar boton */
+    outline:none;
+}
+
+/* Para efecto de animacion al poner el mouse en el boton menu */
+.header .contenedor-logo .boton-menu:hover{
+
+    background: #e5e5e5;
+    color: #000000;
+
+}
+
+/* Estilos al logo del minsal */
+.header .contenedor-logo{
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+} 
+
+.header .contenedor-logo .logominsal{
+    width: 100px;
+    height: 50px;
+    display: inline-flex;
+}
+
+.header .contenedor-logo .logominsal img{
+    vertical-align: top;
+    width: 100%;
+    /* border-radius: 100px; */
+} 
+
+/* Estilos a la barra de busqueda */
+.header .barra-busqueda form{
+    grid-area: busqueda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para la barra de busqueda del encabezado */
+.header .barra-busqueda form input{
+    min-width: 60%;
+    padding: 0 15px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #fff;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-bottom-left-radius: 50px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-bottomleft: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.header .barra-busqueda form input:hover {
+    border: 1px solid #fff;
+    
+}
+
+/* Estilos para el boton de busqueda */
+.header .barra-busqueda form button{
+    height: 35px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 1px 1px 1px #313545;
+    border-left: none;
+    color: #1236da;
+    background: #e5e5e5;
+    
+    padding: 0 25px;
+    cursor: pointer;
+    outline:none;
+    -webkit-border-top-right-radius: 50px;
+    -webkit-border-bottom-right-radius: 50px;
+    -moz-border-radius-topright: 50px;
+    -moz-border-radius-bottomright: 50px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+/* Para efecto al boton de busqueda cuando se pase el cursor */
+.header .barra-busqueda button:hover{
+    background: #1236da;
+    border: 1px solid #1236da;
+	color: white;
+	box-shadow: 1px 4px 5px #0a2394;
+}
+
+/* Estilo para los iconos */
+.header .botones-header .icono .fas{
+    background: #787a7c; 
+    padding: 7px 12px;
+    border-radius: 4px;
+    /* Tamaño del icono */
+    font-size: 15px;
+    color: #ffffff; 
+    position: relative;
+    top: -4px;
+    margin-right: 4px;
+}
+
+/* Estilos para el logotipo de la pagina */
+.header .botones-header .icono{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+}
+
+/* Estilos para los botones del lado izquierdo superior campanita*/
+.header .botones-header{ 
+    grid-area: iconos;
+    display: flex;
+    align-items: center;
+} 
+/* Estilos a los botones */
+.header .botones-header button{
+    background: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    padding: 7px 12px;
+    border-radius: 100px;
+    color: #ffff;
+    margin-right: 20px;
+    cursor: pointer;
+    outline:none;
+}
+/* Para efecto al pasar el cursor */
+.header .botones-header button:hover{
+    color: #000;
+    background: #e7e7e7;
+}
+
+/* -------------------------MENU LATERAL----------------------------- */
+/* Estilos al menu para sombra en la barra lateral */
+nav{
+    width: 250px;
+    padding: 10px 10px 20px 5px;
+    background-color: white;
+    box-shadow: 10px 10px 5px #aaaaaa;
+    border-right: 1px solid #000000;
+
+}
+.menu-lateral{
+    grid-area: menu;
+    background: #ffffff;
+    /* Para poder acomodar el texto del menu lateral y poder dar un ancho minimo */
+    overflow: hidden;
+  
+}
+
+.menu-lateral a{
+    display: block;
+    padding: 15px 35px;
+    color: #000000;
+    /* Ancho minimo de texto de menu lateral */
+    min-width: 800px;
+}
+
+.menu-lateral a:hover{
+    background: #e5e5e5;
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-bottom-left-radius: 50px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-bottomleft: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+
+}
+
+.menu-lateral a.active{
+    background: #e5e5e5;
+    font-weight: bold;
+    -webkit-border-top-left-radius: 50px;
+    -webkit-border-bottom-left-radius: 50px;
+    -moz-border-radius-topleft: 50px;
+    -moz-border-radius-bottomleft: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+/* Para estilos de los iconos del menu lateral */
+.menu-lateral .fas{
+    color: #313545;
+    margin-right: 35px;
+    width: 20px;
+    text-align: center;
+    font-size: 18px;
+}
+/* Cuando este activo el icono cambie a otro color */
+.menu-lateral a.active .fas{
+    color: #1236da;
+}
+
+.main{
+    padding-top: 20px;
+    grid-area: contenido;
+    background: #ffffff;
+}
+
+.main h1{
+    text-align: center;
+
+}

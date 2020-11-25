@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+} 
+/* Estilo a el cuadro de notificaciones */
+.box{
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 380px;
+    transform: translate(-50%, -50%); 
+    background: rgba(0, 0, 0, .8); 
+    box-sizing: border-box; 
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .5); 
+    border-radius: 10px; 
+    display: none;
+    padding-top: 0.1px;
+    padding-bottom: 2%; 
+
+}
+/* Estilo al encabezado del cuadro de notificacion */
+.box .encabezado {
+    text-align: center;
+}
+/* Dar estilo a la imagen */
+.box .encabezado i{
+    padding-top: 0.1px;
+    width: 170px;
+    font-size: 65px;
+    color: rgb(105, 124, 128);
+}
+/* Estilo a el nombre que se reflejara */
+.box .cuerpo{
+    padding-top: 30%;
+    color:white; 
+    text-align: center
+}
+/* Estilo para los botones del cuadro */
+.box .pie{
+    margin-top: 8%;
+    margin-bottom: 4%;
+    display: flex;
+    justify-content: space-evenly ;
+   
+}
+
+
+

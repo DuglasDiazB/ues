@@ -1,0 +1,42 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo al encabeza de index */
+.grid-inicio .grid-encabezado{
+    text-align: center;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.grid-inicio .grid-cajas{
+    display: grid;
+    grid-gap: 50px 20px;
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 20px;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align: center;
+    width: 100%;
+}
+
+/* Estilo a cada uno de los iconos */
+.grid-inicio .grid-cajas i{
+    width: 100%;
+    font-size: 300%;
+    color:  #1236da;
+    border-radius: 8px;
+    overflow: hidden;
+
+}
+
+
+.grid-inicio .grid-cajas i:hover{
+    transform: translateY(-15px);
+    
+}
+

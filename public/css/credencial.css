@@ -1,0 +1,102 @@
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    -webkit-box-sizing: border-box; 
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box; 
+} 
+
+.form-credencial{
+    box-shadow: 10px 10px 5px #aaaaaa;
+    width: 350px;
+    padding:5px; 
+    margin: 5px;
+    background: #ee581d;
+}
+
+.form-credencial .credencial{
+    background: #ffffff;
+    border-radius: 7px; 
+    border: 4px solid rgba(9, 2, 56, 0.882);  
+	font-size: 15px;
+    color: #000000;
+    padding: 35px;
+}
+
+.form-credencial .credencial .label-credencial .img-credencial{
+   position: absolute;
+   text-align: center;
+   margin: 18px;
+   margin-top: 25px;
+   opacity: 0.6;
+
+    
+}
+
+.form-credencial .credencial .imagen-credencial{
+    margin-top: -25px;
+    margin-bottom: 4%;
+    display: flex;
+    justify-content: space-between ;
+    text-align: justify;
+
+}
+
+.form-credencial .credencial .label-encabezado{
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.form-credencial .credencial .label-cuerpo{
+    margin-top: 15px;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+
+}
+
+.form-credencial .credencial .label-cuerp{
+    margin-top: 15px;
+    color: #ad1010;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    position: relative;
+    margin-bottom: -25px;
+
+}
+
+.form-credencial .credencial .label-nombre{
+    margin-top: 15px;
+    color: #000000;
+    font-weight: bold;
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+
+}
+
+.form-credencial .credencial .label-firma{
+    margin-top: 60px;
+    color: #000000;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+    text-align: left;
+    position: relative;
+
+}

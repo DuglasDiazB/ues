@@ -1,0 +1,3 @@
+#restringimos el acceso a la carpeta app
+#menos indica restringir acceso y mas lo contrario
+Option -Indexes
