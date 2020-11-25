@@ -1,13 +1,14 @@
 <!-- Llamando el header -->
 <?php require_once('../app/views/inc/header.php'); ?>
-
+<!-- Agregar boton regresar y mensaje-->
+<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
 <p><?php echo $parameters['mensaje']?></p>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div class="contact-form">
             <div class="encabezado">
                 <h3>Nuevo Establecimiento</h3>
-                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                <i class="fas fa-store" aria-hidden="true"></i>
             </div>
             
             <form action="<?php echo ROUTE_URL?>/establecimientos/nuevoEstablecimiento" method= "post" id="form-establecimiento" class="form">

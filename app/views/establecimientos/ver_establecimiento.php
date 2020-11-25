@@ -2,14 +2,16 @@
 
 <!--$_SESSION['user']->username-->
 
-<p><?php echo  $parameters['mensaje']?></p>
+<!-- Agregar boton regresar y mensaje-->
+<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<p><?php echo $parameters['mensaje']?></p>
 <p><?php echo  $parameters['establecimiento']->fecha_reg_estab.'; '.$parameters['establecimiento']->fecha_mod_estab .' Por '. $parameters['establecimiento']->usermod ?></p>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div class="contact-form">
             <div class="encabezado">
                 <h3>Ver establecimiento</h3>
-                <i class="fas fa-user"></i>
+                <i class="fas fa-store"></i>
             </div>
 
 

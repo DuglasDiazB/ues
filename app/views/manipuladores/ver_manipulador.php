@@ -1,6 +1,7 @@
 <?php require_once('../app/views/inc/header.php'); ?>
-
-<p><?php echo  $parameters['mensaje']?></p>
+<!-- Agregar boton regresar y mensaje-->
+<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<p><?php echo $parameters['mensaje']?></p>
 <p><?php echo  $parameters['manipulador']->fecha_registro_manip.'; '.$parameters['manipulador']->fecha_mod_manip .' por '. $parameters['manipulador']->usermod ?></p>
 <!--<p><?php echo $parameters['manipulador']->usermod ?></p>-->
 <div class="caja">

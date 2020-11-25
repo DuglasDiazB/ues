@@ -19,7 +19,7 @@
                         class="far fa-plus-square"></i>
                     Nuevo</a>
 
-                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar">
+                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar"><i class="fas fa-store-slash"></i>
                     Desactivados</a>
 
 
@@ -187,11 +187,11 @@
 
     <div class="encabezado">
 
-        <h3 style='color:#f50b0b; font-size: 20px;'><i class="fas fa-user-slash"></i></h3>
+        <h3 style='color:#f50b0b; font-size: 20px;'><i class="fas fa-store-slash"></i></h3>
     </div>
 
     <div class="cuerpo">
-        <h4>¿Desea desactivar al establecimiento?</h4>
+        <h4>¿Desea desactivar el establecimiento?</h4>
         <h3 style="color:white">
             <?php echo $parameters['establecimiento']->nombre_estab?></h3>
 
