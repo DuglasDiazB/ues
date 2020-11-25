@@ -12,7 +12,7 @@ class Asistencias extends MainController
         $this->ModeloBitacoras = $this->model('ModeloBitacoras');
         
     }
-    
+    //cambio 24/11/2020
     //*********************************************************************************************************************** */
     //1-creando archivo index donde llevara la vista mostrando la tabla de asistencias
     public function index($pagina = 1, $busqueda = null, $pos_pagina = 10){
