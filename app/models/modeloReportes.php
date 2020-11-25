@@ -15,6 +15,14 @@ public function obtenerManipuladores(){
 	return $this->db->registers();
 }
 
+public function comprobarUser($user, $pass){
+        
+	$this->db->query('SELECT * FROM usuarios WHERE username= :user and password = :pass and estadousuario = 1');
+	$this->db->bind(':user', $user);
+	$this->db->bind(':pass', $pass);
+	
+	return $this->db->register();
+}
 
 
 public function reporteManipuladoresActivos(){

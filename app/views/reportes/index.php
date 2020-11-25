@@ -8,14 +8,7 @@
         <!-- colspan="Numero de columnas que tendra la tabla" -->
         <th colspan="7">
             <div class="title">
-                <p>Lista de manipuladores, se 
-            </p>
-
-
-          
-
-
-
+                <p>Lista de manipuladores, se </p>
             <p>
              
                   <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores" class="btn-ver"><i
@@ -41,6 +34,10 @@
                        <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" class="btn-ver"><i
                         class="far fa-plus-square"></i>
                     Manip Informales</a>
+
+                    <a href="<?php echo ROUTE_URL?>/reports/copiaSeguridad" class="btn-ver"><i
+                        class="far fa-plus-square"></i>
+                    Copia de seguridad</a>
 
 
                     
