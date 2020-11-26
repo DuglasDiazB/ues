@@ -1,6 +1,7 @@
 <!-- Llamando el header -->
 <?php require_once('../app/views/inc/header.php'); ?>
     <p> <a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i>Regresar</a></p>
+    <br>
     <p><?php echo  $parameters['mensaje']?></p>
     <div class="caja">
         <div class="contact-wrapper animated bounceInUp">
@@ -143,8 +144,7 @@
                         </select>
                     </div>
                     
-                    <?php if(($parameters['errores']['exam_o'] != 'No entregado' && $parameters['errores']['exam_o'] != 'DN')
-                            || ($parameters['errores']['exam_s'] != 'No entregado' && $parameters['errores']['exam_s'] != 'DN')):?>
+                    <?php if($parameters['errores']['fecha_entrega_so2'] != ''):?>
                     
                     <div class="form-control">
                         <label for="fecha_entrega_so2">fecha entrega SO2</label> 

@@ -88,19 +88,19 @@
             $this->db->execute();
             $this->db->query(
                 "SELECT 
-                id_exam, t2.id_manip,
+                tblexamenes.id_exam, tblmanipuladores.id_manip,
                 dui_manip, nombre_manip, apellido_manip, puesto_manip,
                 nombre_estab, direccion_estab, tipo_estab,
                 ifnull(fecha_entrega_so, 'sin fecha') as fecha_entrega_so, exam_s, exam_o, 
                 ifnull(fecha_entrega_so2, 'sin fecha') as fecha_entrega_so2, exam_s2, exam_o2,
                 estado_exam, fecha_exped_exam,
-                usermod,
+                tblexamenes.usermod,
                 DATE_FORMAT(fechamodexamen, 'ultima modificación %W %d de %M del %Y a las %H:%i') as fechamod 
                 FROM tblexamenes
-                INNER JOIN tblmanipuladores t2
-                ON tblexamenes.id_manip = t2.id_manip
+                INNER JOIN tblmanipuladores 
+                ON tblexamenes.id_manip = tblmanipuladores.id_manip
                 INNER JOIN tblestablecimientos 
-                ON t2.id_estab = tblestablecimientos.id_estab
+                ON tblmanipuladores.id_estab = tblestablecimientos.id_estab
                 WHERE id_exam = $id            
                 AND estado_manip = 'Activo'
                 "
@@ -128,8 +128,7 @@
             return $this->db->rowCount();
 
 
-        }
-
+        }        
         //obteniendo el numero total de registros
         public function numeroRegistros($busqueda = null, $estadoExamen = "Acto"){
 

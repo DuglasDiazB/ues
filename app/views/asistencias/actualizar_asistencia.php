@@ -1,6 +1,7 @@
 <!-- Llamando el header -->
 <?php require_once('../app/views/inc/header.php'); ?>
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<br>
 <p><?php echo $parameters['mensaje']?></p>
 
         <div class="contact-wrapper animated bounceInUp">
@@ -86,8 +87,8 @@
                     <div class="form-control">
                         <label for="estadoExamenes">Estado Examenes</label> 
                         <select disabled id="estadoExamenes" name="estadoExamenes"> 
-                            <option value="Acto" <?php echo $var = ($parameters['asistencia']->estado_exam == 'Acto')? 'selected': ''?>>Acto</option> 
-                            <option value="No Acto" <?php echo $var = ($parameters['asistencia']->estado_exam == 'No acto')? 'selected': ''?>>No acto</option> 
+                            <option value="Acto" <?php echo $var = ($parameters['asistencia']->estado_exam == 'Acto')? 'selected': ''?>>Apto</option> 
+                            <option value="No Acto" <?php echo $var = ($parameters['asistencia']->estado_exam == 'No acto')? 'selected': ''?>>No apto</option> 
                         </select>
                     </div>
 

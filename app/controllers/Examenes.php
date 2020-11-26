@@ -8,10 +8,9 @@
         }
 
         public function verExamen($id, $pagina, $busqueda = null){
-
-            $examen = $this->modeloExamenes->obtenerExamen($id);
-
+         
             //ruta para regresar al estado anterior del index
+            $examen = $this->modeloExamenes->obtenerExamen($id);
             if ($examen->estado_exam == 'Acto') {
                 
                 $regresar = ROUTE_URL.'/examenes/index/' . $pagina . '/' . $busqueda;
@@ -130,11 +129,17 @@
 
             $error = FALSE;
             $regresar = ROUTE_URL.'/examenes/examenesNoActos/' . $pagina . '/' . $busqueda;
+
             //Comprobamos que exista el registro
             if (!$this->modeloExamenes->obtenerExamen($id) && $_SERVER['REQUEST_METHOD'] == 'GET') {
-                
+                $busqueda = $_POST['busqueda'];
+                $pagina = $_POST['pagina'];
+                $regresar = ROUTE_URL.'/examenes/examenesNoActos/' . $_POST['pagina'] . '/' . $_POST['busqueda'];
                 $parameters = [
                     'error' => TRUE,
+                    'regresar' => $regresar,
+                    'pagina' => $pagina,
+                    'busqueda' => $busqueda,  
                     'mensaje' => 'El registro no existe',
                     'errores' => [],
                     'menu' => 'examenes',
@@ -145,20 +150,26 @@
             }
            
 
-            //se han enviado datos
+            //Se ha presionado el boton
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
+                $busqueda = $_POST['busqueda'];
+                $pagina = $_POST['pagina'];
                 $regresar = ROUTE_URL.'/examenes/examenesNoActos/' . $_POST['pagina'] . '/' . $_POST['busqueda'];
                 
                 //obteniendo los registros anteriores respecto al id 
                 $examen = $this->modeloExamenes->obtenerExamen($_POST['id']);
-
+        
                 //obteniendo el id del manipulador de alimentos
                 $examen->id_manip = $_POST['id_manip'];
+
                 //comprobando si existen cambios al registro anterior y sustituyendo para SO y SO2
                 $examen->fecha_entrega_so = ($_POST['fecha_entrega_so'] != $examen->fecha_entrega_so) ? $_POST['fecha_entrega_so'] : $examen->fecha_entrega_so;
+                
                 $examen->exam_s = ($_POST['exam_s'] != $examen->exam_s) ? $_POST['exam_s'] : $examen->exam_s;
                 $examen->exam_o = ($_POST['exam_o'] != $examen->exam_o) ? $_POST['exam_o'] : $examen->exam_o;
+
+                $examen->fecha_entrega_so2 = ($_POST['fecha_entrega_so2'] != $examen->fecha_entrega_so2) ? $_POST['fecha_entrega_so2'] : $examen->fecha_entrega_so2;
 
                 $examen->exam_s2 = ($_POST['exam_s2'] != $examen->exam_s2) ? $_POST['exam_s2'] : $examen->exam_s2;
                 $examen->exam_o2 = ($_POST['exam_o2'] != $examen->exam_o2) ? $_POST['exam_o2'] : $examen->exam_o2;
@@ -166,7 +177,7 @@
                 //obteniendo el nombre de usuario que esta efectuando el update
                 $examen->usermod = $_SESSION['user']->username;
                 
-                //comprobando si aprueba el 
+                //comprobando si existen cambios en la entrega del primer examen 
                 if (($examen->exam_s == 'No entregado' && $examen->exam_o == 'No entregado')){
                                         
                     $examen->fecha_entrega_so = NULL;
@@ -178,18 +189,27 @@
                     $examen->estado_exam = 'Acto';
                     $examen->exam_s2 = 'No entregado';
                     $examen->exam_o2 = 'No entregado';
-                    $examen->fecha_exped_exam = $this->modeloExamenes->sumarMeses(6)->expedicion;
                     $examen->fecha_entrega_so2 = NULL;
+
+                    $examen->fecha_exped_exam = $this->modeloExamenes->sumarMeses(6)->expedicion;
                     
                 }else {
-                    $examen->fecha_entrega_so2 = $_POST['fecha_entrega_so2'];
+
+                    $examen->fecha_entrega_so = $_POST['fecha_entrega_so'];
+                
                 }
                 
                 if (($examen->exam_s2 == 'DN' && $examen->exam_o2 == 'DN')) {
-                    $examen->fecha_exped_exam = $this->modeloExamenes->sumarMeses(6)->expedicion;
-                    $examen->estado_exam = 'Acto';
-                    $examen->fecha_entrega_so2 = ($_POST['fecha_entrega_so2'] != $examen->fecha_entrega_so2) ? $_POST['fecha_entrega_so2'] : $examen->fecha_entrega_so2;
                     
+                    $examen->estado_exam = 'Acto';
+                    $examen->fecha_entrega_so2 = $_POST['fecha_entrega_so2'];
+                    
+                    $examen->fecha_exped_exam = $this->modeloExamenes->sumarMeses(6)->expedicion;
+                    
+                }else{
+
+                    $examen->fecha_entrega_so2 = $_POST['fecha_entrega_so2'];
+
                 }
 
                 if (($examen->exam_s2 == 'No entregado' && $examen->exam_o2 == 'No entregado')){
@@ -220,8 +240,7 @@
                 $credencial = $this->modeloExamenes->obtenerCredencial($examen->id_manip);
                 
                            
-                //actualizando usuario
-
+                //actualizando examen de manipulador de alimentos
                 if ($this->modeloExamenes->examenesUpdate($examen)) {
 
                     
@@ -246,10 +265,13 @@
                                         
                     $parameters = [
                         
+                        
                         'regresar' => $regresar,
+                        'pagina' => $pagina,
+                        'busqueda' => $busqueda,  
 						'title' => 'Actualizar Examenes',
 						'menu' => 'examenes',
-						'mensaje' => 'Se actualizo el registro correctamente',						
+						'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',						
 						'errores' => $errores,						
 	
                     ];
@@ -282,10 +304,20 @@
                     $errores['fecha_entrega_so2']  = $this->modeloExamenes->obtenerFechaActual()->hoy;
                 }else{
     
-                    $errores['fecha_entrega_so2'] = $examen->fecha_entrega_so2;
+                    $errores['fecha_entrega_so2'] = '';
                 }
+
                 $errores['exam_s2'] = $examen->exam_s2;
-                $errores['exam_o2'] = $examen->exam_o2;  
+                $errores['exam_o2'] = $examen->exam_o2; 
+
+                if($examen->exam_s2 != 'No entregado' AND $examen->exam_o2 != 'No entregado'){
+                    $errores['fecha_entrega_so']  = $this->modeloExamenes->obtenerFechaActual()->hoy;
+                    $errores['exam_s'] = 'No entregado';
+                    $errores['exam_o'] = 'No entregado';
+                    $errores['exam_s2'] = 'No entregado';
+                    $errores['exam_o2'] ='No entregado';
+                    $errores['fecha_entrega_so2'] = '';
+                }
     
                 $parameters = [                
                     'errores' => $errores,

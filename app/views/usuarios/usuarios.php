@@ -96,7 +96,7 @@
             </td>
             <td data-label="Opciones">
                 <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
-                <a href="<?php echo ROUTE_URL?>/usuarios/verUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/1"
+                <a href="<?php echo ROUTE_URL?>/usuarios/verUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/1<?php echo $var=(isset($parameters['respuesta']))? '/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                     class="btn-ver"><i class="fas fa-eye"></i></a>
                 <a href="<?php echo ROUTE_URL?>/usuarios/actualizarUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>"
                     class="btn-editar"><i class="far fa-edit"></i></a>

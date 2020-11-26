@@ -14,6 +14,55 @@
         }
 
         public function index($busqueda = Null){
+
+            //**************para comprovar que se ha llegado a la fecha de expedicion **********
+            //obteniendo la fecha de hoy 
+            $fechaActual = $this->modeloExamenes->obtenerFechaActual()->hoy;            
+            
+            //obtenemos todos los examenes que esten en estado activo
+            $examenes = $this->modeloExamenes->obtenerTodosExamenes();
+            
+            //recorremos la lista de examenes 
+            for ($i=0; $i < count($examenes); $i++) {                 
+                //para cada examen vamos verificando si la fecha actual es mayor a la fecha de expedicion
+                
+                if ($fechaActual > $examenes[$i]->fecha_exped_exam) {
+                    
+                    //actualizamos los registro a examen no acto
+                    $this->modeloExamenes->examenesUpdateNoActo($examenes[$i]);
+                    
+                }
+            }
+            //******************************************************************************************
+            //******************************************************************************************************/
+                    //regresar las asistencias al estado inicial cuando se inician nuevas capacitaciones
+                    //obtner fecha actual
+        $hoy =  $fechaActual;
+
+                //obtener fecha de inicio y finalizacion de capacitaciones 
+        $fechaCapacitaciones = $this->ModeloAsistencias->obtenerFechaCapacitaciones();
+        if($hoy >= $fechaCapacitaciones->fecha_inicio_capacit 
+        AND $hoy <= $fechaCapacitaciones->fecha_fin_capacit 
+        AND $fechaCapacitaciones->ejecutado == 'No'){
+                    //Actualizando tblfechacapacitaciones
+            $this->ModeloAsistencias->actualizarFechaCapacitacion1($fechaCapacitaciones->fecha_inicio_capacit,
+                                                                    $fechaCapacitaciones->fecha_fin_capacit,
+                                                                    $fechaCapacitaciones->usermod,
+                                                                    $fechaCapacitaciones->fechamodcapacit);
+                        //traemos todos los registros de asistencias que en la columna asistencia = 'Si'
+            $asistencias = $this->ModeloAsistencias->obtenerTodasAsistencias();                        
+                        // verificando de que existan registros            
+            if (count($asistencias) != 0) {                                                        
+                            //actualizando cada registro
+                for ($i=0; $i <count($asistencias) ; $i++) {
+
+                        $manipulador = $this->ModeloAsistencias->obtenerAsistencia1($asistencias[$i]->id_asistencia);                 
+                        $this->ModeloAsistencias->actualizarAsistencia($manipulador->id_asistencia, $manipulador->id_exam, 'No', NULL, NULL);                                
+                }                            
+            }                        
+        }
+        //*********************************************************************************************** */
+
             $examenesActos = $this->modeloExamenes->numeroRegistros($busqueda);
             $actosFormal = $this->modeloExamenes->examenesForInf('Formal', 'Acto');
             $actosInformal = $this->modeloExamenes->examenesForInf('Informal', 'Acto');
