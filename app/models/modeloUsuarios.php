@@ -137,7 +137,7 @@
                     return FALSE;
                 }
                 
-        }
+        }        
         //obtener el numero de registros
         public function numeroRegistros($busqueda = null, $estado = '2' ){
 
@@ -156,42 +156,33 @@
                     WHERE( LOWER(CONCAT(nombreusuario,apellidousuario)) LIKE '$busqueda' OR
                     LOWER(CONCAT(apellidousuario,' ',nombreusuario)) LIKE '$busqueda'
                     )
-                    AND estadousuario = $estado");
+                    AND estadousuario = '$estado'");
                 return $this->db->rowCount();
                 
             }elseif ($busqueda != '' && !strpos($busqueda, ' ')) {
-                if ($busqueda == 'Administrador' OR $busqueda == 'administrador') {
-                 
-                    $busqueda = 1;
-                }else{
-                    $busqueda = 2;
-                }
+                
                 $this->db->query(
                     "SELECT * FROM usuarios
                      WHERE(
                         idusuario LIKE '%$busqueda%' OR 
                         LOWER(nombreusuario) LIKE '%$busqueda%' OR 
                         LOWER(apellidousuario) LIKE '%$busqueda%' OR 
-                        LOWER(direccionusuario) LIKE '%$busqueda%' OR 
-                        LOWER(idtipousuario) = '$busqueda' OR 
+                        LOWER(direccionusuario) LIKE '%$busqueda%' OR                         
                         telefonousuario LIKE '%$busqueda%' OR 
                         duiusuario LIKE '%$busqueda%'
                     )
-                    AND estadousuario = $estado
+                    AND estadousuario = '$estado'
                     
                 ");
                 return $this->db->rowCount();
 
             }else{
 
-                $this->db->query("SELECT * FROM usuarios WHERE estadousuario = $estado");
+                $this->db->query("SELECT * FROM usuarios WHERE estadousuario = '$estado'");
                 return $this->db->rowCount();
 
             }
-
             
-
-
         }
 
         public function tipoUsuario($tipoUsuario){
@@ -217,32 +208,25 @@
                     WHERE( LOWER(CONCAT(nombreusuario,apellidousuario)) LIKE '$busqueda' OR
                     LOWER(CONCAT(apellidousuario,' ',nombreusuario)) LIKE '$busqueda'
                     )
-                    AND estadousuario = $estado
+                    AND estadousuario = '$estado'
                     LIMIT $desde, $pos_pagina
                     -- ORDER BY nombreusuario DESC
                     ");
                 return $this->db->registers();
                 
             }elseif ($busqueda != '' && !strpos($busqueda, ' ')) {
-
-                if ($busqueda == 'Administrador' OR $busqueda == 'administrador') {
-                    $busqueda = 1;
-                }else{
-                    $busqueda = 2;
-                }
-            
+                          
                 $this->db->query(
                     "SELECT SQL_CALC_FOUND_ROWS * FROM usuarios
                     WHERE(
                         idusuario LIKE '%$busqueda%' OR 
                         LOWER(nombreusuario) LIKE '%$busqueda%' OR 
                         LOWER(apellidousuario) LIKE '%$busqueda%' OR 
-                        LOWER(direccionusuario) LIKE '%$busqueda%' OR 
-                        LOWER(idtipousuario) = '$busqueda' OR  
+                        LOWER(direccionusuario) LIKE '%$busqueda%' OR                         
                         telefonousuario LIKE '%$busqueda%' OR 
                         duiusuario LIKE '%$busqueda%' 
                     )
-                    AND estadousuario = $estado
+                    AND estadousuario = '$estado'
                     LIMIT $desde, $pos_pagina
                 -- ORDER BY nombreusuario DESC
                     ");
@@ -323,11 +307,7 @@
                 return $this->db->rowCount();
                 
             }
-            if ($busqueda == 'Administrador' OR $busqueda == 'administrador') {
-                $busqueda = 1;
-            }else{
-                $busqueda = 2;
-            }
+        
             $this->db->query(
                 "SELECT * FROM usuarios
                  WHERE(

@@ -1,7 +1,8 @@
 <!-- Llamando el header -->
 <?php require_once('../app/views/inc/header.php'); ?>
 <p> <a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i>Regresar</a></p>   
-<p>No se admite editar inspección</p>
+<br>
+
 <p><?php echo $parameters['mensaje'] ?></p>
 
         <div class="contact-wrapper animated bounceInUp">

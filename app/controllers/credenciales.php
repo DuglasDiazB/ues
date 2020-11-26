@@ -32,7 +32,7 @@ class Credenciales extends MainController
         //*********************************************************************** */
         // obteniendo todos los registros de las credenciales en estado_creden = 'Inactivo'
         $credenciales = $this->ModeloCredenciales->obtenerCredenciales();
-     
+        
         $hoy = $this->ModeloCredenciales->obtenerFechaActual()->hoy;
         
         //verificamos que existan registros
@@ -106,7 +106,7 @@ class Credenciales extends MainController
 			'title' => 'Ver Credencial',
 			'error' => FALSE,
 			'mensaje' => 'No se admite editar Credencial',		
-			'menu' => 'Credenciales',
+			'menu' => 'credenciales',
             'credencial' => $credencial,
             'regresar' => $regresar,
         ];

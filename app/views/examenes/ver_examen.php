@@ -1,5 +1,6 @@
 <?php require_once('../app/views/inc/header.php'); ?>
     <p> <a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i>Regresar</a></p>
+    <br>
     <p><?php echo  $parameters['mensaje']?></p>
     <p><?php echo  $parameters['examen']->fechamod .' por el usuario'. $parameters['examen']->usermod ?></p>
     <div class="caja">

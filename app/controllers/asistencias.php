@@ -21,8 +21,34 @@ class Asistencias extends MainController
         $asistencia = null;
         $asistencias = null;
         
-        // $asistencias = $this->ModeloAsistencias->obtenerAsistencias();
-        // print_r($asistencias);
+        //******************************************************************************************************/
+                    //regresar las asistencias al estado inicial cuando se inician nuevas capacitaciones
+                    //obtner fecha actual
+        $hoy = $this->ModeloAsistencias->obtenerFechaActual()->hoy;
+
+                    //obtener fecha de inicio y finalizacion de capacitaciones 
+        $fechaCapacitaciones = $this->ModeloAsistencias->obtenerFechaCapacitaciones();
+        if($hoy >= $fechaCapacitaciones->fecha_inicio_capacit 
+        AND $hoy <= $fechaCapacitaciones->fecha_fin_capacit 
+        AND $fechaCapacitaciones->ejecutado == 'No'){
+                        //Actualizando tblfechacapacitaciones
+            $this->ModeloAsistencias->actualizarFechaCapacitacion1($fechaCapacitaciones->fecha_inicio_capacit,
+                                                                    $fechaCapacitaciones->fecha_fin_capacit,
+                                                                    $fechaCapacitaciones->usermod,
+                                                                    $fechaCapacitaciones->fechamodcapacit);
+                        //traemos todos los registros de asistencias que en la columna asistencia = 'Si'
+            $asistencias = $this->ModeloAsistencias->obtenerTodasAsistencias();                        
+                        // verificando de que existan registros            
+            if (count($asistencias) != 0) {                                                        
+                            //actualizando cada registro
+                for ($i=0; $i <count($asistencias) ; $i++) {
+
+                        $manipulador = $this->ModeloAsistencias->obtenerAsistencia1($asistencias[$i]->id_asistencia);                 
+                        $this->ModeloAsistencias->actualizarAsistencia($manipulador->id_asistencia, $manipulador->id_exam, 'No', NULL, NULL);                                
+                }                            
+            }                        
+        }
+        //*********************************************************************************************** */
         
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			
@@ -132,7 +158,7 @@ class Asistencias extends MainController
             if ($error == TRUE) {
                 $parameters = [
                     'errores' => $errores,
-                    'mensaje' => 'Ingrese el periodo de las fechas de capacitaciones',	
+                    'mensaje' => 'Verifique los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',	
                     'title' => 'Fecha Capacitacion',
                     'menu' => 'asistencias',
                     'regresar' => $regresar,
@@ -143,7 +169,7 @@ class Asistencias extends MainController
             }else{
                 if ($this->ModeloAsistencias->actualizarFechaCapacitacion($errores['fechainiciocapacit']['text'], $errores['fechafincapacit']['text'],  $_SESSION['user']->username)) {
 
-                    //******************************************************************************* */
+                    //******************************************************************************************************/
                     //regresar las asistencias al estado inicial cuando se inician nuevas capacitaciones
 
                     //obtner fecha actual
@@ -183,7 +209,7 @@ class Asistencias extends MainController
                         
                     $parameters = [
                         'errores' => $errores,
-                        'mensaje' => 'Se guardo correctamente las fechas',	
+                        'mensaje' => 'Se guardo correctamente las fechas <i style = "color: #008f39;"class="fas fa-check-circle"></i>',	
                         'title' => 'Fecha Capacitacion',
                         'menu' => 'asistencias',
                         'regresar' => $regresar,
@@ -194,7 +220,7 @@ class Asistencias extends MainController
 
                     $parameters = [
                         'errores' => $errores,
-                        'mensaje' => 'No es posible guardar en este momento',	
+                        'mensaje' => 'No es posible guardar en este momento <i style = "color: 	#FF0000;" class="fas fa-exclamation-circle"></i>',	
                         'title' => 'Fecha Capacitacion',
                         'menu' => 'asistencias',
                         'regresar' => $regresar,
@@ -304,12 +330,12 @@ class Asistencias extends MainController
      
                 if ($this->ModeloAsistencias->actualizarAsistencia($asistencia->id_asistencia , $asistencia->id_exam , $_POST['asistencia'], $_POST['fechacapacitacion'], $_SESSION['user']->username)) {
 
+                    
                     $examen = $this->ModeloAsistencias->obtenerExamen($asistencia->id_exam);
-                    echo $examen->id_manip;
+                    
                     //verificando si esta acto para recibir la credencial\                    
                     $credencial = $this->ModeloAsistencias->obtenerCredencial($examen->id_manip);                   
-                    print_r($credencial);
-                    die();
+               ;
                     if ($_POST['asistencia'] == 'Si') {
 
                         $asistencia = $this->ModeloAsistencias->obtenerAsistencia1($_POST['id_asistencia'], 'Si');
@@ -335,7 +361,7 @@ class Asistencias extends MainController
                     $parameters = [
     
                         'error' => FALSE,
-                        'mensaje' => 'Se actualizo el registro con exito',
+                        'mensaje' => 'Se actualizo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
                         'menu' => 'asistencias',
                         'title' => 'Editar Asistencia',
                         'errores' => $errores,

@@ -14,15 +14,14 @@ class Usuarios extends MainController
 		 $this->ModeloUsuarios = $this->model('ModeloUsuarios');
 	}
 
-	public function verUsuario($id, $estado){
-		$pagina = NULL;
-		$busqueda= NULL;
+	public function verUsuario($id, $estado, $pagina, $busqueda = NULL){
+	
 
 		$usuario = $this->ModeloUsuarios->obtenerUsuario1($id, $estado);	
 		if($estado == 1){
-            $regresar = ROUTE_URL.'/usuarios/index'.'/'.$pagina.'/'.$busqueda;
+            $regresar = ROUTE_URL.'/usuarios/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
-            $regresar = ROUTE_URL.'/usuarios/usuariosDesactivados'.'/'.$pagina.'/'.$busqueda;
+            $regresar = ROUTE_URL.'/usuarios/usuariosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
         }
 
 		$parameters = [
