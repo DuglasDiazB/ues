@@ -11,6 +11,8 @@
             $this->ModeloAsistencias = $this->model('ModeloAsistencias');
             $this->ModeloInspecciones = $this->model('ModeloInspecciones');
             $this->ModeloUsuarios = $this->model('ModeloUsuarios');
+            $this->ModeloManipuladores = $this->model('ModeloManipuladores');
+            $this->ModeloEstablecimientos = $this->model('ModeloEstablecimientos');
         }
 
         public function index($busqueda = Null){
@@ -90,6 +92,9 @@
             $usuarioAdmin = $this->ModeloUsuarios->tipoUsuario('1');
             $usuarioEstand = $this->ModeloUsuarios->tipoUsuario('2');
             
+            $manipuladores = $this->ModeloManipuladores->numeroRegistros($busqueda);
+
+            $establecimientos = $this->ModeloEstablecimientos->numeroRegistros($busqueda);
             
             
             $parameters = [
@@ -115,6 +120,8 @@
                 'usuarioEstand' => $usuarioEstand, 
                 'credencialesformal' => $credencialesformal, 
                 'credencialesinformal' => $credencialesinformal, 
+                'manipuladores' => $manipuladores,
+                'establecimientos' => $establecimientos,
   
             ];
             $this->view('index/index', $parameters);
