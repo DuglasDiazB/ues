@@ -7,7 +7,7 @@
         public function __construct(){
 
             $this->db = new Sql;
-        }
+        }        
 
         //obteniendo lista de manipuladores de acuerdo al establecimiento que pertenecen
         public function getManipuladores($idEstablecimiento){
@@ -138,7 +138,7 @@
             }
             
         }
-
+        
         //calculando la puntuacion en la primera inspeccion
         public function puntuacionesInspec($id){
 
@@ -304,41 +304,35 @@
                 return FALSE;
             }
         }
-                
-        
-
-    //Verificamos que el establecimiento exista en la tabla inspecciones
-    //devuelve 1 si se encuentra el registro y 0 si no encuentra ninguno
-    public function getInspecEstablecimiento($id){
-        
-        $this->db->query(
-            "SELECT * FROM tblinspecciones 
-            WHERE id_estab = '$id'");
-        
-        return $this->db->rowCount();
-    }
-
-    public function getEstablecimientoNum($id){
+     //obteniendo el establecimiento
+     public function getEstablecimiento($id){
 
         $this->db->query(
             "SELECT * FROM tblestablecimientos WHERE id_estab = $id AND  estado_estab = 'Activo'");
         
-        if ($this->db->rowCount() > 0) {
-            
-            return TRUE;
-        }else {
-            return FALSE;
-        }
-    }
-    
-    public function getEstablecimiento($id){
+        return $this->db->registers();    
+    }                     
+    // public function getEstablecimientoNum($id){
 
-        $this->db->query(
-            "SELECT * FROM tblestablecimientos 
-            WHERE id_estab = '$id' AND  estado_estab = 'Activo'");
+    //     $this->db->query(
+    //         "SELECT * FROM tblestablecimientos WHERE id_estab = $id AND  estado_estab = 'Activo'");
         
-        return $this->db->rowCount();
-    }
+    //     if ($this->db->rowCount() > 0) {
+            
+    //         return TRUE;
+    //     }else {
+    //         return FALSE;
+    //     }
+    // }
+    
+    // public function getEstablecimiento($id){
+
+    //     $this->db->query(
+    //         "SELECT * FROM tblestablecimientos 
+    //         WHERE id_estab = '$id' AND  estado_estab = 'Activo'");
+        
+    //     return $this->db->rowCount();
+    // }
 
     public function getInspecciones($id){
 
@@ -346,17 +340,111 @@
             "SELECT * FROM tblinspecciones 
             WHERE id_estab = '$id'");
         
+        return $this->db->registers();
+    }
+
+
+    public function getfechaActual(){
+
+        $this->db->query(
+            "SELECT NOW() AS hoy");
+        
         return $this->db->register();
     }
 
-    public function getInspecEstablecimientoNum($id){
+    public function saveInspeccion($inspecPara, $fechaInspec, $objetoVisita, $nombreInspector, 
+                                  $calPrimerInspec, $primerReinspecFecha, $primerReinspecCal,
+                                  $segundaReinspecFecha, $segundaReinspecCal, $idEstab){
 
         $this->db->query(
-            "SELECT * FROM tblinspecciones 
-            WHERE id_estab = '$id'");
-        
-        return $this->db->rowCount();
+            "INSERT INTO 
+            tblinspecciones(
+                inspec_para, 
+                fecha_inspec,
+                objeto_visita, 
+                nombre_inspector, 
+                cal_primer_inspec,
+                primer_reinspec_fecha,
+                primer_reinspec_cal,
+                segunda_reinspec_fecha,
+                segunda_reinspec_cal,                                        
+                id_estab    
+            ) 
+            VALUES (
+                :inspec_para, 
+                :fecha_inspec,
+                :objeto_visita, 
+                :nombre_inspector, 
+                :cal_primer_inspec,
+                :primer_reinspec_fecha,
+                :primer_reinspec_cal,
+                :segunda_reinspec_fecha,
+                :segunda_reinspec_cal,                                        
+                :id_estab  
+            )");
+
+        $this->db->bind(':inspec_para', $inspecPara);
+        $this->db->bind(':fecha_inspec', $fechaInspec);
+        $this->db->bind(':objeto_visita', $objetoVisita);
+        $this->db->bind(':nombre_inspector', $nombreInspector);
+        $this->db->bind(':cal_primer_inspec', $calPrimerInspec);
+        $this->db->bind(':primer_reinspec_fecha', $primerReinspecFecha);
+        $this->db->bind(':primer_reinspec_cal', $primerReinspecCal);
+        $this->db->bind(':segunda_reinspec_fecha', $segundaReinspecFecha);
+        $this->db->bind(':segunda_reinspec_cal', $segundaReinspecCal);
+        $this->db->bind(':id_estab', $idEstab);
+                                              
+        if ($this->db->execute()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
+
+    public function updateInspeccion($idInspec, $inspecPara, $fechaInspec, $objetoVisita, $nombreInspector, 
+                                  $calPrimerInspec, $primerReinspecFecha, $primerReinspecCal,
+                                  $segundaReinspecFecha, $segundaReinspecCal, $idEstab){
+
+        $this->db->query(
+            "UPDATE tblinspecciones 
+            SET inspec_para = :inspec_para,
+                fecha_inspec = :fecha_inspec,
+                objeto_visita = :objeto_visita,
+                nombre_inspector = :nombre_inspector,
+                cal_primer_inspec = :cal_primer_inspec,
+                primer_reinspec_fecha = :primer_reinspec_fecha,
+                primer_reinspec_cal = :primer_reinspec_cal,
+                segunda_reinspec_fecha = :segunda_reinspec_fecha,
+                segunda_reinspec_cal = :segunda_reinspec_cal,
+                id_estab = :id_estab
+           WHERE id_inspec = :id_inspec");
+
+        $this->db->bind(':inspec_para', $inspecPara);
+        $this->db->bind(':fecha_inspec', $fechaInspec);
+        $this->db->bind(':objeto_visita', $objetoVisita);
+        $this->db->bind(':nombre_inspector', $nombreInspector);
+        $this->db->bind(':cal_primer_inspec', $calPrimerInspec);
+        $this->db->bind(':primer_reinspec_fecha', $primerReinspecFecha);
+        $this->db->bind(':primer_reinspec_cal', $primerReinspecCal);
+        $this->db->bind(':segunda_reinspec_fecha', $segundaReinspecFecha);
+        $this->db->bind(':segunda_reinspec_cal', $segundaReinspecCal);
+        $this->db->bind(':id_estab', $idEstab);
+        $this->db->bind(':id_inspec', $idInspec);
+                                              
+        if ($this->db->execute()) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+    // public function getInspecEstablecimientoNum($id){
+
+    //     $this->db->query(
+    //         "SELECT * FROM tblinspecciones 
+    //         WHERE id_estab = '$id'");
+        
+    //     return $this->db->rowCount();
+    // }
     
     
 }
