@@ -13,8 +13,8 @@
 
             <a href="<?php echo ROUTE_URL?>/credenciales" ><i class="fas fa-address-card"></i>Credenciales <?php echo $parameters['credenciales']?> <br>Formal: <?php echo $parameters['credencialesformal']?>  Informal: <?php echo $parameters['credencialesinformal']?> </a>
 
-            <a href="<?php echo ROUTE_URL?>/examenes" ><i class="fas fa-file-medical"></i>Examenes Actos <?php echo $parameters['examenesActos']?> <br>Formal: <?php echo $parameters['actosFormal']?>  Informal: <?php echo $parameters['actosInformal']?> </a>
-            <a href="<?php echo ROUTE_URL?>/examenes/examenesNoActos" ><i class="fas fa-file-medical-alt"></i>Examenes No Actos <?php echo $parameters['examenesNoactos']?> <br>Formal: <?php echo $parameters['noactosFormal']?>  Informal: <?php echo $parameters['noactosInformal']?> </a>
+            <a href="<?php echo ROUTE_URL?>/examenes" ><i class="fas fa-file-medical"></i>Examenes Aptos <?php echo $parameters['examenesActos']?> <br>Formal: <?php echo $parameters['actosFormal']?>  Informal: <?php echo $parameters['actosInformal']?> </a>
+            <a href="<?php echo ROUTE_URL?>/examenes/examenesNoActos" ><i class="fas fa-file-medical-alt"></i>Examenes No Aptos <?php echo $parameters['examenesNoactos']?> <br>Formal: <?php echo $parameters['noactosFormal']?>  Informal: <?php echo $parameters['noactosInformal']?> </a>
 
             <a href="<?php echo ROUTE_URL?>/asistencias" ><i class="fas fa-clipboard-list"></i>Asistencias <?php echo $parameters['asistencias']?> <br>Formal: <?php echo $parameters['asistenciasFormal']?> Informal: <?php echo $parameters['asistenciasInformal']?></a>
             <a href="<?php echo ROUTE_URL?>/asistencias/noAsistidos" ><i class="fas fa-clipboard-list"></i>Inasistencias <?php echo $parameters['inasistencias']?> <br>Formal: <?php echo $parameters['inasistenciasFormal']?>  Informal: <?php echo $parameters['inasistenciasInformal']?></a>

@@ -7,7 +7,7 @@
       			<th colspan="9">
                     <div class="title">
                         <p>
-                            Listado de credenciales actas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            Listado de credenciales aptas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                         </p>
                         <p>
@@ -15,7 +15,7 @@
                                 <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-editar"><i
                                     class="fas fa-redo"></i>Recargar</a>
                             <?php endif?>
-                            <a href="<?php echo ROUTE_URL?>/credenciales/noActos" class="btn-desactivar"><i class="fas fa-address-card"></i> No Actos</a>
+                            <a href="<?php echo ROUTE_URL?>/credenciales/noActos" class="btn-desactivar"><i class="fas fa-address-card"></i> No Aptos</a>
                         </p>
                     </div> 
                 </th>

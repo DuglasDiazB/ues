@@ -44,3 +44,18 @@ function cerrar(){
     $('.container.active').removeClass("active");
     
 }
+
+function cerrarManipulador(){
+    if (document.getElementById('eliminar-manipulador')) {
+        
+        document.getElementById('eliminar-manipulador').style.display="none";
+    }
+    else if( document.getElementById('activar-manipulador')){
+
+        document.getElementById('activar-manipulador').style.display="none";
+    }
+    $('.container.active').removeClass("active");
+    
+}
+
+

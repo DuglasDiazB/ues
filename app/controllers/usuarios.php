@@ -17,7 +17,9 @@ class Usuarios extends MainController
 	public function verUsuario($id, $estado, $pagina, $busqueda = NULL){
 	
 
-		$usuario = $this->ModeloUsuarios->obtenerUsuario1($id, $estado);	
+		$usuario = $this->ModeloUsuarios->obtenerUsuario1($id, $estado);
+		
+		
 		if($estado == 1){
             $regresar = ROUTE_URL.'/usuarios/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
@@ -35,6 +37,10 @@ class Usuarios extends MainController
 		];
 		$this->view('usuarios/ver_usuario', $parameters);
 	}
+
+
+
+
 	public function actualizarUsuario($id = 0){
 		$pagina = NULL;
 		$busqueda= NULL;

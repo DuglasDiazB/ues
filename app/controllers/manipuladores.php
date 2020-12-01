@@ -17,11 +17,17 @@ class Manipuladores extends MainController{
 
 
 
-	/*public function verManipulador($id = 0, $pagina, $estado, $busqueda = null){*/
+	public function verManipulador($id = 0, $pagina, $estado, $busqueda = NULL){
 
-	public function verManipulador($id, $estado){
+	/*public function verManipulador($id, $estado){*/
 
 		$manipulador = $this->ModeloManipuladores->obtenerManipulador($id, $estado);	
+
+		if($estado == 'Activo'){
+            $regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/0/0/'.$busqueda;
+        }else{
+            $regresar = ROUTE_URL.'/manipuladores/manipuladoresDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+        }
 		
 		
 		$parameters = [
@@ -30,10 +36,16 @@ class Manipuladores extends MainController{
 			'error' => FALSE,
 			'mensaje' => 'No se admite editar manipulador',		
 			'menu' => 'manipuladores',
-			'manipulador' => $manipulador
+			'manipulador' => $manipulador,
+			'regresar' => $regresar
 		];
 		$this->view('manipuladores/ver_manipulador', $parameters);
 	}
+
+
+
+
+
 
 
 	
@@ -294,6 +306,8 @@ class Manipuladores extends MainController{
 
 		// ----------------- Crear nuevo usuario--------------------
 	public function nuevoManipulador(){
+		$pagina=NULL; 
+		$busqueda = null;
 
 		$establecimiento = $this->ModeloManipuladores->obtenerManipuladores();
 
@@ -313,6 +327,7 @@ class Manipuladores extends MainController{
 		
 		// ----------------- Recibiendo datos del formulario --------------------
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 
 			// ----------------- guardando los datos enviados por el formulario como propiedades --------------------
 			//$data = $this->ModeloManipuladores->set_datos($_POST);
@@ -367,6 +382,7 @@ class Manipuladores extends MainController{
 						'errores' => $errores,
 						'menu' => 'manipuladores',
 						'establecimiento' => $establecimiento,
+						'regresar' => $regresar,
 
 					];
 
@@ -383,6 +399,7 @@ class Manipuladores extends MainController{
 							'menu' => 'manipuladores',
 							'establecimiento' => $establecimiento,
 							'errores' => [],
+							'regresar' => $regresar,
 						];
 
 						$this->view('manipuladores/nuevo_manipulador', $parameters);
@@ -398,7 +415,7 @@ class Manipuladores extends MainController{
 	
 			
 		
-
+			$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 			$parameters = [
 				'error' => $this->error,
 				'mensaje' => 'Complete los campos para realizar el registro.',
@@ -407,6 +424,8 @@ class Manipuladores extends MainController{
 				'menu' => 'manipuladores',
 				'establecimiento' => $establecimiento,
 				'errores' => [],
+				'regresar' => $regresar,
+				
 			];
 			
 			$this->view('manipuladores/nuevo_manipulador', $parameters);
@@ -426,7 +445,11 @@ class Manipuladores extends MainController{
 
 
 
-			public function actualizarManipulador($id = 0, $pagina = 1){
+			public function actualizarManipulador($id = 0 /*,$pagina = 1*/){
+				$pagina = NULL;
+				$busqueda= NULL;
+
+				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 
 			
 
@@ -441,6 +464,7 @@ class Manipuladores extends MainController{
 					'establecimiento' => $establecimiento,
 					'errores' => [],
 					'menu' => 'manipuladores',
+					'regresar' => $regresar
 
 				];
 
@@ -448,6 +472,7 @@ class Manipuladores extends MainController{
 			}
 			//presionando el boton
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 				
 				$establecimiento = $this->ModeloManipuladores->getEstab($_POST['id_estab']);
 			
@@ -497,6 +522,7 @@ class Manipuladores extends MainController{
 						'establecimiento' => $manipulator,
 						'establecimientos'=> $establecimientos,
 						'manipulador' => $id,
+						'regresar' => $regresar
 					];
 
 
@@ -521,6 +547,7 @@ class Manipuladores extends MainController{
 							'establecimientos'=> $establecimientos,
 							'errores' => $errores,
 							'menu' => 'manipuladores',
+							'regresar' => $regresar
 
 						];
 						$this->view('manipuladores/actualizar_manipulador', $parameters);
@@ -564,6 +591,7 @@ class Manipuladores extends MainController{
 					'establecimiento' => $manipulator,
 					'establecimientos'=> $establecimientos,
 					'manipulador' => $id,
+					'regresar' => $regresar
 				];
 
 

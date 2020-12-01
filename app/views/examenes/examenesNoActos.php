@@ -7,7 +7,7 @@
       			<th colspan="11">
                     <div class="title">
                         <p>
-                            Listado de examenes no actos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            Listado de examenes no aptos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                         </p>
                         <p>

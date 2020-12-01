@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?php echo ROUTE_URL?>/css/inicio.css">
     <link rel="stylesheet" href="<?php echo ROUTE_URL?>/css/credencial.css">
     <link rel="stylesheet" href="<?php echo ROUTE_URL?>/css/capacitacion.css">
+    <link rel="stylesheet" href="<?php echo ROUTE_URL?>/css/reporte.css">
     
     
     <!-- <link rel="stylesheet" href="<?php echo ROUTE_URL?>/css/formularios.css"> -->

@@ -210,7 +210,7 @@
 
                                 <div class="aceptar">
 
-                                    <a href="javascript:cerrar()" class="btn-desactivar"><i class="fas fa-times"></i></a>
+                                    <a href="javascript:cerrarManipulador()" class="btn-desactivar"><i class="fas fa-times"></i></a>
 
                                 </div>
 
