@@ -102,16 +102,16 @@ class Inspecciones extends MainController{
 
                                 //guardamos esta como la primera nota si la nueva puntuacion supera 90
                                                              
-                                    if($this->modeloEstablecimientos->updateInspeccion($inspeccion->id_inspec, $inspecPara, $fechaActual, $objetoVisita,
+                                if($this->modeloEstablecimientos->updateInspeccion($inspeccion->id_inspec, $inspecPara, $fechaActual, $objetoVisita,
                                                                                 $nombreInspec, $puntuacion, NULL, NULL, NULL, NULL, $idEstab)){
     
-                                        $error = false;
-                                        $mensaje = 'Se guardo correctamente';
+                                    $error = false;
+                                    $mensaje = 'Se guardo correctamente';
     
-                                    }else{
-                                        $error = TRUE;
-                                        $mensaje = 'No es posible guardar';
-                                    }
+                                }else{
+                                    $error = TRUE;
+                                    $mensaje = 'No es posible guardar';
+                                }
                                 //guardamos la tercera nota
                                 
 
@@ -120,32 +120,49 @@ class Inspecciones extends MainController{
                             }elseif ($inspeccion->primer_reinspec_cal <= 90) {
                                                                 
 
-                                    if($this->modeloEstablecimientos->updateInspeccion($inspeccion->id_inspec, $inspecPara, $fechaActual, $objetoVisita,
-                                    $nombreInspec, $inspeccion->cal_primer_inspec, $inspeccion->primer_reinspec_fecha,  $inspeccion->primer_reinspec_cal, $fechaActual, $puntuacion, $idEstab)){
+                            if($this->modeloEstablecimientos->updateInspeccion($inspeccion->id_inspec, $inspecPara, $fechaActual, $objetoVisita,
+                                $nombreInspec, $inspeccion->cal_primer_inspec, $inspeccion->primer_reinspec_fecha,  $inspeccion->primer_reinspec_cal, $fechaActual, $puntuacion, $idEstab)){
     
-                                        $error = false;
-                                        $mensaje = 'Se guardo correctamente';
+                                $error = false;
+                                $mensaje = 'Se guardo correctamente';
     
-                                    }else{
-                                        $error = TRUE;
-                                        $mensaje = 'No es posible guardar';
-                                    }
-
-                                    if ($puntuacion < 90) {
-
-                                        $error = false;
-                                        $mensaje = 'El establecimiento fue dasactivado, ya que este es su ultimo intento';
-                                        
-                                        $this->modeloEstablecimientos->desacEstab($establecimiento);
-                                    }
-                                
+                            }else{
+                                $error = TRUE;
+                                $mensaje = 'No es posible guardar';
                             }
 
-                            // sino verificamos si la tercera nota llego a 90 o mas
-                            // guardamos la nota como la tercera
+                            if ($puntuacion < 90) {
 
-                            // sino guardamos la tercera nota y desactivamos el establecimiento
-                            
+                                $error = false;
+                                $mensaje = 'El establecimiento fue dasactivado, ya que este es su ultimo intento';
+                                        
+                                $this->modeloEstablecimientos->desacEstab($establecimiento);
+                            }
+                                
+                        }
+
+                                                    
+                    }elseif ($inspeccion->segunda_reinspec_fecha != NULL AND $inspeccion->segunda_reinspec_cal != NULL) {
+                        
+                        if($this->modeloEstablecimientos->updateInspeccion($inspeccion->id_inspec, $inspecPara, $fechaActual, $objetoVisita,
+                            $nombreInspec, $inspeccion->cal_primer_inspec, $inspeccion->primer_reinspec_fecha,  $inspeccion->primer_reinspec_cal, $fechaActual, $puntuacion, $idEstab)){
+
+                            $error = false;
+                            $mensaje = 'Se guardo correctamente';
+
+                        }else{
+                            $error = TRUE;
+                            $mensaje = 'No es posible guardar';
+                        }
+
+                        if ($puntuacion < 90) {
+
+                            $error = false;
+                            $mensaje = 'El establecimiento fue dasactivado, ya que este es su ultimo intento';
+                                    
+                            $this->modeloEstablecimientos->desacEstab($establecimiento);
+                        }
+                        
                     }
                 //no se le ha realizado ninguna inspeccion anteriormente
                 }else{
@@ -160,23 +177,24 @@ class Inspecciones extends MainController{
                     }                    
                 }
 
-                $respuesta = array(
-                    'error' => $error,
-                    'mensaje' => $mensaje,    
-                );
-
-                http_response_code(200);
-                echo json_encode($respuesta);
-                return;
-            
-            //el establecimiento no existe
+                
+                //el establecimiento no existe
             } else {
                 
-                echo 'no existe';
+                $error = TRUE;
+                $mensaje = 'El establecimiento no existe';
             }
             
             
-            die();
+            $respuesta = array(
+                'error' => $error,
+                'mensaje' => $mensaje,    
+            );
+
+            http_response_code(200);
+            echo json_encode($respuesta);
+            return;
+            
 
             
             // //1.0 Verificando si el establecimiento existe
