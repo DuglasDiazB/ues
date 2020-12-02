@@ -51,6 +51,9 @@
 
             </ul>
 </div>
+
+<a href="#" ><img src="<?php echo ROUTE_URL?>/img/logominsal.png" alt="UCSF" style=" margin-left:200px; width: 750px;
+    height: 350px;"></a>
      
 <!-- Llamando el footer -->
 <?php require_once('../app/views/inc/footer.php'); ?>
