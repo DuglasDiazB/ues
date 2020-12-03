@@ -9,6 +9,7 @@ class Establecimientos extends MainController{
 		sessionAdmin();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloEstablecimientos = $this->model('ModeloEstablecimientos');
+		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
 
 	}
 
@@ -374,13 +375,13 @@ class Establecimientos extends MainController{
 					$parameters = [
 						'title' => 'Nuevo Establecimiento',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'establecimientos',
 						'regresar' => $regresar,
 
 					];
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('establecimientos/nuevo_establecimiento', $parameters);
 
 				}else  	{
@@ -390,16 +391,17 @@ class Establecimientos extends MainController{
 						$parameters = [
 							'title' => 'Nuevo Establecimiento',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'establecimientos',
 							'errores' => [],
 							'regresar' => $regresar,
 						];
 
-
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('establecimientos/nuevo_establecimiento', $parameters);
 					}else{
 						echo 'No se puedo guardar el registro';
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 					}
 				}
@@ -509,14 +511,14 @@ class Establecimientos extends MainController{
 					$parameters = [
 						'title' => 'Editar Establecimiento',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'establecimientos',
 						'establecimiento' => $id,
 						'regresar' => $regresar
 					];
 
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('establecimientos/actualizar_establecimiento', $parameters);
 
 				}else{
@@ -531,18 +533,20 @@ class Establecimientos extends MainController{
 
 							'title' => 'Editar Establecimiento',
 							'error' => FALSE,
-							'mensaje' => 'Se actualizo el registro correctamente',
+							'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'establecimientos',
 							'errores' => $errores,
 							'menu' => 'establecimientos',
 							'regresar' => $regresar
 
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('establecimientos/actualizar_establecimiento', $parameters);
 
 					}else{
 
 						echo 'No se puedo actualizar el registro';
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 
 					}

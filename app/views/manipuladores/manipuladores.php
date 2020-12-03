@@ -6,7 +6,7 @@
         <!-- colspan="Numero de columnas que tendra la tabla" -->
         <th colspan="8">
             <div class="title">
-                <p>Lista de manipuladores, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                <p>Manipuladores, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                 <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
             </p>
 
@@ -28,7 +28,7 @@
                   
 
                     <a href="<?php echo ROUTE_URL?>/manipuladores/manipuladoresDesactivados" class="btn-desactivar">
-                    Desactivados</a>
+                    <i class="fas fa-times"></i> Desactivados</a>
 
                 </p>
             </div>
@@ -50,7 +50,7 @@
         <?php if( $parameters['respuesta']['error']):?>
             <tr>
                 <td data-label="error">
-                    ---
+                    -
                 </td>
                 <td data-label="error">
                     ---

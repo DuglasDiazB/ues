@@ -7,7 +7,7 @@
       			<th colspan="9">
                     <div class="title">
                         <p>
-                            Listado de credenciales aptas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            Credenciales aptas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                         </p>
                         <p>
