@@ -465,7 +465,7 @@ class Inspecciones extends MainController
 
 				$parameters = [
 					'error' => $this->error,
-					'mensaje' => 'Revise los campos de entrada',
+					'mensaje' => 'Revise los campos de entrada <i style = "color: 	#FF0000;" class="fas fa-exclamation-circle"></i>',
 					'errores' => $errores,
 					'menu' => 'inspecciones',
 					'title' => 'Nueva Inspección',
@@ -489,7 +489,7 @@ class Inspecciones extends MainController
 
 						'error' => FALSE,
 						'title' => 'Nueva Inspeccion',
-						'mensaje' => 'Se guardo el registro con exito',
+						'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 						'menu' => 'inspecciones',
 						'errores' => [],
 						'establecimiento' => $establecimiento,

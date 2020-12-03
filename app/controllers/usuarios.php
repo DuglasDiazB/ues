@@ -53,7 +53,7 @@ class Usuarios extends MainController
 			$parameters = [
 
 				'error' => TRUE,
-				'mensaje' => 'Este registro ya no existe',
+				'mensaje' => 'Este registro ya no existe <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 				'errores' => [],
 				'menu' => 'usuarios',
 				'regresar' => $regresar
@@ -126,7 +126,7 @@ class Usuarios extends MainController
 				$parameters = [
 					'title' => 'Editar Usuario',
 					'error' => $this->error,
-					'mensaje' => 'Revise los campos de entrada',
+					'mensaje' => 'Revise los campos de entrada <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 					'errores' => $errores,
 					'menu' => 'usuarios',
 					'usuario' => $id,
@@ -147,7 +147,7 @@ class Usuarios extends MainController
 
 						'title' => 'Editar Usuario',
 						'error' => FALSE,
-						'mensaje' => 'Se actualizo el registro correctamente',
+						'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 						'menu' => 'usuarios',
 						'errores' => $errores,
 						'menu' => 'usuarios',
@@ -252,7 +252,7 @@ class Usuarios extends MainController
 					$parameters = [
 						'title' => 'Nuevo Usuario',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'usuarios',
 						'regresar' => $regresar
@@ -269,7 +269,7 @@ class Usuarios extends MainController
 						$parameters = [
 							'title' => 'Nuevo Usuario',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'usuarios',
 							'errores' => [],
 							'regresar' => $regresar

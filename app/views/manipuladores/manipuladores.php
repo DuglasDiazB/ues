@@ -28,7 +28,7 @@
                   
 
                     <a href="<?php echo ROUTE_URL?>/manipuladores/manipuladoresDesactivados" class="btn-desactivar">
-                    Desactivados</a>
+                    <i class="fas fa-times"></i> Desactivados</a>
 
                 </p>
             </div>

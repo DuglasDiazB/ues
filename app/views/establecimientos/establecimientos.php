@@ -19,7 +19,7 @@
                         class="far fa-plus-square"></i>
                     Nuevo</a>
 
-                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar"><i class="fas fa-store-slash"></i>
+                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar"><i class="fas fa-times"></i></i>
                     Desactivados</a>
 
 

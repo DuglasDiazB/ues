@@ -6,7 +6,7 @@
 				    <!-- colspan="Numero de columnas que tendra la tabla" -->
                         <th colspan="8">
                         <div class="title">
-                            <p>Lista de inspecciones, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            <p>Inspecciones, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                             </p>
                              <p>
@@ -15,7 +15,7 @@
                                     class="fas fa-redo"></i>Recargar</a>
                                 <?php endif?>
                                 <a href="<?php echo ROUTE_URL?>/inspecciones/establecimientosDesactivados" class="btn-desactivar">
-                                Desactivados</a>
+                                <i class="fas fa-times"></i> Desactivados</a>
                                 <a href="<?php echo ROUTE_URL?>/inspecciones/inspeccionEstablecimiento" class="btn-ver"><i
                                     class="far fa-plus-square"></i>
                                     Establecimientos</a>
