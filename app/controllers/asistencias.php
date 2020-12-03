@@ -163,7 +163,7 @@ class Asistencias extends MainController
                     'menu' => 'asistencias',
                     'regresar' => $regresar,
                 ];
-                
+                $this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
                 $this->view('asistencias/fechaCapacitacion', $parameters);
                 
             }else{
@@ -215,6 +215,7 @@ class Asistencias extends MainController
                         'regresar' => $regresar,
                     ];
 
+                    $this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
                     $this->view('asistencias/fechaCapacitacion', $parameters);
                 }else{
 
@@ -225,6 +226,7 @@ class Asistencias extends MainController
                         'menu' => 'asistencias',
                         'regresar' => $regresar,
                     ];
+                    $this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 
                     $this->view('asistencias/fechaCapacitacion', $parameters);
 

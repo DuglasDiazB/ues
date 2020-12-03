@@ -256,6 +256,7 @@ class Inspecciones extends MainController
 
 			];
 
+			$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 			$this->view('inspecciones/actualizar_inspeccion', $parameters);
 		
 		}else{
@@ -284,10 +285,12 @@ class Inspecciones extends MainController
 					'pagina' => $pagina,
 					'busqueda' => $busqueda
 				];
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 				$this->view('inspecciones/actualizar_inspeccion', $parameters);
 
 			}else{
 				echo 'No se puedo actualizar el registro';
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 				die();
 			}
 
@@ -465,7 +468,7 @@ class Inspecciones extends MainController
 
 				$parameters = [
 					'error' => $this->error,
-					'mensaje' => 'Revise los campos de entrada',
+					'mensaje' => 'Revise los campos de entrada <i style = "color: 	#FF0000;" class="fas fa-exclamation-circle"></i>',
 					'errores' => $errores,
 					'menu' => 'inspecciones',
 					'title' => 'Nueva Inspección',
@@ -489,7 +492,7 @@ class Inspecciones extends MainController
 
 						'error' => FALSE,
 						'title' => 'Nueva Inspeccion',
-						'mensaje' => 'Se guardo el registro con exito',
+						'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 						'menu' => 'inspecciones',
 						'errores' => [],
 						'establecimiento' => $establecimiento,

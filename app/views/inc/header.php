@@ -60,12 +60,12 @@
                         class="fas fa-home"></i>Inicio</a>
                 <a href="<?php echo ROUTE_URL?>/manipuladores" class="<?php echo $var=($parameters['menu'] == 'manipuladores')? 'active': ''?>" ><i class="fas fa-hand-paper"></i>Manipúlador</a>
                 <a href="<?php echo ROUTE_URL?>/establecimientos" class="<?php echo $var=($parameters['menu'] == 'establecimientos')? 'active': ''?>" ><i class="fas fa-store"></i>Establecimientos</a>
+                <a href="<?php echo ROUTE_URL?>/inspecciones" class="<?php echo $var=($parameters['menu'] == 'inspecciones')? 'active': ''?>" ><i class="fas fa-user-secret"></i>Inspección</a>
                 <a href="<?php echo ROUTE_URL?>/reports" class="<?php echo $var=($parameters['menu'] == 'reports')? 'active': ''?>"><i class="fas fa-list-alt"></i>Reporte</a>
+                
+                <a href="<?php echo ROUTE_URL?>/asistencias" class="<?php echo $var=($parameters['menu'] == 'asistencias')? 'active': ''?>" ><i class="fas fa-clipboard-list"></i>Asistencia</a>
                 <a href="<?php echo ROUTE_URL?>/examenes" class="<?php echo $var=($parameters['menu'] == 'examenes')? 'active': ''?>" class=""><i class="fas fa-file-medical"></i>Examenes</a>
                 <a href="<?php echo ROUTE_URL?>/credenciales" class="<?php echo $var=($parameters['menu'] == 'credenciales')? 'active': ''?>" ><i class="fas fa-address-card"></i>Credencial</a>
-                <a href="<?php echo ROUTE_URL?>/asistencias" class="<?php echo $var=($parameters['menu'] == 'asistencias')? 'active': ''?>" ><i class="fas fa-clipboard-list"></i>Asistencia</a>
-                <a href="<?php echo ROUTE_URL?>/inspecciones" class="<?php echo $var=($parameters['menu'] == 'inspecciones')? 'active': ''?>" ><i class="fas fa-user-secret"></i>Inspección</a>
-                <!-- llamando al controlador -->
                 <a href="<?php echo ROUTE_URL?>/usuarios" class="<?php echo $var=($parameters['menu'] == 'usuarios')? 'active': ''?>"><i class="fas fa-users-cog"></i>Usuario</a>
                 <a href="<?php echo ROUTE_URL?>/bitacoras" class="<?php echo $var=($parameters['menu'] == 'bitacoras')? 'active': ''?>"><i class="fas fa-clipboard-check"></i>Bitacora</a>
 
