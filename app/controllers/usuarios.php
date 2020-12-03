@@ -12,6 +12,7 @@ class Usuarios extends MainController
 		sessionAdmin();
 		// ModeloUsuarios es donde estan todas las consultas cpn la base de datos
 		 $this->ModeloUsuarios = $this->model('ModeloUsuarios');
+		 $this->ModeloBitacoras = $this->model('ModeloBitacoras');
 	}
 
 	public function verUsuario($id, $estado, $pagina, $busqueda = NULL){
@@ -133,7 +134,7 @@ class Usuarios extends MainController
 					'regresar' => $regresar
 				];
 
-
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 				$this->view('usuarios/actualizar_usuario', $parameters);
 
 			}else{
@@ -154,11 +155,13 @@ class Usuarios extends MainController
 						'regresar' => $regresar
 	
 					];
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 					$this->view('usuarios/actualizar_usuario', $parameters);
 
 				}else{
 
 					echo 'No se puedo actualizar el registro';
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					die();
 
 				}
@@ -258,6 +261,7 @@ class Usuarios extends MainController
 						'regresar' => $regresar
 
 					];
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 
 					$this->view('usuarios/nuevo_usuario', $parameters);
 
@@ -274,11 +278,12 @@ class Usuarios extends MainController
 							'errores' => [],
 							'regresar' => $regresar
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('usuarios/nuevo_usuario', $parameters);
 
 					}else{
 						echo 'No se puedo guardar el registro';
-	
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 					}
 				}

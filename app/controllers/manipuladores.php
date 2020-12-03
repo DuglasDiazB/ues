@@ -9,6 +9,7 @@ class Manipuladores extends MainController{
 		sessionAdmin();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloManipuladores = $this->model('ModeloManipuladores');
+		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
 
 	}
 
@@ -378,14 +379,14 @@ class Manipuladores extends MainController{
 					$parameters = [
 						'title' => 'Nuevo Manipulador',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'manipuladores',
 						'establecimiento' => $establecimiento,
 						'regresar' => $regresar,
 
 					];
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('manipuladores/nuevo_manipulador', $parameters);
 
 				}else  	{
@@ -395,13 +396,13 @@ class Manipuladores extends MainController{
 						$parameters = [
 							'title' => 'Nuevo Manipulador',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'manipuladores',
 							'establecimiento' => $establecimiento,
 							'errores' => [],
 							'regresar' => $regresar,
 						];
-
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('manipuladores/nuevo_manipulador', $parameters);
 
 					}else{
@@ -467,7 +468,7 @@ class Manipuladores extends MainController{
 					'regresar' => $regresar
 
 				];
-
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'No Exitosa');
 				$this->view('manipuladores/actualizar_manipulador', $parameters);
 			}
 			//presionando el boton
@@ -515,7 +516,7 @@ class Manipuladores extends MainController{
 					$parameters = [
 						'title' => 'Editar Manipulador',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'establecimiento' => $establecimiento,
 						'errores' => $errores,
 						'menu' => 'manipuladores',
@@ -525,7 +526,7 @@ class Manipuladores extends MainController{
 						'regresar' => $regresar
 					];
 
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('manipuladores/actualizar_manipulador', $parameters);
 
 				//No existen errores en el formulario
@@ -541,7 +542,7 @@ class Manipuladores extends MainController{
 
 							'title' => 'Editar Manipulador',
 							'error' => FALSE,
-							'mensaje' => 'Se actualizo el registro correctamente',
+							'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'manipuladores',
 							'establecimiento' => $manipulator,
 							'establecimientos'=> $establecimientos,
@@ -550,6 +551,7 @@ class Manipuladores extends MainController{
 							'regresar' => $regresar
 
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('manipuladores/actualizar_manipulador', $parameters);
 
 					}else{
