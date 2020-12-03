@@ -333,17 +333,28 @@
         
     //     return $this->db->rowCount();
     // }
-
+    
     public function getInspecciones($id){
 
         $this->db->query(
-            "SELECT * FROM tblinspecciones 
+            "SELECT id_inspec,
+                inspec_para,
+                fecha_inspec,
+                objeto_visita,
+                nombre_inspector,
+                cal_primer_inspec,
+                primer_reinspec_fecha,
+                primer_reinspec_cal,
+                segunda_reinspec_fecha,
+                segunda_reinspec_cal,
+                id_estab
+            FROM tblinspecciones 
             WHERE id_estab = '$id'");
         
         return $this->db->registers();
     }
 
-
+    
     public function getfechaActual(){
 
         $this->db->query(
@@ -437,14 +448,14 @@
             return FALSE;
         }
     }
-    // public function getInspecEstablecimientoNum($id){
+    public function getInspecEstablecimientoNum($id){
 
-    //     $this->db->query(
-    //         "SELECT * FROM tblinspecciones 
-    //         WHERE id_estab = '$id'");
+        $this->db->query(
+            "SELECT * FROM tblinspecciones 
+            WHERE id_estab = '$id'");
         
-    //     return $this->db->rowCount();
-    // }
+        return $this->db->rowCount();
+    }
     
     
 }

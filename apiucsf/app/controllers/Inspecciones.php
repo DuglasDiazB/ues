@@ -404,18 +404,18 @@ class Inspecciones extends MainController{
             
             //1.0 necesitamos saber que existe la inspeccion a traves del idEstab
             if ($this->modeloEstablecimientos->getInspecEstablecimientoNum($id) > 0) {
-    
+                
                 
 
                 $inspec = $this->modeloEstablecimientos->getInspecciones($id);
                 
 
-                foreach ($inspec as $nombre_campo => $valor_campo) {
+                // foreach ($inspec as $nombre_campo => $valor_campo) {
                     
-                    if ($valor_campo == null) {
-                        $inspec->$nombre_campo = '---';
-                    }
-                }
+                //     if ($valor_campo == null) {
+                //         $inspec->$nombre_campo = '---';
+                //     }
+                // }
                 
                 $respuesta = array(
                     'error' => FALSE,
@@ -428,16 +428,38 @@ class Inspecciones extends MainController{
 
             }else{
 
-                //si no existe el registro
-                $respuesta = array(
-                    'error' => FALSE,
-                    'mensaje' => 'No se encontraron datos de inspeccion',
-                    'inspeccion' => []
-                );
-                http_response_code(200);
-                echo json_encode($respuesta);
-                return;
-    
+                 //hacemos un insert del registro en la tabla inspecciones
+                 if($this->modeloEstablecimientos->saveInspeccion('Autorización nueva', null, 'Tramite de permiso', 'Sin dato', 
+                    null, null, null,
+                    null, null, $id)){
+
+
+                    $inspec = $this->modeloEstablecimientos->getInspecciones($id);
+                                                            
+                    $respuesta = array(
+                        'error' => FALSE,
+                        'mensaje' => 'Datos cargados correctamente',
+                        'inspeccion' => $inspec
+                    );
+                    http_response_code(200);
+                    echo json_encode($respuesta);
+                    return;
+
+
+                }else{
+                    
+                        //si no existe el registro
+                    $respuesta = array(
+                        'error' => FALSE,
+                        'mensaje' => 'No se encontraron datos de inspeccion',
+                        'inspeccion' => []
+                    );
+                    http_response_code(200);
+                    echo json_encode($respuesta);
+                    return;
+
+                } 
+                    
             }
         }
 
