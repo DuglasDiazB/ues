@@ -1,6 +1,6 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <!-- Agregar boton regresar y mensaje-->
-<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<!--<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>-->    
 
 <table>
  <thead>

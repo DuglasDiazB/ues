@@ -6,32 +6,44 @@
                     Copia de seguridad</a>
 <div class="navegacion">
     <ul class="menu-reporte">
+
+                <li> <a href="#">
+                    Usuarios</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
+                        </li>
+                        
+                    </ul>
+                    </li>
                 
                 <li><a href="#">
-                    Reporte General</a>
+                    Manipuladores</a>
                     <ul class="submenu">
                     <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores">
-                    Manipuladores</a></li>
+                    General</a></li>
 
                     <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresActivos">
-                    Manipuladores Activos</a></li>
+                    Activos</a></li>
 
                     <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInactivos" >
-                    Manipuladores Inactivos</a></li>
+                    Inactivos</a></li>
 
 
                     <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresFormales" >
-                    Manipuladores Formales</a></li>
+                    Formales</a></li>
 
 
                     <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" >
-                    Manipuladores Informales</a></li>
+                    Informales</a></li>
 
 					</ul>
                 </li>
                 
                 <li> <a href="">
                     Inspecciones</a></li>
+
+
 
                     <li> <a href="">
                     Examenes</a></li>
@@ -42,11 +54,12 @@
                     <li> <a href="">
                     Credenciales</a></li>
 
+
+
                     <li><a href="">
                     Establecimientos</a></li>
 
-                    <li> <a href="">
-                    Usuarios</a></li>
+                    
 
 
             </ul>

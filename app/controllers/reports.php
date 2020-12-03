@@ -30,7 +30,23 @@ class Reports extends MainController{
 
 	}
 
+/*FUNCIONES PARA LOS REPORTES DEL MODULO DE USUARIOS*/
 
+public function reporteUsuarios(){
+		$usuarios = $this->ModeloReportes->obtenerUsuarios();
+
+		$parameters = [
+			'title'=> 'Active Manipulators Report',
+			'usuarios'=>$usuarios,
+		];
+		$this->view('reportes/usuarios', $parameters);
+	}
+
+
+
+
+
+/*FUNCIONES PARA LOS REPORTES DEL MODULO DE MANIPULADORES*/
 	public function reporteManipuladores(){
 		$manipuladores = $this->ModeloReportes->obtenerManipuladores();
 

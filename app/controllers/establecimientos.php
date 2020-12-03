@@ -14,9 +14,15 @@ class Establecimientos extends MainController{
 
 
 
-	public function verEstablecimiento($id /*= 0*/, /*$pagina,*/ $estado /*$busqueda = null*/){
+	public function verEstablecimiento($id = 0, $pagina, $estado, $busqueda = NULL){
 
 		$establecimiento = $this->ModeloEstablecimientos->obtenerEstablecimiento($id, $estado);	
+
+		if($estado == 'Activo'){
+            $regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/0/0/'.$busqueda;
+        }else{
+            $regresar = ROUTE_URL.'/establecimientos/establecimientosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+        }
 		
 		
 		$parameters = [
@@ -25,7 +31,8 @@ class Establecimientos extends MainController{
 			'error' => FALSE,
 			'mensaje' => 'No se admite editar esablecimiento',		
 			'menu' => 'establecimientos',
-			'establecimiento' => $establecimiento
+			'establecimiento' => $establecimiento,
+			'regresar' => $regresar 
 		];
 		$this->view('establecimientos/ver_establecimiento', $parameters);
 	}
@@ -288,9 +295,14 @@ class Establecimientos extends MainController{
         public function nuevoEstablecimiento
         (){
 
+        	$pagina=NULL; 
+        	$busqueda = null;
+
 
 		// ----------------- Recibiendo datos del formulario --------------------
         	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        		$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
 
 			// ----------------- guardando los datos enviados por el formulario como propiedades --------------------
 			//$data = $this->ModeloManipuladores->set_datos($_POST);
@@ -365,6 +377,7 @@ class Establecimientos extends MainController{
 						'mensaje' => 'Revise los campos de entrada',
 						'errores' => $errores,
 						'menu' => 'establecimientos',
+						'regresar' => $regresar,
 
 					];
 
@@ -380,6 +393,7 @@ class Establecimientos extends MainController{
 							'mensaje' => 'Se guardo el registro con exito',
 							'menu' => 'establecimientos',
 							'errores' => [],
+							'regresar' => $regresar,
 						];
 
 
@@ -392,6 +406,7 @@ class Establecimientos extends MainController{
 			}
 			
 
+			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
 			$parameters = [
 				'error' => $this->error,
 				'mensaje' => 'Complete los campos para realizar el registro.',
@@ -399,6 +414,7 @@ class Establecimientos extends MainController{
 				'title' => 'Nuevo Establecimiento',
 				'menu' => 'establecimientos',
 				'errores' => [],
+				'regresar' => $regresar,
 			];
 			
 			$this->view('establecimientos/nuevo_establecimiento', $parameters);
@@ -415,6 +431,12 @@ class Establecimientos extends MainController{
 
 		public function actualizarEstablecimiento($id = 0){
 
+			$pagina = NULL;
+			$busqueda= NULL;
+
+			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
+
+
 		//comprobando si el usuario existe a traves del id
 			if (!$this->ModeloEstablecimientos->obtenerEstablecimiento($id, 'Activo')) {
 			//	$errores['pass']['pass'] = '';
@@ -425,6 +447,7 @@ class Establecimientos extends MainController{
 					'mensaje' => 'Este registro ya no existe',
 					'errores' => [],
 					'menu' => 'establecimientos',
+					'regresar' => $regresar
 
 				];
 
@@ -490,6 +513,7 @@ class Establecimientos extends MainController{
 						'errores' => $errores,
 						'menu' => 'establecimientos',
 						'establecimiento' => $id,
+						'regresar' => $regresar
 					];
 
 
@@ -511,6 +535,7 @@ class Establecimientos extends MainController{
 							'menu' => 'establecimientos',
 							'errores' => $errores,
 							'menu' => 'establecimientos',
+							'regresar' => $regresar
 
 						];
 						$this->view('establecimientos/actualizar_establecimiento', $parameters);
@@ -564,6 +589,7 @@ class Establecimientos extends MainController{
 					'errores' => $errores,
 					'menu' => 'usuarios',
 					'establecimiento' => $id,
+					'regresar' => $regresar
 				];
 
 
