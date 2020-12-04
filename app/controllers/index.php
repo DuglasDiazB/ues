@@ -93,9 +93,13 @@
             $usuarioEstand = $this->ModeloUsuarios->tipoUsuario('2');
             
             $manipuladores = $this->ModeloManipuladores->numeroRegistros($busqueda);
-
-            $establecimientos = $this->ModeloEstablecimientos->numeroRegistros($busqueda);
+            $manipuladoresFormal = $this->ModeloManipuladores->manipuladoresForInf('Formal', 'Activo');
+            $manipuladoresInformal = $this->ModeloManipuladores->manipuladoresForInf('Informal', 'Activo');
             
+            $establecimientos = $this->ModeloEstablecimientos->numeroRegistros($busqueda);
+            $establecimientosFormal = $this->ModeloEstablecimientos->establecimientosForInf('Formal', 'Activo');
+            $establecimientosInformal = $this->ModeloEstablecimientos->establecimientosForInf('Informal', 'Activo');
+
             
             $parameters = [
                 'title'=> 'UCSF',
@@ -121,7 +125,11 @@
                 'credencialesformal' => $credencialesformal, 
                 'credencialesinformal' => $credencialesinformal, 
                 'manipuladores' => $manipuladores,
+                'manipuladoresFormal' => $manipuladoresFormal,
+                'manipuladoresInformal' => $manipuladoresInformal,
                 'establecimientos' => $establecimientos,
+                'establecimientosFormal' => $establecimientosFormal,
+                'establecimientosInformal' => $establecimientosInformal,
   
             ];
             $this->view('index/index', $parameters);

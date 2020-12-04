@@ -374,7 +374,7 @@ class Manipuladores extends MainController{
 
 				if ($this->error == TRUE) {
 
-					echo $this->error;
+					// echo $this->error;
 
 					$parameters = [
 						'title' => 'Nuevo Manipulador',

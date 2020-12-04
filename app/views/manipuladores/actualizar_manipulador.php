@@ -2,7 +2,9 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <!-- Agregar boton regresar y mensaje-->
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<br>
 <p><?php echo $parameters['mensaje']?></p>
+<br>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div  class="contact-form">
