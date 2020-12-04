@@ -9,14 +9,21 @@ class Establecimientos extends MainController{
 		sessionAdmin();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloEstablecimientos = $this->model('ModeloEstablecimientos');
+		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
 
 	}
 
 
 
-	public function verEstablecimiento($id /*= 0*/, /*$pagina,*/ $estado /*$busqueda = null*/){
+	public function verEstablecimiento($id = 0, $pagina, $estado, $busqueda = NULL){
 
 		$establecimiento = $this->ModeloEstablecimientos->obtenerEstablecimiento($id, $estado);	
+
+		if($estado == 'Activo'){
+            $regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/0/0/'.$busqueda;
+        }else{
+            $regresar = ROUTE_URL.'/establecimientos/establecimientosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+        }
 		
 		
 		$parameters = [
@@ -25,7 +32,8 @@ class Establecimientos extends MainController{
 			'error' => FALSE,
 			'mensaje' => 'No se admite editar esablecimiento',		
 			'menu' => 'establecimientos',
-			'establecimiento' => $establecimiento
+			'establecimiento' => $establecimiento,
+			'regresar' => $regresar 
 		];
 		$this->view('establecimientos/ver_establecimiento', $parameters);
 	}
@@ -301,9 +309,14 @@ class Establecimientos extends MainController{
         public function nuevoEstablecimiento
         (){
 
+        	$pagina=NULL; 
+        	$busqueda = null;
+
 
 		// ----------------- Recibiendo datos del formulario --------------------
         	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        		$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
 
 			// ----------------- guardando los datos enviados por el formulario como propiedades --------------------
 			//$data = $this->ModeloManipuladores->set_datos($_POST);
@@ -375,12 +388,13 @@ class Establecimientos extends MainController{
 					$parameters = [
 						'title' => 'Nuevo Establecimiento',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'establecimientos',
+						'regresar' => $regresar,
 
 					];
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('establecimientos/nuevo_establecimiento', $parameters);
 
 				}else  	{
@@ -390,21 +404,24 @@ class Establecimientos extends MainController{
 						$parameters = [
 							'title' => 'Nuevo Establecimiento',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'establecimientos',
 							'errores' => [],
+							'regresar' => $regresar,
 						];
 
-
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('establecimientos/nuevo_establecimiento', $parameters);
 					}else{
 						echo 'No se puedo guardar el registro';
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 					}
 				}
 			}
 			
 
+			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
 			$parameters = [
 				'error' => $this->error,
 				'mensaje' => 'Complete los campos para realizar el registro.',
@@ -412,6 +429,7 @@ class Establecimientos extends MainController{
 				'title' => 'Nuevo Establecimiento',
 				'menu' => 'establecimientos',
 				'errores' => [],
+				'regresar' => $regresar,
 			];
 			
 			$this->view('establecimientos/nuevo_establecimiento', $parameters);
@@ -428,6 +446,12 @@ class Establecimientos extends MainController{
 
 		public function actualizarEstablecimiento($id = 0){
 
+			$pagina = NULL;
+			$busqueda= NULL;
+
+			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
+
+
 		//comprobando si el usuario existe a traves del id
 			if (!$this->ModeloEstablecimientos->obtenerEstablecimiento($id, 'Activo')) {
 			//	$errores['pass']['pass'] = '';
@@ -438,6 +462,7 @@ class Establecimientos extends MainController{
 					'mensaje' => 'Este registro ya no existe',
 					'errores' => [],
 					'menu' => 'establecimientos',
+					'regresar' => $regresar
 
 				];
 
@@ -499,13 +524,14 @@ class Establecimientos extends MainController{
 					$parameters = [
 						'title' => 'Editar Establecimiento',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'establecimientos',
 						'establecimiento' => $id,
+						'regresar' => $regresar
 					];
 
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('establecimientos/actualizar_establecimiento', $parameters);
 
 				}else{
@@ -520,17 +546,20 @@ class Establecimientos extends MainController{
 
 							'title' => 'Editar Establecimiento',
 							'error' => FALSE,
-							'mensaje' => 'Se actualizo el registro correctamente',
+							'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'establecimientos',
 							'errores' => $errores,
 							'menu' => 'establecimientos',
+							'regresar' => $regresar
 
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('establecimientos/actualizar_establecimiento', $parameters);
 
 					}else{
 
 						echo 'No se puedo actualizar el registro';
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 
 					}
@@ -577,6 +606,7 @@ class Establecimientos extends MainController{
 					'errores' => $errores,
 					'menu' => 'usuarios',
 					'establecimiento' => $id,
+					'regresar' => $regresar
 				];
 
 

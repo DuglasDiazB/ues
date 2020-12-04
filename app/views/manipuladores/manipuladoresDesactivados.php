@@ -1,6 +1,6 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <!-- Agregar boton regresar y mensaje-->
-<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<!--<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>-->    
 
 <table>
  <thead>
@@ -8,7 +8,7 @@
     <!-- colspan="Numero de columnas que tendra la tabla" -->
     <th colspan="10">
         <div class="title">
-            <p>Lista de manipuladores inactivos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+            <p>Manipuladores inactivos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
 
         </p>
@@ -42,7 +42,7 @@
             <?php if( $parameters['respuesta']['error']):?>
                 <tr>
                     <td data-label="error">
-                        ---
+                        -
                     </td>
                     <td data-label="error">
                         ---
@@ -210,7 +210,7 @@
 
                                 <div class="aceptar">
 
-                                    <a href="javascript:cerrar()" class="btn-desactivar"><i class="fas fa-times"></i></a>
+                                    <a href="javascript:cerrarManipulador()" class="btn-desactivar"><i class="fas fa-times"></i></a>
 
                                 </div>
 

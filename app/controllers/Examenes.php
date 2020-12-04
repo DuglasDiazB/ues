@@ -5,6 +5,7 @@
             sessionAdmin();
             $this->modeloExamenes = $this->model('ModeloExamenes');
             $this->ModeloCredenciales = $this->model('ModeloCredenciales');
+            $this->ModeloBitacoras = $this->model('ModeloBitacoras');
         }
 
         public function verExamen($id, $pagina, $busqueda = null){
@@ -286,6 +287,7 @@
 						'errores' => $errores,						
 	
                     ];
+                    $this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
                     
                     $this->view('examenes/actualizar_examen', $parameters);
                     

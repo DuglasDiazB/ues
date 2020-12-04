@@ -12,12 +12,15 @@ class Usuarios extends MainController
 		sessionAdmin();
 		// ModeloUsuarios es donde estan todas las consultas cpn la base de datos
 		 $this->ModeloUsuarios = $this->model('ModeloUsuarios');
+		 $this->ModeloBitacoras = $this->model('ModeloBitacoras');
 	}
 
 	public function verUsuario($id, $estado, $pagina, $busqueda = NULL){
 	
 
-		$usuario = $this->ModeloUsuarios->obtenerUsuario1($id, $estado);	
+		$usuario = $this->ModeloUsuarios->obtenerUsuario1($id, $estado);
+		
+		
 		if($estado == 1){
             $regresar = ROUTE_URL.'/usuarios/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
@@ -35,6 +38,10 @@ class Usuarios extends MainController
 		];
 		$this->view('usuarios/ver_usuario', $parameters);
 	}
+
+
+
+
 	public function actualizarUsuario($id = 0){
 		$pagina = NULL;
 		$busqueda= NULL;
@@ -47,7 +54,7 @@ class Usuarios extends MainController
 			$parameters = [
 
 				'error' => TRUE,
-				'mensaje' => 'Este registro ya no existe',
+				'mensaje' => 'Este registro ya no existe <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 				'errores' => [],
 				'menu' => 'usuarios',
 				'regresar' => $regresar
@@ -120,14 +127,14 @@ class Usuarios extends MainController
 				$parameters = [
 					'title' => 'Editar Usuario',
 					'error' => $this->error,
-					'mensaje' => 'Revise los campos de entrada',
+					'mensaje' => 'Revise los campos de entrada <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 					'errores' => $errores,
 					'menu' => 'usuarios',
 					'usuario' => $id,
 					'regresar' => $regresar
 				];
 
-
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 				$this->view('usuarios/actualizar_usuario', $parameters);
 
 			}else{
@@ -141,18 +148,20 @@ class Usuarios extends MainController
 
 						'title' => 'Editar Usuario',
 						'error' => FALSE,
-						'mensaje' => 'Se actualizo el registro correctamente',
+						'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 						'menu' => 'usuarios',
 						'errores' => $errores,
 						'menu' => 'usuarios',
 						'regresar' => $regresar
 	
 					];
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 					$this->view('usuarios/actualizar_usuario', $parameters);
 
 				}else{
 
 					echo 'No se puedo actualizar el registro';
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					die();
 
 				}
@@ -246,12 +255,13 @@ class Usuarios extends MainController
 					$parameters = [
 						'title' => 'Nuevo Usuario',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color: #FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'usuarios',
 						'regresar' => $regresar
 
 					];
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 
 					$this->view('usuarios/nuevo_usuario', $parameters);
 
@@ -263,16 +273,17 @@ class Usuarios extends MainController
 						$parameters = [
 							'title' => 'Nuevo Usuario',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'usuarios',
 							'errores' => [],
 							'regresar' => $regresar
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('usuarios/nuevo_usuario', $parameters);
 
 					}else{
 						echo 'No se puedo guardar el registro';
-	
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 						die();
 					}
 				}

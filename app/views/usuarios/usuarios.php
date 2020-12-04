@@ -9,7 +9,7 @@
 				<!-- colspan="Numero de columnas que tendra la tabla" -->
                 <th colspan="8">
                 <div class="title">
-                <p>Lista de usuarios activos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                <p>Usuarios activos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                     <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                 
                 </p>
@@ -98,6 +98,7 @@
                 <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                 <a href="<?php echo ROUTE_URL?>/usuarios/verUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/1<?php echo $var=(isset($parameters['respuesta']))? '/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                     class="btn-ver"><i class="fas fa-eye"></i></a>
+                    
                 <a href="<?php echo ROUTE_URL?>/usuarios/actualizarUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>"
                     class="btn-editar"><i class="far fa-edit"></i></a>
                 <a href="<?php echo ROUTE_URL.'/usuarios/index'?>/<?php echo $parameters['respuesta']['pagina_actual']?><?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/<?php echo 0?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"

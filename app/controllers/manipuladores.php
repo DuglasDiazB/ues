@@ -9,6 +9,7 @@ class Manipuladores extends MainController{
 		sessionAdmin();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloManipuladores = $this->model('ModeloManipuladores');
+		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
 
 	}
 
@@ -17,11 +18,17 @@ class Manipuladores extends MainController{
 
 
 
-	/*public function verManipulador($id = 0, $pagina, $estado, $busqueda = null){*/
+	public function verManipulador($id = 0, $pagina, $estado, $busqueda = NULL){
 
-	public function verManipulador($id, $estado){
+	/*public function verManipulador($id, $estado){*/
 
 		$manipulador = $this->ModeloManipuladores->obtenerManipulador($id, $estado);	
+
+		if($estado == 'Activo'){
+            $regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/0/0/'.$busqueda;
+        }else{
+            $regresar = ROUTE_URL.'/manipuladores/manipuladoresDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+        }
 		
 		
 		$parameters = [
@@ -30,10 +37,16 @@ class Manipuladores extends MainController{
 			'error' => FALSE,
 			'mensaje' => 'No se admite editar manipulador',		
 			'menu' => 'manipuladores',
-			'manipulador' => $manipulador
+			'manipulador' => $manipulador,
+			'regresar' => $regresar
 		];
 		$this->view('manipuladores/ver_manipulador', $parameters);
 	}
+
+
+
+
+
 
 
 	
@@ -294,6 +307,8 @@ class Manipuladores extends MainController{
 
 		// ----------------- Crear nuevo usuario--------------------
 	public function nuevoManipulador(){
+		$pagina=NULL; 
+		$busqueda = null;
 
 		$establecimiento = $this->ModeloManipuladores->obtenerManipuladores();
 
@@ -313,6 +328,7 @@ class Manipuladores extends MainController{
 		
 		// ----------------- Recibiendo datos del formulario --------------------
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 
 			// ----------------- guardando los datos enviados por el formulario como propiedades --------------------
 			//$data = $this->ModeloManipuladores->set_datos($_POST);
@@ -363,13 +379,14 @@ class Manipuladores extends MainController{
 					$parameters = [
 						'title' => 'Nuevo Manipulador',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'errores' => $errores,
 						'menu' => 'manipuladores',
 						'establecimiento' => $establecimiento,
+						'regresar' => $regresar,
 
 					];
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('manipuladores/nuevo_manipulador', $parameters);
 
 				}else  	{
@@ -379,12 +396,13 @@ class Manipuladores extends MainController{
 						$parameters = [
 							'title' => 'Nuevo Manipulador',
 							'error' => FALSE,
-							'mensaje' => 'Se guardo el registro con exito',
+							'mensaje' => 'Se guardo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'manipuladores',
 							'establecimiento' => $establecimiento,
 							'errores' => [],
+							'regresar' => $regresar,
 						];
-
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('manipuladores/nuevo_manipulador', $parameters);
 
 					}else{
@@ -398,7 +416,7 @@ class Manipuladores extends MainController{
 	
 			
 		
-
+			$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 			$parameters = [
 				'error' => $this->error,
 				'mensaje' => 'Complete los campos para realizar el registro.',
@@ -407,6 +425,8 @@ class Manipuladores extends MainController{
 				'menu' => 'manipuladores',
 				'establecimiento' => $establecimiento,
 				'errores' => [],
+				'regresar' => $regresar,
+				
 			];
 			
 			$this->view('manipuladores/nuevo_manipulador', $parameters);
@@ -426,7 +446,11 @@ class Manipuladores extends MainController{
 
 
 
-			public function actualizarManipulador($id = 0, $pagina = 1){
+			public function actualizarManipulador($id = 0 /*,$pagina = 1*/){
+				$pagina = NULL;
+				$busqueda= NULL;
+
+				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 
 			
 
@@ -441,13 +465,15 @@ class Manipuladores extends MainController{
 					'establecimiento' => $establecimiento,
 					'errores' => [],
 					'menu' => 'manipuladores',
+					'regresar' => $regresar
 
 				];
-
+				$this->ModeloBitacoras->insertBitacora($_SERVER, 'No Exitosa');
 				$this->view('manipuladores/actualizar_manipulador', $parameters);
 			}
 			//presionando el boton
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
 				
 				$establecimiento = $this->ModeloManipuladores->getEstab($_POST['id_estab']);
 			
@@ -490,16 +516,17 @@ class Manipuladores extends MainController{
 					$parameters = [
 						'title' => 'Editar Manipulador',
 						'error' => $this->error,
-						'mensaje' => 'Revise los campos de entrada',
+						'mensaje' => 'Revise los campos de entrada <i style = "color:#FF0000;" class="fas fa-exclamation-circle"></i>',
 						'establecimiento' => $establecimiento,
 						'errores' => $errores,
 						'menu' => 'manipuladores',
 						'establecimiento' => $manipulator,
 						'establecimientos'=> $establecimientos,
 						'manipulador' => $id,
+						'regresar' => $regresar
 					];
 
-
+					$this->ModeloBitacoras->insertBitacora($_SERVER, 'No exitosa');
 					$this->view('manipuladores/actualizar_manipulador', $parameters);
 
 				//No existen errores en el formulario
@@ -515,14 +542,16 @@ class Manipuladores extends MainController{
 
 							'title' => 'Editar Manipulador',
 							'error' => FALSE,
-							'mensaje' => 'Se actualizo el registro correctamente',
+							'mensaje' => 'Se actualizo el registro correctamente <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
 							'menu' => 'manipuladores',
 							'establecimiento' => $manipulator,
 							'establecimientos'=> $establecimientos,
 							'errores' => $errores,
 							'menu' => 'manipuladores',
+							'regresar' => $regresar
 
 						];
+						$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 						$this->view('manipuladores/actualizar_manipulador', $parameters);
 
 					}else{
@@ -564,6 +593,7 @@ class Manipuladores extends MainController{
 					'establecimiento' => $manipulator,
 					'establecimientos'=> $establecimientos,
 					'manipulador' => $id,
+					'regresar' => $regresar
 				];
 
 
