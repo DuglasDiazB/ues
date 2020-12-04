@@ -43,27 +43,30 @@
 
                 //obtener fecha de inicio y finalizacion de capacitaciones 
         $fechaCapacitaciones = $this->ModeloAsistencias->obtenerFechaCapacitaciones();
-        if($hoy >= $fechaCapacitaciones->fecha_inicio_capacit 
-        AND $hoy <= $fechaCapacitaciones->fecha_fin_capacit 
-        AND $fechaCapacitaciones->ejecutado == 'No'){
-                    //Actualizando tblfechacapacitaciones
-            $this->ModeloAsistencias->actualizarFechaCapacitacion1($fechaCapacitaciones->fecha_inicio_capacit,
-                                                                    $fechaCapacitaciones->fecha_fin_capacit,
-                                                                    $fechaCapacitaciones->usermod,
-                                                                    $fechaCapacitaciones->fechamodcapacit);
-                        //traemos todos los registros de asistencias que en la columna asistencia = 'Si'
-            $asistencias = $this->ModeloAsistencias->obtenerTodasAsistencias();                        
-                        // verificando de que existan registros            
-            if (count($asistencias) != 0) {                                                        
-                            //actualizando cada registro
-                for ($i=0; $i <count($asistencias) ; $i++) {
-
-                        $manipulador = $this->ModeloAsistencias->obtenerAsistencia1($asistencias[$i]->id_asistencia);                 
-                        $this->ModeloAsistencias->actualizarAsistencia($manipulador->id_asistencia, $manipulador->id_exam, 'No', NULL, NULL);                                
-                }                            
-            }                        
+        if ($fechaCapacitaciones) {
+            
+            if($hoy >= $fechaCapacitaciones->fecha_inicio_capacit 
+            AND $hoy <= $fechaCapacitaciones->fecha_fin_capacit 
+            AND $fechaCapacitaciones->ejecutado == 'No'){
+                        //Actualizando tblfechacapacitaciones
+                $this->ModeloAsistencias->actualizarFechaCapacitacion1($fechaCapacitaciones->fecha_inicio_capacit,
+                                                                        $fechaCapacitaciones->fecha_fin_capacit,
+                                                                        $fechaCapacitaciones->usermod,
+                                                                        $fechaCapacitaciones->fechamodcapacit);
+                            //traemos todos los registros de asistencias que en la columna asistencia = 'Si'
+                $asistencias = $this->ModeloAsistencias->obtenerTodasAsistencias();                        
+                            // verificando de que existan registros            
+                if (count($asistencias) != 0) {                                                        
+                                //actualizando cada registro
+                    for ($i=0; $i <count($asistencias) ; $i++) {
+    
+                            $manipulador = $this->ModeloAsistencias->obtenerAsistencia1($asistencias[$i]->id_asistencia);                 
+                            $this->ModeloAsistencias->actualizarAsistencia($manipulador->id_asistencia, $manipulador->id_exam, 'No', NULL, NULL);                                
+                    }                            
+                }                        
+            }
+            //*********************************************************************************************** */
         }
-        //*********************************************************************************************** */
 
             $examenesActos = $this->modeloExamenes->numeroRegistros($busqueda);
             $actosFormal = $this->modeloExamenes->examenesForInf('Formal', 'Acto');
