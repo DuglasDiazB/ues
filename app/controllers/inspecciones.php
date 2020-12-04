@@ -17,27 +17,32 @@ class Inspecciones extends MainController
     public function index($pagina = 1,  $busqueda = null, $pos_pagina = 10){
         //carga la barra de busqueda
         $rutaContrBusqueda = ROUTE_URL.'/inspecciones/index'; 
-        $inspeccion = null;
+        // $inspeccion = null;
 		$inspecciones = null;
 		
+		//obteniendo todos los establecimientos Activos y que se encuentren en tblinspecciones
 		$inspecciones = $this->ModeloInspecciones->obtenerInspeccion();
 
+		//busqueda en post
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			
 			$busqueda = ( $_POST['busqueda'] != '') ? sanitize(strtolower($_POST['busqueda'])) : null;
-
+		
+		//busqueda en get
 		}elseif ($busqueda != '') {
 			$busqueda = str_replace('_', ' ',$busqueda);
 			$busqueda = strtolower($busqueda);
 
 		}
 		
+		//obteniendo el numero de de establecimientos Activos que se encuentren en tblinspecciones
 		$cuantosRegistros = $this->ModeloInspecciones->numeroRegistros($busqueda);
 
 		$respuesta = paginar_todo($cuantosRegistros , $pagina, $pos_pagina);
 
 		if (!$respuesta['error']) {
 
+			//obteniendo los establecimientos Activos que se encuentren en tblinspecciones
 			$inspecciones = $this->ModeloInspecciones->inspeccionesPorLimite($pos_pagina, $respuesta['desde'], $busqueda);
 		}
 
@@ -48,7 +53,7 @@ class Inspecciones extends MainController
             'rutaContrBusqueda' => $rutaContrBusqueda,
             'respuesta' => $respuesta,
             'busqueda' => $busqueda,
-            'inspeccion' => $inspeccion,
+            // 'inspeccion' => $inspeccion,
             'inspecciones' => $inspecciones,
 
         ];
@@ -141,10 +146,10 @@ class Inspecciones extends MainController
 		$regresar = ROUTE_URL.'/inspecciones/index/' . $pagina . '/' . $busqueda;
 		$segunda = FALSE;
 		$tercera = FALSE;
-
+		$boton = FALSE;
 		//Todo esto ocurren cuando se ha preccionado el boton 		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			
+					
 			$regresar = ROUTE_URL.'/inspecciones/index/' . $_POST['pagina'] . '/' . $_POST['busqueda'];
 			$pagina = $_POST['pagina'];
 			$busqueda = $_POST['busqueda'];
@@ -154,21 +159,21 @@ class Inspecciones extends MainController
 			$inspeccion = $this->ModeloInspecciones->obtenerInspeccion1($id);
 
 			$inspeccion->cal_primer_inspec = (
-				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec == 100)
-				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal == 100)
-				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal == 100)
+				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec >= 90)
+				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal >= 90)
+				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal >= 90)
 			) ? NULL : $inspeccion->cal_primer_inspec;
 			
 			$inspeccion->primer_reinspec_cal = (
-				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec == 100)
-				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal == 100)
-				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal == 100)
+				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec >= 90)
+				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal >= 90)
+				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal >= 90)
 			) ? NULL : $inspeccion->primer_reinspec_cal;
 
 			$inspeccion->segunda_reinspec_cal = (
-				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec == 100)
-				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal == 100)
-				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal == 100)
+				($inspeccion->cal_primer_inspec != NULL AND $inspeccion->cal_primer_inspec >= 90)
+				|| ($inspeccion->primer_reinspec_cal != NULL AND $inspeccion->primer_reinspec_cal >= 90)
+				|| ($inspeccion->segunda_reinspec_cal != NULL AND $inspeccion->segunda_reinspec_cal >= 90)
 			) ? NULL : $inspeccion->segunda_reinspec_cal;
 			
 			if ($inspeccion->cal_primer_inspec == NULL AND $inspeccion->primer_reinspec_cal == NULL AND $inspeccion->segunda_reinspec_cal == NULL 
@@ -185,11 +190,13 @@ class Inspecciones extends MainController
 				$errores['sReinspecfecha']['text'] = NULL;
 				$errores['pReinspecnota']['text'] = NULL;
 				$errores['sReinspecnota']['text'] = NULL;
+
+				
 							
 			}
-
+			
 			if ($inspeccion->primer_reinspec_cal == NULL AND $inspeccion->cal_primer_inspec != NULL AND $inspeccion->segunda_reinspec_cal == NULL
-				AND !isset($_POST['notaPinspeccion']) AND isset($_POST['pReinspecnota']) AND !isset($_POST['pResReinspecnotainspecnota'])){
+				AND isset($_POST['notaPinspeccion']) AND isset($_POST['pReinspecnota']) AND !isset($_POST['pResReinspecnotainspecnota'])){
 				
 				$tercera = TRUE;
 				 
@@ -206,9 +213,15 @@ class Inspecciones extends MainController
 				$errores['sReinspecfecha']['text'] = NULL; 
 				$errores['sReinspecnota']['text'] = NULL;
 
+				if($this->error == TRUE){					
+				
+					$segunda = FALSE;
+					
+				}
+
 			}
 			if ($inspeccion->segunda_reinspec_cal == NULL AND $inspeccion->primer_reinspec_cal != NULL AND $inspeccion->cal_primer_inspec != NULL
-				AND !isset($_POST['notaPinspeccion']) AND isset($_POST['pReinspecnota']) AND isset($_POST['sReinspecnota'])){
+				AND isset($_POST['notaPinspeccion']) AND isset($_POST['pReinspecnota']) AND isset($_POST['sReinspecnota'])){
 								
 				$errores['fechaInspeccion']['text'] = $inspeccion->fecha_inspec; 
 
@@ -223,6 +236,11 @@ class Inspecciones extends MainController
 			
 				$errores['sReinspecnota'] = validaNumero($_POST['sReinspecnota']);
 				$this->error = ($errores['sReinspecnota']['form-control'] == 'error')? TRUE :$this->error;
+				if($this->error == TRUE){					
+					
+					$boton = FALSE;
+					
+				}
 
 			}
 			
@@ -236,7 +254,7 @@ class Inspecciones extends MainController
 	
 			$errores['inspeccionPara'] = $_POST['inspeccionPara'];
 			$errores['objetoVisita'] = $_POST['objetoVisita'];
-			
+		
 		if ($this->error == TRUE) {
 			$inspeccion = $this->ModeloInspecciones->obtenerInspeccion1($id);
 
@@ -252,7 +270,10 @@ class Inspecciones extends MainController
 				'inspeccion' => $inspeccion,
 				'regresar' => $regresar,
 				'pagina' => $pagina,
-				'busqueda' => $busqueda
+				'busqueda' => $busqueda,
+				'boton' => $boton,
+				'segunda' => $segunda,
+				'tercera' => $tercera
 
 			];
 
@@ -260,8 +281,10 @@ class Inspecciones extends MainController
 			$this->view('inspecciones/actualizar_inspeccion', $parameters);
 		
 		}else{
+
+			$boton = TRUE;
 			
-			if ((isset($_POST['sReinspecnota']) AND $_POST['sReinspecnota'] != NULL) AND $_POST['sReinspecnota'] < 100) {
+			if ((isset($_POST['sReinspecnota']) AND $_POST['sReinspecnota'] != NULL) AND $_POST['sReinspecnota'] < 90) {
 				
 				$this->ModeloInspecciones->actualizarEstablecimiento($establecimiento, 'Inactivo');
 
@@ -269,11 +292,11 @@ class Inspecciones extends MainController
 
 			if ($this->ModeloInspecciones->actualizarInspeccion($_POST['idinspeccion'], $errores, $_POST['idestablecimiento'])) {
 				$inspeccion = $this->ModeloInspecciones->obtenerInspeccion1($id);
-		
+				$mensaje = (isset($_POST['sReinspecnota']) AND $_POST['sReinspecnota'] < 90) ? 'El establecimiento ha sido desactivado ya que no logro llegar al puntaje requerido en su tercer intento <i style = "color: #008f39;"class="fas fa-check-circle"></i>':'Se actualizo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>';
 				$parameters = [
 
 					'error' => FALSE,
-					'mensaje' => 'Se actualizo el registro con exito <i style = "color: #008f39;"class="fas fa-check-circle"></i>',
+					'mensaje' => $mensaje,
 					'menu' => 'inspecciones',
 					'title' => 'Editar Inspeccion',
 					'errores' => $errores,
@@ -283,7 +306,8 @@ class Inspecciones extends MainController
 					'tercera' => $tercera,
 					'regresar' => $regresar,
 					'pagina' => $pagina,
-					'busqueda' => $busqueda
+					'busqueda' => $busqueda,
+					'boton' => $boton,
 				];
 				$this->ModeloBitacoras->insertBitacora($_SERVER, 'Exitosa');
 				$this->view('inspecciones/actualizar_inspeccion', $parameters);
@@ -302,35 +326,44 @@ class Inspecciones extends MainController
 		$errores['establecimiento']['text'] = $inspeccion->id_estab;
 			
 		$errores['nombreInspector']['text'] = $inspeccion->nombre_inspector;
-		 
-		if ($inspeccion->cal_primer_inspec == 100) {
+
+		if ($inspeccion->cal_primer_inspec == null) {
 			$errores['notaPinspeccion']['text'] = '';
 			$errores['fechaInspeccion']['text'] = NULL;
+			$segunda = TRUE;
+		}
+		 
+		if ($inspeccion->cal_primer_inspec >= 90) {
+			$errores['notaPinspeccion']['text'] = '';
+			$errores['fechaInspeccion']['text'] = NULL;
+			$segunda = TRUE;
 		}else{
-
 			$errores['fechaInspeccion']['text'] = $inspeccion->fecha_inspec;		
 			
 			$errores['notaPinspeccion']['text'] = $inspeccion->cal_primer_inspec;
 		}
-
-		if ($inspeccion->primer_reinspec_cal == 100) {
+		
+		if ($inspeccion->primer_reinspec_cal >= 90) {
 			$errores['notaPinspeccion']['text'] = '';
 			$errores['fechaInspeccion']['text'] = NULL;
 			$errores['pReinspecfecha']['text'] = '';				
 			$errores['pReinspecnota']['text'] = NULL;
+			$segunda = TRUE;
 		}else{
+			
 
 			$errores['pReinspecfecha']['text'] = $inspeccion->primer_reinspec_fecha;				
 			$errores['pReinspecnota']['text'] = $inspeccion->primer_reinspec_cal;
 		}
 		
-		if ($inspeccion->segunda_reinspec_cal == 100) {
+		if ($inspeccion->segunda_reinspec_cal >= 90) {
 			$errores['notaPinspeccion']['text'] = '';
 			$errores['fechaInspeccion']['text'] = NULL;
 			$errores['pReinspecfecha']['text'] = '';				
 			$errores['pReinspecnota']['text'] = NULL;
 			$errores['sReinspecfecha']['text'] = '';
 			$errores['sReinspecnota']['text'] = NULL;
+			$segunda = TRUE;
 		}else{
 			
 			$errores['sReinspecfecha']['text'] = $inspeccion->segunda_reinspec_fecha;								
@@ -360,10 +393,11 @@ class Inspecciones extends MainController
 			'tercera' => $tercera,
 			'regresar' => $regresar,
 			'pagina' => $pagina,
-			'busqueda' => $busqueda
+			'busqueda' => $busqueda,
+			'boton' => $boton,
 		];
-		// print_r($parameters['errores']);
-		// die();
+		
+	
 		$this->view('inspecciones/actualizar_inspeccion', $parameters);
 
 		}	

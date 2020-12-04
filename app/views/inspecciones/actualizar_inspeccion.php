@@ -126,11 +126,9 @@
 
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['fechaInspeccion']['form-control']))?$parameters['errores']['fechaInspeccion']['form-control']:''?>">
                         <label for="fechaInspeccion">Fecha Inspeccion</label>
-                        <?php if ($parameters['errores']['notaPinspeccion']['text'] < 100 AND $parameters['errores']['notaPinspeccion']['text'] != NULL):?>
-                        <input disabled type="date" id="fechaInspeccion" name='fechaInspeccion' value="<?php echo $var = (isset($parameters['errores']['fechaInspeccion']['text']))?$parameters['errores']['fechaInspeccion']['text']:''?>">
-                        <?php else:?>
+                                                
                         <input  type="date" id="fechaInspeccion" name='fechaInspeccion' value="<?php echo $var = (isset($parameters['errores']['fechaInspeccion']['text']))?$parameters['errores']['fechaInspeccion']['text']:''?>">
-                        <?php endif;?>
+                        
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
@@ -141,11 +139,8 @@
                        
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['notaPinspeccion']['form-control']))?$parameters['errores']['notaPinspeccion']['form-control']:''?>">
                         <label for="notaPinspeccion">Nota 1° Inspeccion</label>
-                        <?php if ($parameters['errores']['notaPinspeccion']['text'] < 100 AND $parameters['errores']['notaPinspeccion']['text'] != NULL):?>
-                        <input disabled type="text" id="notaPinspeccion" name="notaPinspeccion" value="<?php echo $var = (isset($parameters['errores']['notaPinspeccion']['text']))?$parameters['errores']['notaPinspeccion']['text']:''?>">
-                        <?php else:?>
-                        <input type="text" id="notaPinspeccion" name="notaPinspeccion" value="<?php echo $var = (isset($parameters['errores']['notaPinspeccion']['text']))?$parameters['errores']['notaPinspeccion']['text']:''?>">
-                        <?php endif;?>
+                                                
+                        <input type="text" id="notaPinspeccion" name="notaPinspeccion" value="<?php echo $var = (isset($parameters['errores']['notaPinspeccion']['text']))?$parameters['errores']['notaPinspeccion']['text']:''?>">                        
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
@@ -154,18 +149,12 @@
                             <small></small>
                     </div>
                      
-                    <?php if (isset($parameters['segunda']) AND $parameters['segunda'] != TRUE):?>
+                <?php if (isset($parameters['segunda']) AND $parameters['segunda'] == FALSE):?>
 
-                    <?php if ($parameters['errores']['notaPinspeccion']['text'] != NULL || $parameters['errores']['notaPinspeccion']['text'] != ''):?>                       
+                                           
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['pReinspecfecha']['form-control']))?$parameters['errores']['pReinspecfecha']['form-control']:''?>">
-                        <label for="pReinspecfecha">1° Reinspec Fecha</label>
-                        <?php if($parameters['errores']['sReinspecnota']['text'] != '' AND $parameters['errores']['sReinspecnota']['text'] < 100):?>
-                        <input disabled type="date" id="pReinspecfecha" name="pReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['pReinspecfecha']['text']))?$parameters['errores']['pReinspecfecha']['text']:''?>"> 
-                        <?php elseif ($parameters['errores']['notaPinspeccion']['text'] < 100 || $parameters['errores']['sReinspecfecha']['text'] == ''):?>
-                        <input type="date" id="pReinspecfecha" name="pReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['pReinspecfecha']['text']))?$parameters['errores']['pReinspecfecha']['text']:''?>">
-                        <?php else:?>
-                        <input disabled type="date" id="pReinspecfecha" name="pReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['pReinspecfecha']['text']))?$parameters['errores']['pReinspecfecha']['text']:''?>">
-                        <?php endif;?>
+                        <label for="pReinspecfecha">1° Reinspec Fecha</label>                                                
+                        <input type="date" id="pReinspecfecha" name="pReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['pReinspecfecha']['text']))?$parameters['errores']['pReinspecfecha']['text']:''?>">                                                
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
@@ -176,37 +165,23 @@
                     </div>
     
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['pReinspecnota']['form-control']))?$parameters['errores']['pReinspecnota']['form-control']:''?>">
-                        <label for="pReinspecnota">1° Reinspec Nota</label>
-                        <?php if($parameters['errores']['sReinspecnota']['text'] != '' AND $parameters['errores']['sReinspecnota']['text'] < 100):?>
-                        <input disabled type="text" id="pReinspecnota" name="pReinspecnota" value="<?php echo $var = (isset($parameters['errores']['pReinspecnota']['text']))?$parameters['errores']['pReinspecnota']['text']:''?>">
-                        <?php elseif ($parameters['errores']['notaPinspeccion']['text'] < 100 || $parameters['errores']['sReinspecfecha']['text'] == ''):?>
-                        <input  type="text" id="pReinspecnota" name="pReinspecnota" value="<?php echo $var = (isset($parameters['errores']['pReinspecnota']['text']))?$parameters['errores']['pReinspecnota']['text']:''?>">
-                        <?php else:?>
-                        <input disabled type="text" id="pReinspecnota" name="pReinspecnota" value="<?php echo $var = (isset($parameters['errores']['pReinspecnota']['text']))?$parameters['errores']['pReinspecnota']['text']:''?>">
-                        <?php endif;?>
+                        <label for="pReinspecnota">1° Reinspec Nota</label>                                                                        
+                        <input  type="text" id="pReinspecnota" name="pReinspecnota" value="<?php echo $var = (isset($parameters['errores']['pReinspecnota']['text']))?$parameters['errores']['pReinspecnota']['text']:''?>">                        
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
                             <small><?php echo $var = (isset($parameters['errores']['pReinspecnota']['small']))?$parameters['errores']['pReinspecnota']['small']:''?></small>
                         <?php endif;?>
                             <small></small>
-                    </div>
-
-                    <?php endif;?>
-                    <?php endif;?>
+                    </div>                    
+                <?php endif;?>
 
                     <?php if (isset($parameters['tercera']) AND $parameters['tercera'] != TRUE):?>
                     <?php if (($parameters['errores']['notaPinspeccion']['text'] != NULL) AND 
                               ($parameters['errores']['pReinspecnota']['text'] != NULL)):?>
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['sReinspecfecha']['form-control']))?$parameters['errores']['sReinspecfecha']['form-control']:''?>">
-                        <label for="sReinspecfecha">2° Reinspec Fecha</label>
-                        <?php if($parameters['errores']['sReinspecnota']['text'] != '' AND $parameters['errores']['sReinspecnota']['text'] < 100):?>
-                        <input disabled type="date" id="sReinspecfecha" name="sReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['sReinspecfecha']['text']))?$parameters['errores']['sReinspecfecha']['text']:''?>">
-                        <?php elseif ($parameters['errores']['pReinspecnota']['text'] == '' AND $parameters['errores']['notaPinspeccion']['text'] < 100):?>
-                        <input disabled type="date" id="sReinspecfecha" name="sReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['sReinspecfecha']['text']))?$parameters['errores']['sReinspecfecha']['text']:''?>">
-                        <?php else:?>
-                        <input  type="date" id="sReinspecfecha" name="sReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['sReinspecfecha']['text']))?$parameters['errores']['sReinspecfecha']['text']:''?>">
-                        <?php endif;?> 
+                        <label for="sReinspecfecha">2° Reinspec Fecha</label>                                                                                            
+                        <input  type="date" id="sReinspecfecha" name="sReinspecfecha" value="<?php echo $var = (isset($parameters['errores']['sReinspecfecha']['text']))?$parameters['errores']['sReinspecfecha']['text']:''?>">                        
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
@@ -216,14 +191,9 @@
                     </div>
     
                     <div class="form-control <?php echo $var = (isset($parameters['errores']['sReinspecnota']['form-control']))?$parameters['errores']['sReinspecnota']['form-control']:''?>">
-                        <label for="sReinspecnota">2° Reinspec Nota</label>
-                        <?php if($parameters['errores']['sReinspecnota']['text'] != '' AND $parameters['errores']['sReinspecnota']['text'] < 100):?>
-                            <input disabled type="text" id="sReinspecnota" name="sReinspecnota" value="<?php echo $var = (isset($parameters['errores']['sReinspecnota']['text']))?$parameters['errores']['sReinspecnota']['text']:''?>">
-                        <?php elseif ($parameters['errores']['pReinspecnota']['text'] == '' AND $parameters['errores']['notaPinspeccion']['text'] < 100):?>
-                        <input disabled type="text" id="sReinspecnota" name="sReinspecnota" value="<?php echo $var = (isset($parameters['errores']['sReinspecnota']['text']))?$parameters['errores']['sReinspecnota']['text']:''?>">
-                        <?php else:?>
+                        <label for="sReinspecnota">2° Reinspec Nota</label>                                                                                                                    
                         <input type="text" id="sReinspecnota" name="sReinspecnota" value="<?php echo $var = (isset($parameters['errores']['sReinspecnota']['text']))?$parameters['errores']['sReinspecnota']['text']:''?>">
-                        <?php endif;?>
+                        
                         <i class="fas fa-check-circle"></i>
                         <i class="fas fa-exclamation-circle"></i>
                         <?php if ($parameters['errores']): ?>
@@ -235,9 +205,9 @@
                     <?php endif;?>
                     <br>
                     <div class="boton"> 
-                    <?php if($parameters['errores']['sReinspecnota']['text'] != '' AND $parameters['errores']['sReinspecnota']['text'] < 100):?> 
-                        <br>
-                    <?php else:?>
+                    <?php if( $parameters['boton'] == TRUE):?> 
+                        <input disabled="disabled"  id="submit" type="submit" name="submit" value="Actualizar"> 
+                    <?php elseif($parameters['boton'] == FALSE):?>
                         <input style="display:block; position: relative" id="submit" type="submit" name="submit" value="Actualizar"> 
                     <?php endif;?>
                     </div>

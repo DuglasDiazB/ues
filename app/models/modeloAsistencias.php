@@ -153,13 +153,13 @@
                         LOWER(estado_exam) LIKE '%$busqueda%' OR
                         LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                         LOWER(dui_manip) LIKE '%$busqueda%' OR
-                        LOWER(nombre_estab) LIKE '%$busqueda%' OR
-                        LOWER(tipo_estab) LIKE '$busqueda%' OR
+                        LOWER(nombre_estab) LIKE '%$busqueda%' OR                        
                         LOWER(puesto_manip) LIKE '%$busqueda%' OR
                         LOWER(cat_estab) LIKE '%$busqueda%' OR
                         LOWER(direccion_estab) LIKE '%$busqueda%' OR
                         LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '%$busqueda%' OR
-                        LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%'
+                        LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%' OR
+                        LOWER(tipo_estab) LIKE '$busqueda' 
                         ) 
                         AND asistencia = '$asistencia' 
                 ");
@@ -186,7 +186,7 @@
                         LOWER(dui_manip) LIKE '%$busqueda%' OR
                         LOWER(nombre_estab) LIKE '%$busqueda%' OR
                         LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                        LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                        LOWER(tipo_estab) LIKE '$busqueda' OR
                         LOWER(cat_estab) LIKE '%$busqueda%' OR
                         LOWER(direccion_estab) LIKE '%$busqueda%' OR
                         LOWER(nombre_manip) LIKE '%$busqueda%' OR
@@ -242,12 +242,12 @@
                             LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                             LOWER(dui_manip) LIKE '%$busqueda%' OR
                             LOWER(nombre_estab) LIKE '%$busqueda%' OR
-                            LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                            LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                            LOWER(puesto_manip) LIKE '%$busqueda%' OR                            
                             LOWER(cat_estab) LIKE '%$busqueda%' OR
                             LOWER(direccion_estab) LIKE '%$busqueda%' OR
                             LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '%$busqueda%' OR
-                            LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%'
+                            LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%' OR
+                            LOWER(tipo_estab) LIKE '$busqueda' 
                             ) 
                             AND asistencia = '$asistencia' 
                             LIMIT $desde, $pos_pagina
@@ -274,13 +274,13 @@
                             LOWER(estado_exam) LIKE '%$busqueda%' OR
                             LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                             LOWER(dui_manip) LIKE '%$busqueda%' OR
-                            LOWER(nombre_estab) LIKE '%$busqueda%' OR
-                            LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                            LOWER(nombre_estab) LIKE '%$busqueda%' OR                            
                             LOWER(cat_estab) LIKE '%$busqueda%' OR
                             LOWER(direccion_estab) LIKE '%$busqueda%' OR
                             LOWER(puesto_manip) LIKE '%$busqueda%' OR
                             LOWER(nombre_manip) LIKE '%$busqueda%' OR
-                            LOWER(apellido_manip) LIKE '%$busqueda%'
+                            LOWER(apellido_manip) LIKE '%$busqueda%' OR
+                            LOWER(tipo_estab) LIKE '$busqueda' 
                         )
                             AND asistencia = '$asistencia' 
                             LIMIT $desde, $pos_pagina

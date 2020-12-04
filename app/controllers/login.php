@@ -88,7 +88,7 @@ class Login extends MainController
                     // obteniendo fecha de expiracion de examen
         
                     //obteniendo asistencias 
-                    $asistencia = $this->modeloManipuladores->obtenerAsistencia1($manipulador->id_manip);
+                    $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_exam);
         
                     $fechaExpedExam = $examen->fecha_exped_exam;
                     
@@ -105,7 +105,21 @@ class Login extends MainController
                         $diff = $date1->diff($date2)->days;
         
                         //verificamos si ya expiro el examen de manipulador de alimentos
-                        if ($fechaActual >= $fechaExpedExam7) {
+                        if ($fechaActual > $fechaExpedExam) {
+                        
+                            $infoExamen = 'Su examen de manipulador de alimentos ya expiro, Se le exige cumplir con la normativa de entrega de exámenes';
+                            
+                            //desactivamos la credencial
+                            $this->modeloManipuladores->desactivarCredencial($credencial);
+                            
+                            //pasamos a no acto los examenes
+                            $this->modeloManipuladores->desactivarExamen($examen->id_exam, $examen->id_manip);
+    
+                            //recargamos el examen y la credencial
+                            $examen = $this->modeloManipuladores->examenManipulador($manipulador->id_manip);
+    
+                        // 1.1 verificamos si fechaActual llego a fechaExpedExam7 = fechaExpedExam - 7 dias
+                        }elseif ($fechaActual >= $fechaExpedExam7) {
         
         
                             // 1.1.1 verificamos si se ha llegado a la fecha de expedicion
