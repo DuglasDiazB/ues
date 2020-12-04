@@ -1,16 +1,16 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <!-- Agregar boton regresar y mensaje-->
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<br>
 <p><?php echo $parameters['mensaje']?></p>
+<br>
 <p><?php echo  'Fecha de registro '. $parameters['manipulador']->fecha_registro_manip.'; '.$parameters['manipulador']->fecha_mod_manip .' por '. $parameters['manipulador']->usermod ?></p>
-
-<!--<p><?php echo $parameters['manipulador']->usermod ?></p>-->
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div class="contact-form">
             <div class="encabezado">
                 <h3>Ver manipulador</h3>
-                <i class="fas fa-user"></i>
+                <i class="fas fa-hand-paper"></i>
             </div>
 
 

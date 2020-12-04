@@ -2,6 +2,7 @@
     <p> <a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i>Regresar</a></p>
     <br>
     <p><?php echo  $parameters['mensaje']?></p>
+    <br>
     <p><?php echo  $parameters['examen']->fechamod .' por el usuario'. $parameters['examen']->usermod ?></p>
     <div class="caja">
         <div class="contact-wrapper animated bounceInUp">

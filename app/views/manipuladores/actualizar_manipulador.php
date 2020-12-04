@@ -4,13 +4,12 @@
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
 <br>
 <p><?php echo $parameters['mensaje']?></p>
-<br>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div  class="contact-form">
             <div class="encabezado">
                 <h3>Actualizar Manipulador</h3>
-                <i class="fas fa-user-edit"></i>
+                <i class="fas fa-hand-paper"></i>
             </div>
             
             <form action="<?php echo ROUTE_URL?>/manipuladores/actualizarManipulador/<?php echo $parameters['manipulador']?>" method= "post" id="form-manipulador" class="form">
