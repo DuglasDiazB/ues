@@ -4,7 +4,7 @@
 	    <thead>
 			<tr>
 				<!-- colspan="Numero de columnas que tendra la tabla" -->
-      			<th colspan="6">
+      			<th colspan="8">
                     <div class="title">
                         <p>
                             Credenciales No aptas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
@@ -12,7 +12,7 @@
                         </p>
                         <p>
                             <?php if ($parameters['busqueda'] != null):?>
-                                <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-editar"><i
+                                <a href="<?php echo ROUTE_URL?>/credenciales/noActos" class="btn-editar"><i
                                     class="fas fa-redo"></i>Recargar</a>
                             <?php endif?>
                             <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-ver"><i class="fas fa-check"></i> Aptos</a>
@@ -24,10 +24,12 @@
 				<!-- Se debe ajustar el ancho de las tablas -->
 				<th width="5">#</th>
                 <th width="95">DUI</th>
-				<th>Nombre</th>
+                <th>Nombre</th>
                 <th>Puesto</th>   
                 <th>Examenes</th>
-                <th>Asistencia</th>           
+                <th>Asistencia</th> 
+                <th>Establecimiento</th>
+                <th>Tipo Establecimiento</th>          
 				
 			</tr>
 		</thead>
@@ -36,6 +38,12 @@
                 <tr>
                     <td data-label="error">
                         -
+                    </td>
+                    <td data-label="error">
+                        ---
+                    </td>
+                    <td data-label="error">
+                        ---
                     </td>
                     <td data-label="error">
                         ---
@@ -74,7 +82,13 @@
                     </td>
                     <td data-label="Asistencias">
                         <?php echo $parameters['credenciales'][$i]->asistencia?>
-                    </td>            
+                    </td>      
+                    <td data-label="Establecimiento">
+                        <?php echo $parameters['credenciales'][$i]->nombre_estab?>
+                    </td> 
+                    <td data-label="Tipo_estab">
+                        <?php echo $parameters['credenciales'][$i]->tipo_estab?>
+                    </td>       
 			    </tr>
                 <?php endfor?>
 			<?php endif;?>

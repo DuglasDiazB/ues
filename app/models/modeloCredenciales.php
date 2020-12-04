@@ -71,14 +71,19 @@
                                         nombre_manip, genero_manip, 
                                         apellido_manip, dui_manip, puesto_manip,
                                         estado_exam,
-                                        asistencia, fecha_asist_capacit
+                                        asistencia, fecha_asist_capacit,
+                                        tipo_estab, nombre_estab
+
                                     FROM tblcredenciales
                                     INNER JOIN tblmanipuladores t2
                                     ON tblcredenciales.id_manip = t2.id_manip
+                                    INNER JOIN tblestablecimientos
+                                    ON t2.id_estab = tblestablecimientos.id_estab 
                                     INNER JOIN tblexamenes
                                     ON tblexamenes.id_manip = t2.id_manip
                                     INNER JOIN tblasistencias 
                                     ON tblasistencias.id_exam = tblexamenes.id_exam 
+                                    
                                     ");
                             
                     return $this->db->registers();
@@ -92,7 +97,7 @@
                 tblcredenciales.estado_creden,
                 tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                 tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                tblexamenes.estado_exam,  tblestablecimientos.tipo_estab,
+                tblexamenes.estado_exam,  tblestablecimientos.tipo_estab, nombre_estab,
                 tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                 FROM tblcredenciales
                 INNER JOIN tblmanipuladores
@@ -132,7 +137,7 @@
                             tblcredenciales.estado_creden,
                             tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                             tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                            tblexamenes.estado_exam,  tblestablecimientos.tipo_estab,
+                            tblexamenes.estado_exam,  tblestablecimientos.tipo_estab, nombre_estab,
                             tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                     FROM tblcredenciales
                     INNER JOIN tblmanipuladores
@@ -150,7 +155,7 @@
                         LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                         LOWER(dui_manip) LIKE '%$busqueda%' OR
                         LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                        LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                        LOWER(tipo_estab) LIKE '$busqueda' OR
                         LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '%$busqueda%' OR
                         LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%'
                         ) 
@@ -165,7 +170,7 @@
                             tblcredenciales.estado_creden,
                             tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                             tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                            tblexamenes.estado_exam, tblestablecimientos.tipo_estab,
+                            tblexamenes.estado_exam, tblestablecimientos.tipo_estab, nombre_estab,
                             tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                     FROM tblcredenciales
                     INNER JOIN tblmanipuladores
@@ -183,7 +188,7 @@
                         LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                         LOWER(dui_manip) LIKE '%$busqueda%' OR
                         LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                        LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                        LOWER(tipo_estab) LIKE '$busqueda' OR
                         LOWER(nombre_manip) LIKE '%$busqueda%' OR
                         LOWER(apellido_manip) LIKE '%$busqueda%'
                         )
@@ -196,7 +201,7 @@
                                         tblcredenciales.estado_creden,
                                         tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                                         tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                                        tblexamenes.estado_exam, tblestablecimientos.tipo_estab,
+                                        tblexamenes.estado_exam, tblestablecimientos.tipo_estab, nombre_estab,
                                         tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                                 FROM tblcredenciales
                                 INNER JOIN tblmanipuladores
@@ -231,7 +236,7 @@
                                 tblcredenciales.estado_creden,
                                 tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                                 tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                                tblexamenes.estado_exam, tblestablecimientos.tipo_estab,
+                                tblexamenes.estado_exam, tblestablecimientos.tipo_estab, nombre_estab,
                                 tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                         FROM tblcredenciales
                         INNER JOIN tblmanipuladores
@@ -249,7 +254,7 @@
                             LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                             LOWER(dui_manip) LIKE '%$busqueda%' OR
                             LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                            LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                            LOWER(tipo_estab) LIKE '$busqueda' OR
                             LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '%$busqueda%' OR
                             LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '%$busqueda%'
                             ) 
@@ -266,7 +271,7 @@
                                 tblcredenciales.estado_creden,
                                 tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                                 tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                                tblexamenes.estado_exam, tblestablecimientos.tipo_estab,
+                                tblexamenes.estado_exam, tblestablecimientos.tipo_estab, nombre_estab,
                                 tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                         FROM tblcredenciales
                         INNER JOIN tblmanipuladores
@@ -284,7 +289,7 @@
                             LOWER(fecha_asist_capacit) LIKE '%$busqueda%' OR
                             LOWER(dui_manip) LIKE '%$busqueda%' OR
                             LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                            LOWER(tipo_estab) LIKE '%$busqueda%' OR
+                            LOWER(tipo_estab) LIKE '$busqueda' OR
                             LOWER(nombre_manip) LIKE '%$busqueda%' OR
                             LOWER(apellido_manip) LIKE '%$busqueda%'
                         )
@@ -300,7 +305,7 @@
                                         tblcredenciales.estado_creden,
                                         tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                                         tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                                        tblexamenes.estado_exam, tblestablecimientos.tipo_estab,
+                                        tblexamenes.estado_exam, tblestablecimientos.tipo_estab, nombre_estab,
                                         tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                                     FROM tblcredenciales
                                     INNER JOIN tblmanipuladores
@@ -328,7 +333,7 @@
                                     tblcredenciales.estado_creden,
                                     tblmanipuladores.nombre_manip, tblmanipuladores.genero_manip, 
                                     tblmanipuladores.apellido_manip, tblmanipuladores.dui_manip, tblmanipuladores.puesto_manip,
-                                    tblexamenes.estado_exam,
+                                    tblexamenes.estado_exam, tipo_estab, nombre_estab,
                                     tblasistencias.asistencia, tblasistencias.fecha_asist_capacit
                             FROM tblcredenciales
                             INNER JOIN tblmanipuladores
@@ -337,6 +342,8 @@
                             ON tblexamenes.id_manip = tblmanipuladores.id_manip
                             INNER JOIN tblasistencias 
                             ON tblasistencias.id_exam = tblexamenes.id_exam 
+                            INNER JOIN tblestablecimientos
+                                    ON tblmanipuladores.id_estab = tblestablecimientos.id_estab 
                             WHERE id_creden = :id
                             AND estado_creden = '$estadoCreden' 
                 ");
