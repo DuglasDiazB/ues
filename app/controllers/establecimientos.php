@@ -22,7 +22,8 @@ class Establecimientos extends MainController{
 		if($estado == 'Activo'){
             $regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
-            $regresar = ROUTE_URL.'/establecimientos/establecimientosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+            //$regresar = ROUTE_URL.'/establecimientos/establecimientosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+             $regresar = ROUTE_URL.'/establecimientos/establecimientosDesactivados'.'/'.$pagina.'/0/0/'.$busqueda;
         }
 		
 		
@@ -444,10 +445,9 @@ class Establecimientos extends MainController{
 
 
 
-		public function actualizarEstablecimiento($id = 0){
+		public function actualizarEstablecimiento($id = 0 ,$pagina = 1, $busqueda = NULL){
 
-			$pagina = NULL;
-			$busqueda= NULL;
+		
 
 			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
 
@@ -470,6 +470,8 @@ class Establecimientos extends MainController{
 			}
 
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+				$regresar =$_POST['regresar'];
 
 			// ----------------- guardando los datos enviados por el formulario como propiedades --------------------
 				//$data = $this->ModeloEstablecimientos->set_datos($_POST);

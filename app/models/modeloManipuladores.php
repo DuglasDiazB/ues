@@ -20,6 +20,20 @@ class ModeloManipuladores{
 	}
 
 
+
+
+
+	 public function busquedaDui($dui){
+
+         
+            $this->db->query("SELECT id_manip FROM tblmanipuladores WHERE dui_manip = :dui_manip");
+            $this->db->bind(':dui_manip', $dui);
+
+            return $this->db->rowCount();
+
+        }
+
+
         //Asignado valores del formulario a cada propiedad si esta existe
 	public function set_datos($datos){
 
@@ -89,7 +103,7 @@ class ModeloManipuladores{
 
 
 			DATE_FORMAT(fecha_mod_manip, 'ultima modificación %W %d de %M del %Y a las %H:%i') as fecha_mod_manip,
-			DATE_FORMAT(fecha_registro_manip, 'Fecha en que se registro %W %d de %M del %Y') as fecharegistro,
+			DATE_FORMAT(fecha_registro_manip, 'Fecha en que se registro %W %d de %M del %Y') as fecha_registro_manip
 
 			FROM tblmanipuladores INNER JOIN tblestablecimientos on tblmanipuladores.id_estab = tblestablecimientos.id_estab
 			WHERE tblmanipuladores.id_manip = :id and estado_manip = '$estado'");
@@ -158,7 +172,7 @@ class ModeloManipuladores{
 
 	/*///////////////////////////////////////////////////////////////////////////*/
         //para la tabla inspecciones limite
-	public function manipuladoresPorLimite($pos_pagina, $desde, $busqueda = null, $estado = 'Activo'){
+	public function manipuladoresPorLimite($pos_pagina, $desde, $busqueda = NULL, $estado = 'Activo'){
 		if ($busqueda != null && strpos($busqueda, ' ')) {
 
 			$busquedaNombre = explode(' ', $busqueda);

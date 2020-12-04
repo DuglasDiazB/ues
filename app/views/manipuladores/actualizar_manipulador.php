@@ -25,7 +25,13 @@
                 <small></small>
             </div>
 
-
+            <div class="form-control" style="display: none">
+                        <label for="regresar"></label> 
+                        <input type="text" name="regresar" value="<?php echo $var = (isset($parameters['regresar']))?$parameters['regresar']:''?>"> 
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small></small>
+                    </div>
 
 
 

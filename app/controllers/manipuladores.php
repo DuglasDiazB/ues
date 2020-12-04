@@ -27,7 +27,7 @@ class Manipuladores extends MainController{
 		if($estado == 'Activo'){
             $regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
-            $regresar = ROUTE_URL.'/manipuladores/manipuladoresDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
+            $regresar = ROUTE_URL.'/manipuladores/manipuladoresDesactivados'.'/'.$pagina.'/0/0/'.$busqueda;
         }
 		
 		
@@ -359,8 +359,15 @@ class Manipuladores extends MainController{
 				$errores['fechaNacimiento'] = validafecha($_POST['fechaNacimiento']);
 				$this->error = ($errores['fechaNacimiento']['form-control'] == 'error')? TRUE :$this->error;
 				
-				$errores['duimanip'] = validaDui($_POST['duimanip']);
+				/*$errores['duimanip'] = validaDui($_POST['duimanip']);
+				$this->error = ($errores['duimanip']['form-control'] == 'error')? TRUE :$this->error;*/
+
+				$errores['duimanip'] = validaDui($_POST['duimanip'], $this->ModeloManipuladores->busquedaDui($_POST['duimanip']));
 				$this->error = ($errores['duimanip']['form-control'] == 'error')? TRUE :$this->error;
+				/*echo $_POST['duimanip'];
+				print_r($errores['duimanip']);
+				echo $this->error;
+				die();*/
 
 				$errores['puestomanip'] = validaNombre($_POST['puestomanip']);
 				$this->error = ($errores['puestomanip']['form-control'] == 'error')? TRUE : $this->error;
@@ -446,12 +453,10 @@ class Manipuladores extends MainController{
 
 
 
-			public function actualizarManipulador($id = 0 /*,$pagina = 1*/){
-				$pagina = NULL;
-				$busqueda= NULL;
+			public function actualizarManipulador($id = 0 ,$pagina = 1, $busqueda = NULL){
 
-				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
-
+				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/0/0/'.$busqueda;
+				// $pagina = 1, $id = 0, $idE = 0,  $busqueda = null
 			
 
 		//comprobando si el usuario existe a traves del id
@@ -473,7 +478,7 @@ class Manipuladores extends MainController{
 			}
 			//presionando el boton
 			if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-				$regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/'.$busqueda;
+				$regresar =$_POST['regresar'];
 				
 				$establecimiento = $this->ModeloManipuladores->getEstab($_POST['id_estab']);
 			

@@ -31,11 +31,35 @@ class Reports extends MainController{
 	}
 
 
+
+
+
+
+
 public function wrap(){
 
-	$this->view('reportes/wrap');
+	$manipuladores = $this->ModeloReportes->obtenerManipuladores();
+
+		$parameters = [
+			'title'=> 'Active Manipulators Report',
+			'manipuladores'=>$manipuladores,
+		];
+
+
+
+	$this->view('reportes/wrap', $parameters);
 
 }	
+
+
+
+
+
+
+
+
+
+
 
 /*FUNCIONES PARA LOS REPORTES DEL MODULO DE USUARIOS*/
 

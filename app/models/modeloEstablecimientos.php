@@ -120,7 +120,7 @@ class ModeloEstablecimientos{
 			usermod,
 
 			DATE_FORMAT(fecha_mod_estab, 'ultima modificación %W %d de %M del %Y a las %H:%i') as fecha_mod_estab,
-			fecha_reg_estab
+			DATE_FORMAT(fecha_reg_estab, 'Fecha en que se registro %W %d de %M del %Y') as fecha_reg_estab
 			FROM tblestablecimientos 
 			WHERE id_estab = :id and estado_estab = '$estado'");
 		$this->db->bind(':id', $id);
@@ -180,7 +180,7 @@ class ModeloEstablecimientos{
 
 	/*///////////////////////////////////////////////////////////////////////////*/
         //para la tabla inspecciones limite
-	public function establecimientosPorLimite($pos_pagina, $desde, $busqueda = null, $estado = 'Activo'){
+	public function establecimientosPorLimite($pos_pagina, $desde, $busqueda = NULL, $estado = 'Activo'){
 		if ($busqueda != null && strpos($busqueda, ' ')) {
 
 			$busquedaNombre = explode(' ', $busqueda);

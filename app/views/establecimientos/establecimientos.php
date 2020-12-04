@@ -4,7 +4,7 @@
 	            <thead>
 			        <tr>
 				    <!-- colspan="Numero de columnas que tendra la tabla" -->
-                        <th colspan="8">
+                        <th colspan="9">
                         <div class="title">
                             <p>Establecimientos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
@@ -36,6 +36,7 @@
                         <th>Propietario</th>
                         <th>Telefono</th>
                         <th>Direccion</th>
+                        <th>Apartado</th>
                         <th>Tipo</th>
                         <th>Estado</th>
                         <th>Opciones</th>
@@ -64,6 +65,10 @@
                             ---
                         </td>
                         <td data-label="error">
+                            ---
+                        </td>
+
+                         <td data-label="error">
                             ---
                         </td>
                    
@@ -95,6 +100,10 @@
                             <?php echo $parameters['establecimientos'][$i]->direccion_estab?>
                         </td>
 
+                        <td data-label="Aparatado">
+                            <?php echo $parameters['establecimientos'][$i]->apartado_especifico?>
+                        </td>
+
                         <td data-label="Tipo">
                             <?php echo $parameters['establecimientos'][$i]->tipo_estab?>
                         </td>
@@ -110,11 +119,22 @@
                     <td data-label="Opciones">
                         <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                         <!--controlador/metodo ... echo=si se envia parameters inspecciones hace una pleca -->
-                        <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/'.$parameters['busqueda']:''?>"
-                            class="btn-ver"><i class="fas fa-eye"></i></a>
+                       <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/'.$parameters['busqueda']:''?>"
+                            class="btn-ver"><i class="fas fa-eye"></i></a>-->
 
-                            <a href="<?php echo ROUTE_URL?>/establecimientos/actualizarEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
+
+                            <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
+                                class="btn-ver"><i class="fas fa-eye"></i></a>
+
+
+                           
+
+                           <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/actualizarEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
+                                class="btn-editar"><i class="far fa-edit"></i></a>-->
+
+                                <a href="<?php echo ROUTE_URL?>/establecimientos/actualizarEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                                 class="btn-editar"><i class="far fa-edit"></i></a>
+
 
 
 

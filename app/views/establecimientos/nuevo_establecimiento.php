@@ -113,10 +113,14 @@
 
                <div class="form-control">
                     <!-- crear CheckBox -->
-                    <label for="apartado_especifico">Tipo</label> 
+                    <label for="apartado_especifico">Apartado Esp</label> 
                     <select id="apartado_especifico" name="apartado_especifico"> 
                         <option value="A" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "A")? 'selected': '';}?>>A</option> 
                         <option value="B" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "B")? 'selected': '';}?>>B</option> 
+
+                        <option value="C" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "C")? 'selected': '';}?>>C</option> 
+
+                        <option value="D" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "D")? 'selected': '';}?>>D</option> 
                     </select>
                 </div>
 

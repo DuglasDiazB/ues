@@ -14,6 +14,18 @@
                 
                 <form action="<?php echo ROUTE_URL?>/establecimientos/actualizarEstablecimiento/<?php echo $parameters['establecimiento']?>" method= "post" id="form-establecimiento" class="form">
 
+
+
+                      <div class="form-control" style="display: none">
+                        <label for="regresar"></label> 
+                        <input type="text" name="regresar" value="<?php echo $var = (isset($parameters['regresar']))?$parameters['regresar']:''?>"> 
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small></small>
+                    </div>
+
+
+
                      <div class="form-control <?php echo $var = (isset($parameters['errores']['nombre_estab']['form-control']))?$parameters['errores']['nombre_estab']['form-control']:''?>">
                     <label for="nombre_estab">Establecimiento</label>
                     <input onkeypress = " return soloLetras(event)" type="text" id="nombre_estab" name="nombre_estab" value="<?php echo $var = (isset($parameters['errores']['nombre_estab']['text']))?$parameters['errores']['nombre_estab']['text']:''?>">
@@ -108,10 +120,14 @@
 
                <div class="form-control">
                     <!-- crear CheckBox -->
-                    <label for="apartado_especifico">Tipo</label> 
+                    <label for="apartado_especifico">Aprtado esp</label> 
                     <select id="apartado_especifico" name="apartado_especifico"> 
                         <option value="A" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "A")? 'selected': '';}?>>A</option> 
                         <option value="B" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "B")? 'selected': '';}?>>B</option> 
+
+                          <option value="C" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "C")? 'selected': '';}?>>C</option> 
+
+                                <option value="D" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['apartado_especifico'] == "D")? 'selected': '';}?>>D</option> 
                     </select>
                 </div>
 

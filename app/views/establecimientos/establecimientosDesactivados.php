@@ -1,6 +1,6 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <!-- Agregar boton regresar y mensaje-->
-<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<!--<p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>  -->  
 
 <table>
    <thead>
@@ -106,7 +106,13 @@
                             
 
 
-     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/'.$parameters['busqueda']:''?>" class="btn-ver"><i class="fas fa-eye"></i></a>   
+    <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/'.$parameters['busqueda']:''?>" class="btn-ver"><i class="fas fa-eye"></i></a>-->
+
+     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>" 
+        class="btn-ver"><i class="fas fa-eye"></i></a>   
+
+
+
 
 
 
@@ -115,7 +121,10 @@
 
        <a href="<?php echo ROUTE_URL.'/establecimientos/establecimientosDesactivados'?>/<?php echo $parameters['respuesta']['pagina_actual']?><?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab:''?>/<?php echo 0?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
             class="btn-editar"><i class="fas fa-check-circle"></i>
-        </a>   
+        </a>  
+
+
+
 
     </td>
 
