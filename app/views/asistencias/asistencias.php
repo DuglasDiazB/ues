@@ -91,8 +91,7 @@
                         </td>
 
                         <td data-label="Opciones">
-                        <a href="<?php echo ROUTE_URL?>/asistencias/verAsistencia<?php echo $var=(isset($parameters['asistencias']))? '/'.$parameters['asistencias'][$i]->id_asistencia.'/Si/'.$parameters['respuesta']['pagina_actual'].'/'.$parameters['busqueda']:''?>"
-                         class="btn-ver"><i class="fas fa-eye"></i></a>
+                            <a href="<?php echo ROUTE_URL?>/asistencias/verAsistencia<?php echo $var=(isset($parameters['asistencias']))? '/'.$parameters['asistencias'][$i]->id_asistencia.'/Si/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"                         class="btn-ver"><i class="fas fa-eye"></i></a>
                             
                         </td>
 

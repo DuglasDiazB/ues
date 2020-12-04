@@ -149,9 +149,11 @@
                     "SELECT * FROM tblexamenes
                     INNER JOIN tblmanipuladores
                     ON tblexamenes.id_manip = tblmanipuladores.id_manip
+                    INNER JOIN tblestablecimientos
+                    ON tblestablecimientos.id_estab
                     WHERE(LOWER(CONCAT(nombre_manip, apellido_manip)) LIKE '$busqueda' OR
                     LOWER(CONCAT(apellido_manip, nombre_manip)) LIKE '$busqueda' OR
-                    LOWER(tipo_estab) LIKE '%$busqueda%'
+                    LOWER(tipo_estab) LIKE '$busqueda'
                     ) 
                     AND estado_manip = 'Activo'
                     AND estado_exam = '$estadoExamen'
@@ -221,9 +223,11 @@
                     "SELECT * FROM tblexamenes
                     INNER JOIN tblmanipuladores
                     ON tblexamenes.id_manip = tblmanipuladores.id_manip
+                    INNER JOIN tblestablecimientos
+                    ON tblestablecimientos.id_estab  = tblmanipuladores.id_estab
                     WHERE(LOWER(CONCAT(nombre_manip, apellido_manip)) LIKE '$busqueda' OR
                     LOWER(CONCAT(apellido_manip, nombre_manip)) LIKE '$busqueda' OR
-                    LOWER(tipo_estab) LIKE '%$busqueda%'
+                    LOWER(tipo_estab) LIKE '$busqueda'
                     ) 
                     AND estado_manip = 'Activo'
                     AND estado_exam = '$estadoExamen'
@@ -244,7 +248,7 @@
                         LOWER(apellido_manip) LIKE '%$busqueda%' OR
                         LOWER(genero_manip) LIKE '%$busqueda%' OR
                         LOWER(puesto_manip) LIKE '%$busqueda%' OR
-                        LOWER(tipo_estab) LIKE '%$busqueda%'
+                        LOWER(tipo_estab) LIKE '$busqueda'
                     ) 
                     AND estado_manip = 'Activo'
                     AND estado_exam = '$estadoExamen'

@@ -89,7 +89,7 @@
                     </td>
                 
 				    <td data-label="Opciones">					
-                    <a href="<?php echo ROUTE_URL?>/examenes/verExamen<?php echo $var=(isset($parameters['examenes']))? '/'.$parameters['examenes'][$i]->id_exam.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
+                    <a href="<?php echo ROUTE_URL?>/examenes/verExamen<?php echo $var=(isset($parameters['examenes']))? '/'.$parameters['examenes'][$i]->id_exam.'/'.$parameters['respuesta']['pagina_actual'] :''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                         class="btn-ver"><i class="fas fa-eye"></i></a>
                     <!-- <a href="<?php echo ROUTE_URL?>/examenes/actualizarExamen<?php echo $var=(isset($parameters['examenes']))? '/'.$parameters['examenes'][$i]->id_exam:''?>"
                         class="btn-editar"><i class="far fa-edit"></i></a> -->
