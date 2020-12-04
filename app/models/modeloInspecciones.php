@@ -49,7 +49,7 @@
 
             return $this->db->registers();
         }
-
+        
         //Haciendo las busquedas por el numero de registro
         public function numeroRegistros($busqueda = null, $estadoEstab = "Activo"){
 
@@ -283,7 +283,7 @@
                     WHERE id_inspec = :id");
            
             $this->db->bind(':inspec_para', $inspeccion['inspeccionPara'] );
-            $this->db->bind(':fecha_inspec', $inspeccion['fechaInspeccion']['text'] );
+            $this->db->bind(':fecha_inspec', $inspeccion['fechaInspeccion']['text']);
             $this->db->bind(':objeto_visita', $inspeccion['objetoVisita'] );
             $this->db->bind(':nombre_inspector', $inspeccion['nombreInspector']['text'] );
             $this->db->bind(':cal_primer_inspec', $inspeccion['notaPinspeccion']['text'] );

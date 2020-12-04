@@ -240,7 +240,20 @@ class Establecimientos extends MainController{
         	}
         	if ($idE == 1 && $this->ModeloEstablecimientos->obtenerEstablecimiento($id)) {
 
-        		$this->ModeloEstablecimientos->activar($id);
+				$this->ModeloEstablecimientos->activar($id);
+				$inspeccion = $this->ModeloEstablecimientos->obtenerInspeccion($id);
+				$this->ModeloEstablecimientos->reactivarInspeccion($inspeccion->inspec_para, 
+																  NULL, 
+																  $inspeccion->objeto_visita, 
+																  $inspeccion->nombre_inspector,
+																  NULL, 
+																  NULL, 
+																  NULL, 
+																  NULL,
+																  NULL, 
+																  $inspeccion->id_estab,
+																  $inspeccion->id_inspec
+																);
         		$establecimiento = null;
         	}
 
