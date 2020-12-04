@@ -176,7 +176,7 @@
                 
                 //obteniendo el nombre de usuario que esta efectuando el update
                 $examen->usermod = $_SESSION['user']->username;
-                
+                                                
                 //comprobando si existen cambios en la entrega del primer examen 
                 if (($examen->exam_s == 'No entregado' && $examen->exam_o == 'No entregado')){
                                         
@@ -195,7 +195,13 @@
                     
                 }else {
 
-                    $examen->fecha_entrega_so = $_POST['fecha_entrega_so'];
+                    if ($_POST['fecha_entrega_so'] == '') {
+                        $fechaActual = $this->modeloExamenes->obtenerFechaActual()->hoy;
+                        $examen->fecha_entrega_so = $fechaActual;
+                    }else{
+
+                        $examen->fecha_entrega_so = $_POST['fecha_entrega_so'];
+                    }
                 
                 }
                 
@@ -208,7 +214,13 @@
                     
                 }else{
 
-                    $examen->fecha_entrega_so2 = $_POST['fecha_entrega_so2'];
+                    if ($_POST['fecha_entrega_so2'] == '') {
+                        $fechaActual = $this->modeloExamenes->obtenerFechaActual()->hoy;
+                        $examen->fecha_entrega_so2 = $fechaActual;
+                    }else{
+
+                        $examen->fecha_entrega_so2 = $_POST['fecha_entrega_so2'];
+                    }
 
                 }
 
@@ -238,8 +250,7 @@
                     //verificando si esta acto para recibir la credencial\
                     
                 $credencial = $this->modeloExamenes->obtenerCredencial($examen->id_manip);
-                
-                           
+                                                                       
                 //actualizando examen de manipulador de alimentos
                 if ($this->modeloExamenes->examenesUpdate($examen)) {
 
