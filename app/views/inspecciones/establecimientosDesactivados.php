@@ -91,7 +91,7 @@
                         <td data-label="Opciones">
                             <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                             <!--controlador/metodo ... echo=si se envia parameters inspecciones hace una pleca -->
-                            <a href="<?php echo ROUTE_URL?>/inspecciones/verInspeccion<?php echo $var=(isset($parameters['inspecciones']))? '/'.$parameters['inspecciones'][$i]->id_inspec.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
+                            <a href="<?php echo ROUTE_URL?>/inspecciones/verInspeccion<?php echo $var=(isset($parameters['inspecciones']))? '/'.$parameters['inspecciones'][$i]->id_inspec.'/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                                 class="btn-ver"><i class="fas fa-eye"></i></a>                                                        
                             
                         </td>
