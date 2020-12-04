@@ -150,7 +150,7 @@
                     INNER JOIN tblmanipuladores
                     ON tblexamenes.id_manip = tblmanipuladores.id_manip
                     INNER JOIN tblestablecimientos
-                    ON tblestablecimientos.id_estab
+                    ON tblestablecimientos.id_estab  = tblmanipuladores.id_estab
                     WHERE(LOWER(CONCAT(nombre_manip, apellido_manip)) LIKE '$busqueda' OR
                     LOWER(CONCAT(apellido_manip, nombre_manip)) LIKE '$busqueda' OR
                     LOWER(tipo_estab) LIKE '$busqueda'

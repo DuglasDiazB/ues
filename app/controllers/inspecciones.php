@@ -124,6 +124,8 @@ class Inspecciones extends MainController
 			$mensaje = date_format(date_create($inspeccion->primer_reinspec_fecha),"d/m/Y");
 		}elseif($inspeccion->fecha_inspec!= NULL || $inspeccion->fecha_inspec != ''){
 			$mensaje = date_format(date_create($inspeccion->fecha_inspec),"d/m/Y");
+		}else{
+			$mensaje = 'Sin fecha';
 		}
 		
 		$mensaje = 'Ultima inspeccion ' . $mensaje . ' por ' . $inspeccion->nombre_inspector;

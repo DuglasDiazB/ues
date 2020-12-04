@@ -519,6 +519,6 @@
         //6-Agregando las busquedas a la barra de superior para buscar
       
 
-} 
+}
 
 ?>

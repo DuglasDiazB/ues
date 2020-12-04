@@ -12,10 +12,10 @@
 
                              <p>
                                 <?php if ($parameters['busqueda'] != null):?>
-                                <a href="<?php echo ROUTE_URL?>/asistencias" class="btn-editar"><i
+                                <a href="<?php echo ROUTE_URL?>/asistencias/noAsistidos" class="btn-editar"><i
                                     class="fas fa-redo"></i>Recargar</a>
                                     <?php endif?>
-                                <a href="<?php echo ROUTE_URL?>/asistencias" class="btn-ver"><i class="fas fa-check"></i>
+                                <a href="<?php echo ROUTE_URL?>/asistencias/" class="btn-ver"><i class="fas fa-check"></i>
                                 <!-- <i class="far fa-plus-square"></i> -->
                                     Asistidos</a>
                             </p>
