@@ -10,6 +10,7 @@
                     <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                 
                 </p>
+
                 <p>
                     <?php if ($parameters['busqueda'] != null):?>
                         <a href="<?php echo ROUTE_URL?>/usuarios/usuariosDesactivados" class="btn-editar"><i
@@ -22,6 +23,7 @@
                         <a href="<?php echo ROUTE_URL?>/usuarios/index" class="btn-editar"><i class="fas fa-user-check"></i>Activos</a>
 
                 </p>
+                
                 </div>
    	 		</tr>
 			<tr>
@@ -94,6 +96,8 @@
                 <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                 <a href="<?php echo ROUTE_URL?>/usuarios/verUsuario<?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/2"
                     class="btn-ver"><i class="fas fa-eye"></i></a>
+
+
                 <!-- <a href="<?php echo ROUTE_URL?>/usuarios/index/?editar=<?php echo $parameters['usuarios'][$i]->idusuario?>&pagina=<?php echo $parameters['pagina']?>&busqueda=<?php echo $var = (isset($parameters['busqueda']))? $parameters['busqueda'] : ''?>"
                     class="btn-editar"><i class="far fa-edit"></i></a> -->
                 <a href="<?php echo ROUTE_URL.'/usuarios/usuariosDesactivados'?>/<?php echo $parameters['respuesta']['pagina_actual']?><?php echo $var=(isset($parameters['usuarios']))? '/'.$parameters['usuarios'][$i]->idusuario:''?>/<?php echo 0?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"

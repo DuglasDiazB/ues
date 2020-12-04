@@ -7,11 +7,20 @@
 <div class="navegacion">
     <ul class="menu-reporte">
 
+ 
+                
+
+
+
                 <li> <a href="#">
                     Usuarios</a>
                     <ul class="submenu">
                         <li>
                             <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
+                        </li>
+
+                         <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/wrap ?>">Wrap</a>
                         </li>
                         
                     </ul>

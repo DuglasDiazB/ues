@@ -89,7 +89,8 @@ class ModeloManipuladores{
 
 
 			DATE_FORMAT(fecha_mod_manip, 'ultima modificación %W %d de %M del %Y a las %H:%i') as fecha_mod_manip,
-			fecha_registro_manip
+			DATE_FORMAT(fecha_registro_manip, 'Fecha en que se registro %W %d de %M del %Y') as fecharegistro,
+
 			FROM tblmanipuladores INNER JOIN tblestablecimientos on tblmanipuladores.id_estab = tblestablecimientos.id_estab
 			WHERE tblmanipuladores.id_manip = :id and estado_manip = '$estado'");
 		$this->db->bind(':id', $id);

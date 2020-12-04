@@ -106,7 +106,7 @@
                             
 
 
-     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'/*.$parameters['respuesta']['pagina_actual'] . '/' */.'Inactivo/'.$parameters['busqueda']:''?>" class="btn-ver"><i class="fas fa-eye"></i></a>   
+     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/'.$parameters['busqueda']:''?>" class="btn-ver"><i class="fas fa-eye"></i></a>   
 
 
 

@@ -70,7 +70,7 @@
                         <?php echo $parameters['credenciales'][$i]->puesto_manip?>
                     </td>     
                     <td data-label="Examenes">
-                        <?php echo $parameters['credenciales'][$i]->estado_exam?>
+                        <?php echo ($parameters['credenciales'][$i]->estado_exam == 'Acto')?'Apto':'No apto'?>
                     </td>
                     <td data-label="Asistencias">
                         <?php echo $parameters['credenciales'][$i]->asistencia?>

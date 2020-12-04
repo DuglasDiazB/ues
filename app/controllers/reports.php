@@ -30,6 +30,13 @@ class Reports extends MainController{
 
 	}
 
+
+public function wrap(){
+
+	$this->view('reportes/wrap');
+
+}	
+
 /*FUNCIONES PARA LOS REPORTES DEL MODULO DE USUARIOS*/
 
 public function reporteUsuarios(){
