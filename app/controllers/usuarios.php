@@ -24,9 +24,9 @@ class Usuarios extends MainController
 		if($estado == 1){
             $regresar = ROUTE_URL.'/usuarios/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
-            $regresar = ROUTE_URL.'/usuarios/usuariosDesactivados'.'/0/0/'.$pagina.'/'.$busqueda;
-        }
-
+            $regresar = ROUTE_URL.'/usuarios/usuariosDesactivados/'.$pagina.'/0/0/'.$busqueda;
+		}
+				
 		$parameters = [
 
 			'title' => 'Ver Usuario',

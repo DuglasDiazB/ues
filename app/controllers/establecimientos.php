@@ -378,12 +378,12 @@ class Establecimientos extends MainController{
 				$errores['tipo_estab'] = $_POST['tipo_estab'];
 				$errores['apartado_especifico'] = $_POST['apartado_especifico'];
 
-				echo $this->error;
+				
 				
 
 				if ($this->error == TRUE) { 
 
-					echo $this->error;
+					
 
 					$parameters = [
 						'title' => 'Nuevo Establecimiento',

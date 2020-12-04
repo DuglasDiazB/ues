@@ -594,8 +594,7 @@
                 
             ");
             return $this->db->rowCount();
-        }
-
+        }        
         public function obtnerPaginacionUsuariosBusquedaDes($busqueda, $inicio, $numeroPaginas){
             $this->db->query(
                 "SELECT SQL_CALC_FOUND_ROWS * FROM usuarios
