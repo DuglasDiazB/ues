@@ -2,24 +2,23 @@
 <?php require_once('../app/views/inc/header.php'); ?>
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>   
 <br> 
-<!-- <p><?php echo $parameters['mensaje']?></p> -->
     <form action="" method= "post" id="form-credencial" class="form-credencial">
          <div class="credencial">
             
            <div class="imagen-credencial">
                <a href="#" ><img src="<?php echo ROUTE_URL?>/img/logominsal.png" alt="UCSF" style="width: 85px;
     height: 40px;"></a>
-                <a href="#" ><img src="<?php echo ROUTE_URL?>/img/logoalcaldia.jpeg" alt="Alcaldia" style="width: 40px;
+                <a href="#" ><img src="<?php echo ROUTE_URL?>/img/escudo.jpg" alt="escudo" style="width: 40px;
     height: 45px;"></a>
             </div>
 
            <div class="label-credencial">
                 <div class="img-credencial">
-                    <a href="#" ><img src="<?php echo ROUTE_URL?>/img/alcaldia.jpeg" alt="alcaldia" style="width: 225px;
-                height: 245px;"></a>
+                    <a href="#" ><img src="<?php echo ROUTE_URL?>/img/carnet.png" alt="alcaldia" style=" width: 250px;
+                height: 250px;"></a>
                 </div>
                 <div class="label-encabezado">
-                    <label>EL MINISTERIO DE SALUD Y LA ALCALDIA MUNICIPAL DE SAN FRANCISCO GOTERA</label>
+                    <label>EL MINISTERIO DE SALUD Y LA U.C.S.F DE SAN FRANCISCO GOTERA</label>
                 </div>
 
                 <div class="label-cuerpo">
@@ -42,10 +41,11 @@
                     <label for="">FECHA DE VENCIMIENTO: <?php echo $var = (isset($parameters['credencial']->fecha_exped_creden))?$parameters['credencial']->fecha_exped_creden:''?></label>
                 </div>
 
-                <div class="label-firma">
-                    <label for="">F._____________________   F.__________________</label>
+                <div class="label-firma" style="text-align: center;">
+                    <label for="">F._____________________</label>
                     <br>
-                    <label for="">DIRECTOR LOCAL MINSAL  ALCALDE MUNICIPAL</label>
+                    <br>
+                    <label for="">DIRECTOR LOCAL MINSAL</label>
                 </div>
                
 

@@ -4,10 +4,10 @@
 	    <thead>
 			<tr>
 				<!-- colspan="Numero de columnas que tendra la tabla" -->
-      			<th colspan="9">
+      			<th colspan="6">
                     <div class="title">
                         <p>
-                            Listado de credenciales No actas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            Credenciales No aptas, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                         </p>
                         <p>
@@ -15,7 +15,7 @@
                                 <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-editar"><i
                                     class="fas fa-redo"></i>Recargar</a>
                             <?php endif?>
-                            <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-ver"><i class="fas fa-check"></i> Actos</a>
+                            <a href="<?php echo ROUTE_URL?>/credenciales" class="btn-ver"><i class="fas fa-check"></i> Aptos</a>
                         </p>
                     </div> 
                 </th>
@@ -27,11 +27,7 @@
 				<th>Nombre</th>
                 <th>Puesto</th>   
                 <th>Examenes</th>
-                <th>Asistencia</th>
-                <th>Emision</th>
-                <th>Vencimiento</th>              
-				<!-- <th>Estado</th> -->
-				<th>Opciones</th>
+                <th>Asistencia</th>           
 				
 			</tr>
 		</thead>
@@ -56,16 +52,7 @@
                     <td data-label="error">
                         ---
                     </td>
-                    <td data-label="error">
-                        ---
-                    </td>
-                    <td data-label="error">
-                        ---
-                    </td>
                    
-                    <td data-label="error">
-                        No hay registros...
-                    </td>
                 </tr>
             <?php else:?>
                 <?php for ($i = 0; $i < count($parameters['credenciales']); $i++):?>
@@ -87,19 +74,7 @@
                     </td>
                     <td data-label="Asistencias">
                         <?php echo $parameters['credenciales'][$i]->asistencia?>
-                    </td>
-                    <td data-label="Emision">
-                        <?php echo $parameters['credenciales'][$i]->fecha_emis_creden?>
-                    </td> 
-                    <td data-label="Vencimiento">
-                        <?php echo $parameters['credenciales'][$i]->fecha_exped_creden?>
                     </td>            
-                
-                    <td data-label="Opciones">
-                        <a href="<?php echo ROUTE_URL?>/credenciales/verCredencial<?php echo $var=(isset($parameters['credenciales']))? '/'.$parameters['credenciales'][$i]->id_creden.'/Inactivo/'.$parameters['respuesta']['pagina_actual'].'/'.$parameters['busqueda']:''?>"
-                         class="btn-ver"><i class="fas fa-eye"></i></a>
-                            
-                        </td>
 			    </tr>
                 <?php endfor?>
 			<?php endif;?>

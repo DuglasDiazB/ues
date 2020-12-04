@@ -1,71 +1,72 @@
-
-
+<!-- Llamando el header -->
 <?php require_once('../app/views/inc/header.php'); ?>
 
-<table>
-   <thead>
-     <tr>
-        <!-- colspan="Numero de columnas que tendra la tabla" -->
-        <th colspan="7">
-            <div class="title">
-                <p>Lista de manipuladores, se </p>
-            <p>
-             
-                  <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores" class="btn-ver"><i
-                        class="far fa-plus-square"></i>
-                    Reporte</a>
-
-
-
-                      <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresActivos" class="btn-ver"><i
-                        class="far fa-plus-square"></i>
-                    Manip Activos</a>
-
-                       <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInactivos" class="btn-ver"><i
-                        class="far fa-plus-square"></i>
-                    Manip Inactivos</a>
-
-
-                       <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresFormales" class="btn-ver"><i
-                        class="far fa-plus-square"></i>
-                    Manip Formales</a>
-
-
-                       <a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" class="btn-ver"><i
-                        class="far fa-plus-square"></i>
-                    Manip Informales</a>
-
-                    <a href="<?php echo ROUTE_URL?>/reports/copiaSeguridad" class="btn-ver"><i
+<a href="<?php echo ROUTE_URL?>/reports/copiaSeguridad" class="btn-ver"><i
                         class="far fa-plus-square"></i>
                     Copia de seguridad</a>
+<div class="navegacion">
+    <ul class="menu-reporte">
 
+                <li> <a href="#">
+                    Usuarios</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
+                        </li>
+                        
+                    </ul>
+                    </li>
+                
+                <li><a href="#">
+                    Manipuladores</a>
+                    <ul class="submenu">
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores">
+                    General</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresActivos">
+                    Activos</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInactivos" >
+                    Inactivos</a></li>
+
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresFormales" >
+                    Formales</a></li>
+
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" >
+                    Informales</a></li>
+
+					</ul>
+                </li>
+                
+                <li> <a href="">
+                    Inspecciones</a></li>
+
+
+
+                    <li> <a href="">
+                    Examenes</a></li>
+
+                    <li> <a href="">
+                    Asistencias</a></li>
+
+                    <li> <a href="">
+                    Credenciales</a></li>
+
+
+
+                    <li><a href="">
+                    Establecimientos</a></li>
 
                     
 
-                  
 
-                  
-
-                    <a href="" class="btn-desactivar">
-                    Desactivados</a>
-
-                </p>
-            </div>
-        
-                </tbody>
-            </table>
-
-
-
-
-
-
-</div>
+            </ul>
 </div>
 
-
-
-
-</body>
-
-</html>      
+<a href="#" ><img src="<?php echo ROUTE_URL?>/img/logominsal.png" alt="UCSF" style=" margin-left:200px; width: 750px;
+    height: 350px;"></a>
+     
+<!-- Llamando el footer -->
+<?php require_once('../app/views/inc/footer.php'); ?>

@@ -9,7 +9,19 @@ public function __construct(){
 	$this->db = new Sql();
 }
 
+/*#################  REPORTES DEL MODULO USUARIOS #########################*/
 
+public function obtenerUsuarios(){
+	$this->db->query("SELECT * FROM usuarios");
+	return $this->db->registers();
+}
+
+
+
+
+
+
+/*#################  REPORTES DEL MODULO MANIPULADORES #########################*/
 public function obtenerManipuladores(){
 	$this->db->query("SELECT * FROM tblmanipuladores INNER JOIN tblestablecimientos on tblmanipuladores.id_estab = tblestablecimientos.id_estab");
 	return $this->db->registers();

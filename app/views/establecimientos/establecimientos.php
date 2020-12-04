@@ -4,9 +4,9 @@
 	            <thead>
 			        <tr>
 				    <!-- colspan="Numero de columnas que tendra la tabla" -->
-                        <th colspan="9">
+                        <th colspan="8">
                         <div class="title">
-                            <p>Lista de Establecimientos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                            <p>Establecimientos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                             <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
                             </p>
                               <p>
@@ -19,7 +19,7 @@
                         class="far fa-plus-square"></i>
                     Nuevo</a>
 
-                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar"><i class="fas fa-store-slash"></i>
+                    <a href="<?php echo ROUTE_URL?>/establecimientos/establecimientosDesactivados" class="btn-desactivar"><i class="fas fa-times"></i></i>
                     Desactivados</a>
 
 
@@ -45,10 +45,7 @@
                     <?php if( $parameters['respuesta']['error']):?>
                     <tr>
                         <td data-label="error">
-                            ---
-                        </td>
-                        <td data-label="error">
-                            ---
+                            -
                         </td>
                         <td data-label="error">
                             ---
@@ -113,7 +110,7 @@
                     <td data-label="Opciones">
                         <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                         <!--controlador/metodo ... echo=si se envia parameters inspecciones hace una pleca -->
-                        <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'/*.$parameters['respuesta']['pagina_actual'] . '/'*/ .'Activo/'.$parameters['busqueda']:''?>"
+                        <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/'.$parameters['busqueda']:''?>"
                             class="btn-ver"><i class="fas fa-eye"></i></a>
 
                             <a href="<?php echo ROUTE_URL?>/establecimientos/actualizarEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"

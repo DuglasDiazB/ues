@@ -6,7 +6,7 @@
         <!-- colspan="Numero de columnas que tendra la tabla" -->
         <th colspan="8">
             <div class="title">
-                <p>Lista de manipuladores, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                <p>Manipuladores, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                 <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
             </p>
 
@@ -19,7 +19,7 @@
                 <?php if ($parameters['busqueda'] != null):?>
                     <a href="<?php echo ROUTE_URL?>/manipuladores" class="btn-editar"><i
                         class="fas fa-redo"></i>Recargar</a>
-                    <?php endif?>
+                            <?php endif?>
 
                     <a href="<?php echo ROUTE_URL?>/manipuladores/nuevoManipulador" class="btn-ver"><i
                         class="far fa-plus-square"></i>
@@ -28,7 +28,7 @@
                   
 
                     <a href="<?php echo ROUTE_URL?>/manipuladores/manipuladoresDesactivados" class="btn-desactivar">
-                    Desactivados</a>
+                    <i class="fas fa-times"></i> Desactivados</a>
 
                 </p>
             </div>
@@ -50,7 +50,7 @@
         <?php if( $parameters['respuesta']['error']):?>
             <tr>
                 <td data-label="error">
-                    ---
+                    -
                 </td>
                 <td data-label="error">
                     ---
@@ -115,7 +115,7 @@
                         <!--<a href="<?php echo ROUTE_URL?>/manipuladores/verManipulador<?php echo $var=(isset($parameters['manipuladores']))? '/'.$parameters['manipuladores'][$i]->id_manip.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
                             class="btn-ver"><i class="fas fa-eye"></i></a>-->
 
-                            <a href="<?php echo ROUTE_URL?>/manipuladores/verManipulador<?php echo $var=(isset($parameters['manipuladores']))? '/'.$parameters['manipuladores'][$i]->id_manip.'/'/*.$parameters['respuesta']['pagina_actual'] . '/' */.'Activo/'.$parameters['busqueda']:''?>"
+                            <a href="<?php echo ROUTE_URL?>/manipuladores/verManipulador<?php echo $var=(isset($parameters['manipuladores']))? '/'.$parameters['manipuladores'][$i]->id_manip.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/'.$parameters['busqueda']:''?>"
                                 class="btn-ver"><i class="fas fa-eye"></i></a>
 
                             <a href="<?php echo ROUTE_URL?>/manipuladores/actualizarManipulador<?php echo $var=(isset($parameters['manipuladores']))? '/'.$parameters['manipuladores'][$i]->id_manip.'/'.$parameters['respuesta']['pagina_actual'] . '/' . $parameters['busqueda']:''?>"
@@ -230,7 +230,7 @@
 
         <div class="aceptar">
 
-            <a href="javascript:cerrar()" class="btn-desactivar"><i class="fas fa-times"></i></a>
+            <a href="javascript:cerrarManipulador()" class="btn-desactivar"><i class="fas fa-times"></i></a>
 
         </div>
 

@@ -8,7 +8,7 @@
         <!-- colspan="Numero de columnas que tendra la tabla" -->
         <th colspan="9">
             <div class="title">
-                <p>Lista de establecimientos Inactivos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
+                <p>Establecimientos Inactivos, se <?php echo $var = ($parameters['respuesta']['cuantos'] > 1)?'encontraron ':' encontro '?>
                 <?php echo $parameters['respuesta']['cuantos']. $var = ($parameters['respuesta']['cuantos'] > 1)?' registros':' registro'?>
 
             </p>
@@ -42,7 +42,7 @@
             <?php if( $parameters['respuesta']['error']):?>
                 <tr>
                     <td data-label="error">
-                        ---
+                        -
                     </td>
                     <td data-label="error">
                         ---
