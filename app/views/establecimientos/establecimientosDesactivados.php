@@ -108,7 +108,7 @@
 
     <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/'.$parameters['busqueda']:''?>" class="btn-ver"><i class="fas fa-eye"></i></a>-->
 
-     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo/':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>" 
+     <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Inactivo':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>" 
         class="btn-ver"><i class="fas fa-eye"></i></a>   
 
 

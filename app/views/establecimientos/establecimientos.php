@@ -119,11 +119,11 @@
                     <td data-label="Opciones">
                         <!-- <a href="javascript:editarUsu()" class="btn-nuevo"><i class="far fa-edit"></i></a> -->
                         <!--controlador/metodo ... echo=si se envia parameters inspecciones hace una pleca -->
-                       <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/'.$parameters['busqueda']:''?>"
+                       <!-- <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo'.$parameters['busqueda']:''?>"
                             class="btn-ver"><i class="fas fa-eye"></i></a>-->
 
 
-                            <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo/':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
+                            <a href="<?php echo ROUTE_URL?>/establecimientos/verEstablecimiento<?php echo $var=(isset($parameters['establecimientos']))? '/'.$parameters['establecimientos'][$i]->id_estab.'/'.$parameters['respuesta']['pagina_actual'] . '/' .'Activo':''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                                 class="btn-ver"><i class="fas fa-eye"></i></a>
 
 
