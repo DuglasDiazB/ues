@@ -3,7 +3,9 @@
 
 <!-- Agregar boton regresar y mensaje-->
 <p><a href="<?php echo $parameters['regresar']?>"><i class="fas fa-arrow-circle-left" style=" color: #1236da;"></i> Regresar</a></p>    
+<br>
 <p><?php echo $parameters['mensaje']?></p>
+<br>
 <p><?php echo  $parameters['establecimiento']->fecha_reg_estab.'; '.$parameters['establecimiento']->fecha_mod_estab .' Por '. $parameters['establecimiento']->usermod ?></p>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
