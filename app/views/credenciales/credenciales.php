@@ -24,12 +24,13 @@
 				<!-- Se debe ajustar el ancho de las tablas -->
 				<th width="5">#</th>
                 <th width="95">DUI</th>
-				<th>Nombre</th>
+                <th>Nombre</th>
                 <th>Puesto</th>  
                 <th>Examenes</th>
                 <th>Asistencia</th>
-                <th>Emision</th>
-                <th>Vencimiento</th>                
+                <th>Establecimiento</th>
+                <th>Tipo Establecimiento</th>
+               
 				<!-- <th>Estado</th> -->
 				<th>Opciones</th>
 				
@@ -62,6 +63,7 @@
                     <td data-label="error">
                         ---
                     </td>
+ 
                    
                     <td data-label="error">
                         No hay registros...
@@ -78,7 +80,7 @@
                     </td>
 				    <td data-label="Nombre">
                         <?php echo $parameters['credenciales'][$i]->nombre_manip . ' ' . $parameters['credenciales'][$i]->apellido_manip?>
-                    </td>			
+                    </td>				
                     <td data-label="Puesto">
                         <?php echo $parameters['credenciales'][$i]->puesto_manip?>
                     </td>  
@@ -87,16 +89,16 @@
                     </td>
                     <td data-label="Asistencias">
                         <?php echo $parameters['credenciales'][$i]->asistencia?>
-                    </td> 
-                    <td data-label="Emision">
-                        <?php echo $parameters['credenciales'][$i]->fecha_emis_creden?>
-                    </td> 
-                    <td data-label="Vencimiento">
-                        <?php echo $parameters['credenciales'][$i]->fecha_exped_creden?>
-                    </td>              
+                    </td>  
+                    <td data-label="Establecimiento">
+                        <?php echo $parameters['credenciales'][$i]->nombre_estab?>
+                    </td>	
+                    <td data-label="Tipo Establecimiento">
+                        <?php echo $parameters['credenciales'][$i]->tipo_estab?>
+                    </td>
                 
                     <td data-label="Opciones">
-                        <a href="<?php echo ROUTE_URL?>/credenciales/verCredencial<?php echo $var=(isset($parameters['credenciales']))? '/'.$parameters['credenciales'][$i]->id_creden.'/Activo/'.$parameters['respuesta']['pagina_actual'].'/'.$parameters['busqueda']:''?>"
+                        <a href="<?php echo ROUTE_URL?>/credenciales/verCredencial<?php echo $var=(isset($parameters['credenciales']))? '/'.$parameters['credenciales'][$i]->id_creden.'/Activo/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                          class="btn-ver"><i class="fas fa-eye"></i></a>
                             
                         </td>
