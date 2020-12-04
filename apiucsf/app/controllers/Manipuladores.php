@@ -17,7 +17,7 @@ class Manipuladores extends MainController{
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             //obteniendo datos de manipulador de alimentos y el establecimiento al que pertenece
             $manipulador = $this->modeloManipuladores->getManipulador(trim($_POST['duiManip']));
-            $this->modeloManipuladores->saveTokenManipulador($manipulador, trim($_POST['token']));
+            $this->modeloManipuladores->saveTokenManipulador($manipulador, NULL);
             $respuesta = array(
                 'error' => TRUE,
                 'mensaje' => 'logOut',
@@ -52,7 +52,7 @@ class Manipuladores extends MainController{
             }
             
             //obteniendo datos de manipulador de alimentos y el establecimiento al que pertenece
-            $manipulador = $this->modeloManipuladores->getManipulador(trim($_POST['duiManip']));
+            $manipulador = $this->modeloManipuladores->getManipulador(trim($_POST['duiManip']));            
             //1.0 necesitamos saber que el manipulador existe
             if ($manipulador) {
                                         
@@ -239,7 +239,7 @@ class Manipuladores extends MainController{
                 $hoyConFormato = $this->modeloManipuladores->ahoraConformato();            
                 
                 //obteniendo asistencias 
-                $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_manip);                                
+                $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_exam);                                
 
                 if (  $examen->estado_exam == 'No acto' OR $asistencia->asistencia == 'No') { 
                    
@@ -263,7 +263,7 @@ class Manipuladores extends MainController{
                                         
                 $manip = [
 
-                    'estadoExam' => $examen->estado_exam,
+                    'estadoExam' => ($examen->estado_exam == 'Acto') ? 'Apto':'No apto',
                     'fechaExpedExam' => ($examen->fecha_exped_exam == null) ? 'Sin fecha' : $fechaExpedExam->fecha_con_formato,
                     'infoExamen' => $infoExamen, 
                     'idManip' => $manipulador->id_manip,
@@ -319,7 +319,10 @@ class Manipuladores extends MainController{
 
         for ($i=0; $i < count($manipuladores); $i++) { 
             
+            
             $manipulador =  $this->modeloManipuladores->getManipulador($manipuladores[$i]->dui_manip);
+            echo $manipulador->token;
+
             //obtenemos la credencial del manipulador
             $credencial = $this->modeloManipuladores->getCredencial( $manipulador->id_manip );
 
@@ -341,12 +344,12 @@ class Manipuladores extends MainController{
             // obteniendo fecha de expiracion de examen
 
             //obteniendo asistencias 
-            $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_manip);
-
+            $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_exam);
+            
             $fechaExpedExam = $examen->fecha_exped_exam;
             
             if(($examen->estado_exam == 'Acto' AND ($fechaActual >= $fechaExpedExam7  AND $fechaActual <= $fechaExpedExam)) 
-                OR ($fechaActual ==  $capacitaciones->fecha_inicio_capacit OR $fechaActual == $capacitaciones->fecha_fin_capacit)){
+                OR ($fechaActual >=  $capacitaciones->fecha_inicio_capacit OR $fechaActual <= $capacitaciones->fecha_fin_capacit)){
                     
                 //fecha expedicion                         
                 $date1 = new DateTime($fechaExpedExam);
@@ -358,7 +361,9 @@ class Manipuladores extends MainController{
                 $diff = $date1->diff($date2)->days;
 
                 //verificamos si ya expiro el examen de manipulador de alimentos
-                if ($fechaActual >= $fechaExpedExam7) {
+                if ($examen->estado_exam == 'No acto' and $examen->fecha_exped_exam == NULL) {
+                    $infoExamen = 'Aún no ha entregado los exámenes clínicos correspondientes';
+                }else if ($fechaActual >= $fechaExpedExam7) {
 
 
                     // 1.1.1 verificamos si se ha llegado a la fecha de expedicion
@@ -423,7 +428,7 @@ class Manipuladores extends MainController{
                         if ($asistencia->fecha_asist_capacit < $capacitaciones->fecha_inicio_capacit) {
                             
                             $this->modeloManipuladores->actualizarAsistencia($asistencia->id_exam, $asistencia->id_asistencia);
-                            $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_manip);
+                            $asistencia = $this->modeloManipuladores->obtenerAsistencia1($examen->id_exam);
 
                         }
 
@@ -497,7 +502,7 @@ class Manipuladores extends MainController{
 
                 $manip = [
     
-                    'estadoExam' => $examen->estado_exam,
+                    'estadoExam' => ($examen->estado_exam == 'Acto') ? 'Apto':'No apto',
                     'fechaExpedExam' => ($examen->fecha_exped_exam == null) ? 'Sin fecha' : $fechaExpedExam->fecha_con_formato,
                     'infoExamen' => $infoExamen, 
                     'idManip' => $manipulador->id_manip,

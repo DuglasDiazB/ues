@@ -13,9 +13,11 @@ class Login extends MainController{
 
     public function usuario_get($user = '', $pass = ''){
 
+        //resiviendo usuario y password a traves del metodo get
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         
             $respuesta = [];
+            //no se envio nada 
             if($user == '' || $pass == ''){
                 $respuesta = array(
                     'error' => TRUE,
@@ -27,11 +29,16 @@ class Login extends MainController{
                 return;
             }
 
+            //convirtiendo a minuscula el usuario
             $user = ucwords($user);
+
+            //encriptando password
             $pass = validaText(hash('sha512', $pass));
 
+            //obteniendo usuario
             $usuario = $this->modeloLogin->login($user, $pass);
 
+            //se encontro el usuario 
             if ($usuario) {
                 $respuesta = array(
                     'error' => FALSE,
@@ -42,12 +49,12 @@ class Login extends MainController{
                 http_response_code(200);
                 echo json_encode($respuesta);
                 return;
-
+                //usuario o password incorrectos
             }else{
                 $respuesta = array(
 
                     'error' => TRUE,
-                    'mensaje' => 'Usuario o Password incorrectos',
+                    'mensaje' => '¡Usuario o Password incorrectos!',
                     'usuario' => ''
 
                 );

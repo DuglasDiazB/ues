@@ -51,7 +51,55 @@ class ModeloEstablecimientos{
 	}
 	/*///////////////////////////////////////////////////////////////////////////*/
 
+	public function reactivarInspeccion($inspecPara, $fechaInspec, $objetoVisita, $nombreInspector,
+									$calPrimerInspec, $primerReinspecFecha, $primerReinspecCal, $segundaReinspecFecha,
+									$segundaReinspecCal, $idEstab, $idInspec){
+		
+		$this->db->query(
+			"UPDATE tblinspecciones 
+			SET inspec_para = :inspec_para,
+			fecha_inspec = :fecha_inspec,
+			objeto_visita = :objeto_visita,
+			nombre_inspector = :nombre_inspector,
+			cal_primer_inspec = :cal_primer_inspec,
+			primer_reinspec_fecha = :primer_reinspec_fecha,
+			primer_reinspec_cal = :primer_reinspec_cal,
+			segunda_reinspec_fecha = :segunda_reinspec_fecha,
+			segunda_reinspec_cal = :segunda_reinspec_cal,
+			id_estab = :id_estab		
+			WHERE id_inspec = :id_inspec");
+		$this->db->bind(':inspec_para', $inspecPara);
+		$this->db->bind(':fecha_inspec', $fechaInspec);
+		$this->db->bind(':objeto_visita', $objetoVisita);
+		$this->db->bind(':nombre_inspector', $nombreInspector);
+		$this->db->bind(':cal_primer_inspec', $calPrimerInspec);
+		$this->db->bind(':primer_reinspec_fecha', $primerReinspecFecha);
+		$this->db->bind(':primer_reinspec_cal', $primerReinspecCal);
+		$this->db->bind(':segunda_reinspec_fecha', $segundaReinspecFecha);
+		$this->db->bind(':segunda_reinspec_cal', $segundaReinspecCal);
+		$this->db->bind(':id_estab', $idEstab);
+		$this->db->bind(':id_inspec', $idInspec);		
+		if ($this->db->execute()) {                
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
 
+	public function obtenerInspeccion($id){
+		$this->db->query("SET lc_time_names = 'es_ES'");
+		$this->db->execute();
+
+		$this->db->query("SELECT * 
+						FROM tblinspecciones
+						INNER JOIN tblestablecimientos 
+						ON tblinspecciones.id_estab = tblestablecimientos.id_estab
+						WHERE tblestablecimientos.id_estab = :id
+						");
+						$this->db->bind(':id', $id);
+						return $this->db->register();
+	}
+	
 	public function obtenerEstablecimiento($id, $estado = 'Inactivo'){
 		$this->db->query("SET lc_time_names = 'es_ES'");
 		$this->db->execute();
