@@ -152,9 +152,116 @@ thead tr:last-child th {
 	color: #f50b0b;
   }
 
+  @media (max-width: 1192px){
+	  p{
+		  font-size: 16px;
+	  }
+
+	  p a{
+		  font-size: 14px;
+	  }
+
+	  table {
+		text-align: left;
+		line-height: 40px;
+		width: 90%;
+		border-collapse: separate;
+		border-spacing: 0;
+		border: 1px solid #070707;
+		margin: 10px auto;
+		border-top-left-radius: .25rem;
+		border-top-right-radius: .25rem;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		box-shadow: 10px 10px 5px #aaaaaa;
+	}
+	
+	thead tr:first-child {
+		background: #313545;
+		color: #fff;
+		border: none;
+	}
+	thead tr th .title{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.lista-botones{
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		padding-top: 3px;
+		padding-bottom: 3px;
+	}
+	
+	th:first-child,
+	td:first-child {
+		padding: 0 10px 0 20px;
+	}
+	
+	th {
+		font-weight: 400;
+	}
+	
+	th:last-child{
+		text-align: center;
+	}
+	
+	thead tr:last-child th {
+		border-bottom: 3px solid #ddd;
+	  }
+	  
+	  tbody tr:hover {
+		background: #e5e5e5;
+		cursor: default;
+	  }
+	  
+	  tbody tr:last-child td {
+		border: none;
+	  }
+	  
+	  tbody td {
+		border-bottom: 1px solid #ddd;
+	  }
+	  
+	  td:last-child {
+		text-align: center;
+		padding-right: 10px;
+	  }
+	  
+	  .button {
+		color: #aaa;
+		cursor: pointer;
+		vertical-align: middle;
+		margin-top: -4px;
+	  }
+	
+	  .edit{
+		  padding-right: 8px;
+		  font-size: 20px;
+	  }
+	
+	  .delete{
+		  padding-right: 8px;
+		  font-size: 20px;
+	  }
+	 
+	
+	  .edit:hover {
+		color: #1236da;
+	  }
+	  
+	  .delete:hover {
+		color: #f50b0b;
+	  }
+	
+  }
+
 /*//////////////////////////////////////////////*/
 
-@media screen and (max-width: 1102px) {
+@media (max-width: 1144px) {
+
 	table {
         border:1;
 		width: 70%;

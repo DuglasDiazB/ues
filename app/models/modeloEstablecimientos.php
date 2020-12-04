@@ -456,12 +456,20 @@ class ModeloEstablecimientos{
 		}
 	}
 
+	//obteniendo total asistencias formales e informales
+	public function establecimientosForInf($tipoEstab, $estado_estab){
 
+		$this->db->query(
+			"SELECT *
+			FROM tblestablecimientos
+				
+			WHERE tipo_estab = '$tipoEstab'
+			AND estado_estab = '$estado_estab'
+			
+		");
+		return $this->db->rowCount();
 
-
-
-
-
+	}
 
 	
 }

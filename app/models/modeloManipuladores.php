@@ -115,7 +115,8 @@ class ModeloManipuladores{
 			$this->db->query(
 				"SELECT * FROM tblmanipuladores INNER JOIN tblestablecimientos on tblmanipuladores.id_estab = tblestablecimientos.id_estab
 				WHERE( LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '$busqueda' OR
-				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda'
+				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda' OR
+				LOWER(tipo_estab) LIKE '$busqueda'
 				)
 				AND estado_manip = '$estado'");
 			return $this->db->rowCount();
@@ -129,7 +130,7 @@ class ModeloManipuladores{
 				LOWER(nombre_manip) LIKE '%$busqueda%' OR 
 				LOWER(apellido_manip) LIKE '%$busqueda%' OR
 				LOWER(nombre_estab) LIKE '%$busqueda%' OR
-				LOWER(tipo_estab) LIKE '%$busqueda%' OR
+				LOWER(tipo_estab) LIKE '$busqueda' OR
 				LOWER(dui_manip) LIKE '%$busqueda%'
 
 				)
@@ -170,7 +171,8 @@ class ModeloManipuladores{
 			$this->db->query(
 				"SELECT * FROM tblmanipuladores INNER JOIN tblestablecimientos ON tblmanipuladores.id_estab = tblestablecimientos.id_estab 
 				WHERE( LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '$busqueda' OR
-				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda'
+				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda' OR
+				LOWER(tipo_estab) LIKE '$busqueda'
 				)
 				AND estado_manip = '$estado'
 				LIMIT $desde, $pos_pagina
@@ -187,7 +189,7 @@ class ModeloManipuladores{
 				LOWER(nombre_manip) LIKE '%$busqueda%' OR 
 				LOWER(apellido_manip) LIKE '%$busqueda%' OR
 				LOWER(nombre_estab) LIKE '%$busqueda%' OR
-				LOWER(tipo_estab) LIKE '%$busqueda%' OR
+				LOWER(tipo_estab) LIKE '$busqueda' OR
 				LOWER(dui_manip) LIKE '%$busqueda%'
 				)
 				AND estado_manip = '$estado'
@@ -214,7 +216,7 @@ class ModeloManipuladores{
 
 	/*///////////////////////////////////////////////////////////////////////////*/
 	public function  manipuladoresPorLimiteBusqueda($pos_pagina, $desde, $busqueda){
-
+		
 		if (strpos($busqueda, ' ') == true) {
 
 			$busquedaNombre = explode(' ', $busqueda);
@@ -227,8 +229,9 @@ class ModeloManipuladores{
 
 			$this->db->query(
 				"SELECT * FROM tblmanipuladores INNER JOIN tblestablecimientos ON tblmanipuladores.id_estab = tblestablecimientos.id_estab 
-				WHERE( LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '$busqueda' OR
-				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda'
+				WHERE(LOWER(CONCAT(nombre_manip,apellido_manip)) LIKE '$busqueda' OR
+				LOWER(CONCAT(apellido_manip,' ',nombre_manip)) LIKE '$busqueda' OR
+				LOWER(tipo_estab) LIKE '$busqueda' 
 				)
 				AND estado_manip = 'Activo'
 				LIMIT $desde, $pos_pagina
@@ -245,8 +248,8 @@ class ModeloManipuladores{
 			LOWER(nombre_manip) LIKE '%$busqueda%' OR 
 			LOWER(apellido_manip) LIKE '%$busqueda%' OR
 			LOWER(nombre_estab) LIKE '%$busqueda%' OR
-			LOWER(tipo_estab) LIKE '%$busqueda%' OR
-			LOWER(dui_manip) LIKE '%$busqueda%'
+			LOWER(dui_manip) LIKE '%$busqueda%' OR
+			LOWER(tipo_estab) LIKE '$busqueda' 
 			)
 			AND estado_manip = 'Activo'
 			LIMIT $desde, $pos_pagina
@@ -427,6 +430,21 @@ class ModeloManipuladores{
 		}
 	}
 
+	//obteniendo total asistencias formales e informales
+	public function manipuladoresForInf($tipoEstab, $estado_manip){
+
+		$this->db->query(
+			"SELECT *
+			FROM tblmanipuladores
+				INNER JOIN tblestablecimientos ON  tblmanipuladores.id_estab = tblestablecimientos.id_estab
+				
+			WHERE tipo_estab = '$tipoEstab'
+			AND estado_manip = '$estado_manip'
+			
+		");
+		return $this->db->rowCount();
+
+	}
 
 
 

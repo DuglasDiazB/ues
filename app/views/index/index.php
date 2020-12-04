@@ -5,9 +5,9 @@
         </div>
 
         <div class="grid-cajas">
-            <a href="<?php echo ROUTE_URL?>/manipuladores" ><i class="fas fa-hand-paper"></i>Manipuladores <?php echo $parameters['manipuladores']?> <br>Formal:  Informal: </a>
+            <a href="<?php echo ROUTE_URL?>/manipuladores"><i class="fas fa-hand-paper"></i>Manipuladores <?php echo $parameters['manipuladores']?> <br> Formal:<?php echo $parameters['manipuladoresFormal']?>  Informal:<?php echo $parameters['manipuladoresInformal']?> </a>
 
-            <a href="<?php echo ROUTE_URL?>/establecimientos" ><i class="fas fa-store"></i>Establecimientos <?php echo $parameters['establecimientos']?> <br>Formal:  Informal: </a>
+            <a href="<?php echo ROUTE_URL?>/establecimientos" ><i class="fas fa-store"></i>Establecimientos <?php echo $parameters['establecimientos']?> <br>Formal:<?php echo $parameters['establecimientosFormal']?>  Informal:<?php echo $parameters['establecimientosInformal']?> </a>
 
             <a href="<?php echo ROUTE_URL?>/inspecciones" ><i class="fas fa-user-secret"></i>Inspecciones <?php echo $parameters['inspecciones']?></a>
 
