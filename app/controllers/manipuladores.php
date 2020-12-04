@@ -467,7 +467,7 @@ class Manipuladores extends MainController{
 
 					'error' => TRUE,
 					'mensaje' => 'Este registro ya no existe',
-					'establecimiento' => $establecimiento,
+					'establecimiento' => [],
 					'errores' => [],
 					'menu' => 'manipuladores',
 					'regresar' => $regresar
