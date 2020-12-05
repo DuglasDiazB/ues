@@ -12,7 +12,7 @@ public function __construct(){
 /*#################  REPORTES DEL MODULO USUARIOS #########################*/
 
 public function obtenerUsuarios(){
-	$this->db->query("SELECT * FROM usuarios");
+	$this->db->query("SELECT * FROM usuarios INNER JOIN tipousuarios on usuarios.idtipousuario = tipousuarios.idtipousuario");
 	return $this->db->registers();
 }
 

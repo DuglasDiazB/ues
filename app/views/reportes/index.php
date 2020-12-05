@@ -8,10 +8,7 @@
     <ul class="menu-reporte">
 
  
-                
-
-
-
+            
                 <li> <a href="#">
                     Usuarios</a>
                     <ul class="submenu">
@@ -20,7 +17,7 @@
                         </li>
 
                          <li>
-                            <a href="<?php echo ROUTE_URL?>/reports/wrap ?>">Wrap</a>
+                            <a href="">Wrap</a>
                         </li>
                         
                     </ul>
