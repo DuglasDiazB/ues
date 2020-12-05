@@ -8,7 +8,7 @@ class Login extends MainController
         if (isset($_SESSION['user'])) {
             header('location:'.ROUTE_URL);
         }
-        $this->modeloLogin = $this->model('modeloLogin');
+        $this->modeloLogin = $this->model('ModeloLogin');
         $this->modeloManipuladores = $this->model('ManipuladoresModel');
 	}
 
