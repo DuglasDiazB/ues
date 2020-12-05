@@ -91,14 +91,14 @@
 
 
 
-            <div class="form-control">
-                <!-- crear CheckBox -->
+           <!-- <div class="form-control">
+             
                 <label for="asistencia_check">Asistencia</label> 
                 <select id="asistencia_check" name="asistencia_check"> 
                     <option value="Si" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['asistencia_check'] == 1)? 'selected': '';}?>>Si</option> 
                     <option value="No" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['asistencia_check'] == 2)? 'selected': '';}?>>No</option> 
                 </select>
-            </div>
+            </div>-->
 
 
       

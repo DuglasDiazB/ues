@@ -382,14 +382,14 @@ class ModeloManipuladores{
 			nombre_manip = :nombre_manip,
 			apellido_manip = :apellido_manip,
 			genero_manip = :genero_manip,
-			fecha_nacim_manip = now(),
+			fecha_nacim_manip = :fecha_nacim_manip,
 			puesto_manip = :puesto_manip,
 			estado_manip = 'Activo',
 			id_estab = :id_estab,
-			fecha_registro_manip = now(),
+			/*fecha_registro_manip = now(),*/
 			fecha_mod_manip = now(),
-			usermod = :usermod,
-			asistencia_check = :asistencia_check
+			usermod = :usermod
+			/*sistencia_check = :asistencia_check*/
 
 
 			WHERE id_manip = :id");
@@ -397,10 +397,10 @@ class ModeloManipuladores{
 		$this->db->bind(':nombre_manip', $manipulator['nombremanip']['text']);
 		$this->db->bind(':apellido_manip', $manipulator['apellidomanip']['text']);
 		$this->db->bind(':genero_manip', $manipulator['generomanip']);
-		/*$this->db->bind(':fecha_nacim_manip', $manipulator['fechaNacimiento']['text']);*/
+		$this->db->bind(':fecha_nacim_manip', $manipulator['fechaNacimiento']['text']);
 		$this->db->bind(':puesto_manip', $manipulator['puestomanip']['text']);
 		$this->db->bind(':usermod', $usermod);
-		$this->db->bind(':asistencia_check', $manipulator['asistencia_check']);
+		//$this->db->bind(':asistencia_check', $manipulator['asistencia_check']);
 		$this->db->bind(':id_estab', $manipulator['id_estab']);
 
 		$this->db->bind(':id', $id);

@@ -508,7 +508,7 @@ class Manipuladores extends MainController{
 
 
 				$errores['generomanip'] = $_POST['generomanip'];
-				$errores['asistencia_check'] = $_POST['asistencia_check'];
+			//	$errores['asistencia_check'] = $_POST['asistencia_check'];
 				$errores['id_estab'] = $_POST['id_estab'];
 				
 				$establecimientos = $this->ModeloManipuladores->obtenerManipuladores();			

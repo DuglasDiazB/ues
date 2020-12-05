@@ -449,7 +449,7 @@ class Establecimientos extends MainController{
 
 		
 
-			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/'.$busqueda;
+			$regresar = ROUTE_URL.'/establecimientos/index'.'/'.$pagina.'/0/0/'.$busqueda;
 
 
 		//comprobando si el usuario existe a traves del id
