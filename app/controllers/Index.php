@@ -7,7 +7,7 @@
         function __construct(){
             sessionUser();
             $this->modeloExamenes = $this->model('ModeloExamenes');
-            $this->ModeloCredenciales = $this->model('modeloCredenciales');
+            $this->ModeloCredenciales = $this->model('ModeloCredenciales');
             $this->ModeloAsistencias = $this->model('ModeloAsistencias');
             $this->ModeloInspecciones = $this->model('ModeloInspecciones');
             $this->ModeloUsuarios = $this->model('ModeloUsuarios');

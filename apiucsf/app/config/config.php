@@ -1,9 +1,9 @@
 <?php
     // credenciales de acceso a la base de datos
     define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
+    define('DB_USER', 'ucsf');
     define('DB_NAME', 'ucsf');
-    define('DB_PASS', '');
+    define('DB_PASS', '123456');
 
     // Establecemos la ruta de nuestra aplicacion
 

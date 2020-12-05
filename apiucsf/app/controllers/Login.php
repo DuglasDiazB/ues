@@ -5,7 +5,7 @@ class Login extends MainController{
 
     function __construct(){
 
-        $this->modeloLogin = $this->model('modeloLogin');
+        $this->modeloLogin = $this->model('ModeloLogin');
         header("Access-Control-Allow-Origin: *");
         header('Content-Type: aplication/json');
 
