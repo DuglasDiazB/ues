@@ -15,8 +15,10 @@
                                     <a href="<?php echo ROUTE_URL?>/asistencias" class="btn-editar"><i
                                     class="fas fa-redo"></i>Recargar</a>
                                     <?php endif?>
+                                    
                                     <a href="<?php echo ROUTE_URL?>/asistencias/fechaCapacitacion" class="btn-ver"><i
                                 class="far fa-plus-square"></i>Capacitacion</a>
+                                
                                     <a href="<?php echo ROUTE_URL?>/asistencias/noAsistidos" class="btn-desactivar"><i class="fas fa-times"></i>
                                         No Asistidos</a>
                             </p>

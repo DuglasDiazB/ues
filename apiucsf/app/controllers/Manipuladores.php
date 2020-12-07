@@ -633,7 +633,13 @@ class Manipuladores extends MainController{
                      //cuantos dias faltan para que se cumpla la fecha de expiracion
                  }else{
 
-                     $informacion = 'Faltan '.$diff->days.' dias para que su credencial de manipulador de alimentos expire';
+                    if ($fechaActual > $examen->fecha_exped_exam ) {
+                        $infoExamen = 'Aún no ha entregado los exámenes clínicos correspondientes';
+                    }else{
+                        
+                        $infoExamen = 'Faltan '.$diff.' días para que su examen de manipulador de alimentos expire';
+                        
+                    }
                  }
 
                  $manip = [

@@ -6,7 +6,7 @@ class Establecimientos extends MainController{
 	function __construct(){
         // para probar ponemos sesionStart aca
 		$this->error = FALSE;
-		sessionAdmin();
+		sessionUser();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloEstablecimientos = $this->model('ModeloEstablecimientos');
 		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
@@ -243,7 +243,8 @@ class Establecimientos extends MainController{
 
 				$this->ModeloEstablecimientos->activar($id);
 				$inspeccion = $this->ModeloEstablecimientos->obtenerInspeccion($id);
-				$this->ModeloEstablecimientos->reactivarInspeccion($inspeccion->inspec_para, 
+				if ($inspeccion) {
+					$this->ModeloEstablecimientos->reactivarInspeccion($inspeccion->inspec_para, 
 																  NULL, 
 																  $inspeccion->objeto_visita, 
 																  $inspeccion->nombre_inspector,
@@ -255,7 +256,9 @@ class Establecimientos extends MainController{
 																  $inspeccion->id_estab,
 																  $inspeccion->id_inspec
 																);
-        		$establecimiento = null;
+															}
+															
+				$establecimiento = null;
         	}
 
         	if ($_SERVER['REQUEST_METHOD'] == 'POST') {

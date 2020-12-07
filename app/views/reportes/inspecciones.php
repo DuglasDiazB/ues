@@ -20,7 +20,7 @@ $pdf->Image('../app/views/archivos/log.jpeg',180,7,22);
 $pdf->SetFont('Arial','B',12);
 
 //set width for each column (6 columns)
-$pdf->SetWidths(Array(50,25,25,20,40,30));
+$pdf->SetWidths(Array(40,25,40,30,25,20));
 $pdf->SetFillColor(17, 213, 229);
 
 //set alignment
@@ -31,7 +31,7 @@ $pdf->SetFillColor(17, 213, 229);
      $pdf->Cell(70,10,'Unidad Comunitaria de Salud Familiar',0,0,'C');
       $pdf->Ln(8);
       $pdf->Cell(60);
-     $pdf->Cell(70,10,'Reporte General de Manipuladores de Alimentos',0,0,'C');
+     $pdf->Cell(70,10,'Reporte General de Inspecciones',0,0,'C');
 
     // Salto de línea
      $pdf->Ln(20);
@@ -46,28 +46,29 @@ $pdf->SetLineHeight(5);
 //add table heading using standard cells
 //set font to bold
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(50,5,"NOMBRE",0, 0, 'C', 1);
-$pdf->Cell(25,5,"DUI",0, 0, 'C', 1);
-$pdf->Cell(25,5,"PUESTO",0, 0, 'C', 1);
-$pdf->Cell(20,5,"ESTADO",0, 0, 'C', 1);
 $pdf->Cell(40,5,"ESTABLECIMIENTO",0, 0, 'C', 1);
-$pdf->Cell(30,5,"SECTOR",0, 1, 'C', 1);
+$pdf->Cell(25,5,"OBJETO",0, 0, 'C', 1);
+$pdf->Cell(40,5,"INSPECTOR",0, 0, 'C', 1);
+$pdf->Cell(30,5,"PARA",0, 0, 'C', 1);
+$pdf->Cell(25,5,"FECHA",0, 0, 'C', 1);
+$pdf->Cell(20,5,"NOTA",0, 1, 'C', 1);
 
 //$pdf->Ln();
 
 //reset font
 $pdf->SetFont('Arial','',10);
 
-for ($i=0; $i < count($parameters['manipuladores']) ; $i++) { 
+for ($i=0; $i < count($parameters['inspecciones']) ; $i++) { 
 
     $pdf->Row(Array(
-         $parameters['manipuladores'][$i]->nombre_manip.' ' .
-         $parameters['manipuladores'][$i]->apellido_manip,
-         $parameters['manipuladores'][$i]->dui_manip,
-         $parameters['manipuladores'][$i]->puesto_manip,
-         $parameters['manipuladores'][$i]->estado_manip,
-         $parameters['manipuladores'][$i]->nombre_estab,
-         $parameters['manipuladores'][$i]->tipo_estab,
+     $parameters['inspecciones'][$i]->nombre_estab,
+     $parameters['inspecciones'][$i]->objeto_visita,
+     $parameters['inspecciones'][$i]->nombre_inspector,
+     $parameters['inspecciones'][$i]->inspec_para,
+     $parameters['inspecciones'][$i]->fecha_inspec,
+     $parameters['inspecciones'][$i]->cal_primer_inspec,
+
+         
 
 
     ));

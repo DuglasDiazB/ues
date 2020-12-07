@@ -6,7 +6,7 @@ class Manipuladores extends MainController{
 	function __construct(){
         // para probar ponemos sesionStart aca
         $this->error = FALSE;
-		sessionAdmin();
+		sessionUser();
         //ModeloInspecciones es donde estan todas las consultas con la base de datos
 		$this->ModeloManipuladores = $this->model('ModeloManipuladores');
 		$this->ModeloBitacoras = $this->model('ModeloBitacoras');
@@ -23,7 +23,7 @@ class Manipuladores extends MainController{
 	/*public function verManipulador($id, $estado){*/
 
 		$manipulador = $this->ModeloManipuladores->obtenerManipulador($id, $estado);	
-
+		
 		if($estado == 'Activo'){
             $regresar = ROUTE_URL.'/manipuladores/index'.'/'.$pagina.'/0/0/'.$busqueda;
         }else{
@@ -375,7 +375,7 @@ class Manipuladores extends MainController{
 
 
 				$errores['generomanip'] = $_POST['generomanip'];
-				$errores['asistencia_check'] = $_POST['asistencia_check'];
+				$errores['asistencia_check'] = 'Si';
 				$errores['id_estab'] = $_POST['id_estab'];
 				
 

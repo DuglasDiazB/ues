@@ -5,7 +5,7 @@ class Asistencias extends MainController
 
     function __construct(){
         // para probar ponemos sesionStart aca
-        sessionAdmin();
+        sessionUser();
         //ModeloAsistencias es donde estan todas las consultas con la base de datos
         $this->ModeloAsistencias = $this->model('ModeloAsistencias');
         $this->ModeloCredenciales = $this->model('ModeloCredenciales');
@@ -98,7 +98,9 @@ class Asistencias extends MainController
         $asistencia = $this->ModeloAsistencias->obtenerAsistencia1($id, $asistencia);
         // print_r($asistencia);
         //  die();
-         $mensaje = 'Ultima modificacion ' . $asistencia->fechamodasistencia. ' por ' . $asistencia->usermod;
+        $var = ($asistencia->usermod == 'NULL')?'ningún usuario a modificado el registro':$asistencia->usermod;
+        $mensaje = 'Ultima modificacion ' . $asistencia->fechamodasistencia. ', por ' . $var;
+
         if($asistencia->asistencia =='Si'){
             $regresar = ROUTE_URL.'/asistencias/index'.'/'.$pagina.'/'.$busqueda;
         }else{

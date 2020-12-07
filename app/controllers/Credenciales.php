@@ -5,7 +5,7 @@ class Credenciales extends MainController
 
     function __construct(){
         // para probar ponemos sesionStart aca
-        sessionAdmin();
+        sessionUser();
         //ModeloCredenciales es donde estan todas las consultas con la base de datos
         $this->ModeloCredenciales = $this->model('ModeloCredenciales');
         

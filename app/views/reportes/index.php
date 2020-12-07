@@ -16,9 +16,17 @@
                             <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
                         </li>
 
-                         <li>
-                            <a href="">Wrap</a>
+
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosActivos ?>">Activos</a>
                         </li>
+
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosInactivos ?>">Inactivos</a>
+                        </li>
+
+
+                   
                         
                     </ul>
                     </li>
@@ -45,9 +53,23 @@
 
 					</ul>
                 </li>
+
+
+
+
+
                 
                 <li> <a href="">
-                    Inspecciones</a></li>
+                    Inspecciones</a>
+
+                    <ul class="submenu">
+                        <li><a href="<?php echo ROUTE_URL?>/reports/reporteInspecciones">General</a></li>
+                    </ul>
+
+                </li>
+
+
+
 
 
 
@@ -63,7 +85,33 @@
 
 
                     <li><a href="">
-                    Establecimientos</a></li>
+                    Establecimientos</a>
+                    <ul class="submenu">
+                         <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientos">
+                    General</a></li>
+
+                      <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosActivos">
+                    Activos</a></li>
+
+                      <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosInactivos">
+                    Inactivos</a></li>
+
+                      <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosA">
+                    Apartado A</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosB">
+                    Apartado B</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosC">
+                    Apartado C</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteEstablecimientosD">
+                    Apartado D</a></li>
+
+                    </ul>
+
+
+                    </li>
 
                     
 

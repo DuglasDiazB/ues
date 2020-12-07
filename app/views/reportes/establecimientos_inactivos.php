@@ -20,7 +20,8 @@ $pdf->Image('../app/views/archivos/log.jpeg',180,7,22);
 $pdf->SetFont('Arial','B',12);
 
 //set width for each column (6 columns)
-$pdf->SetWidths(Array(50,25,25,20,40,30));
+//PARA UN MARGEN BUENO DEBE DE MEDIR 190
+$pdf->SetWidths(Array(35,40,25,35,15,20,20));
 $pdf->SetFillColor(17, 213, 229);
 
 //set alignment
@@ -31,7 +32,7 @@ $pdf->SetFillColor(17, 213, 229);
      $pdf->Cell(70,10,'Unidad Comunitaria de Salud Familiar',0,0,'C');
       $pdf->Ln(8);
       $pdf->Cell(60);
-     $pdf->Cell(70,10,'Reporte General de Manipuladores de Alimentos',0,0,'C');
+     $pdf->Cell(70,10,'Reporte General de Establecimientos Inactivos',0,0,'C');
 
     // Salto de línea
      $pdf->Ln(20);
@@ -46,28 +47,30 @@ $pdf->SetLineHeight(5);
 //add table heading using standard cells
 //set font to bold
 $pdf->SetFont('Arial','B',10);
-$pdf->Cell(50,5,"NOMBRE",0, 0, 'C', 1);
-$pdf->Cell(25,5,"DUI",0, 0, 'C', 1);
-$pdf->Cell(25,5,"PUESTO",0, 0, 'C', 1);
-$pdf->Cell(20,5,"ESTADO",0, 0, 'C', 1);
-$pdf->Cell(40,5,"ESTABLECIMIENTO",0, 0, 'C', 1);
-$pdf->Cell(30,5,"SECTOR",0, 1, 'C', 1);
+$pdf->Cell(35,5,"ESTAB",0, 0, 'C', 1);
+$pdf->Cell(40,5,"PROPIETARIO",0, 0, 'C', 1);
+$pdf->Cell(25,5,"TELEFONO",0, 0, 'C', 1);
+$pdf->Cell(35,5,"DIRECCION",0, 0, 'C', 1);
+$pdf->Cell(15,5,"A_E",0, 0, 'C', 1);
+$pdf->Cell(20,5,"TIPO",0, 0, 'C', 1);
+$pdf->Cell(20,5,"ESTADO",0, 1, 'C', 1);
 
 //$pdf->Ln();
 
 //reset font
 $pdf->SetFont('Arial','',10);
 
-for ($i=0; $i < count($parameters['manipuladores']) ; $i++) { 
+for ($i=0; $i < count($parameters['establecimientos']) ; $i++) { 
 
     $pdf->Row(Array(
-         $parameters['manipuladores'][$i]->nombre_manip.' ' .
-         $parameters['manipuladores'][$i]->apellido_manip,
-         $parameters['manipuladores'][$i]->dui_manip,
-         $parameters['manipuladores'][$i]->puesto_manip,
-         $parameters['manipuladores'][$i]->estado_manip,
-         $parameters['manipuladores'][$i]->nombre_estab,
-         $parameters['manipuladores'][$i]->tipo_estab,
+         $parameters['establecimientos'][$i]->nombre_estab,
+         $parameters['establecimientos'][$i]->nombre_prop.' ' .
+         $parameters['establecimientos'][$i]->apellido_prop,
+         $parameters['establecimientos'][$i]->telefono_estab,
+         $parameters['establecimientos'][$i]->direccion_estab,
+         $parameters['establecimientos'][$i]->apartado_especifico, 
+         $parameters['establecimientos'][$i]->tipo_estab,
+         $parameters['establecimientos'][$i]->estado_estab,
 
 
     ));

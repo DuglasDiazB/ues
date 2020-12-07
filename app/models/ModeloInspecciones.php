@@ -450,12 +450,12 @@
                 'INSERT INTO tblinspecciones(inspec_para, fecha_inspec, objeto_visita, 
                             nombre_inspector, cal_primer_inspec, primer_reinspec_fecha, 
                             primer_reinspec_cal, segunda_reinspec_fecha, segunda_reinspec_cal, id_estab) 
-                VALUES (:inspec_para, :fecha_inspec, :objeto_visita, 
+                VALUES (:inspec_para, NOW(), :objeto_visita, 
                         :nombre_inspector, :cal_primer_inspec, :primer_reinspec_fecha, 
                         :primer_reinspec_cal, :segunda_reinspec_fecha, :segunda_reinspec_cal, :id_estab)');
 
                 $this->db->bind(':inspec_para', $inspeccion['inspeccionPara'] );
-                $this->db->bind(':fecha_inspec', $inspeccion['fechaInspeccion']['text'] );
+                
                 $this->db->bind(':objeto_visita', $inspeccion['objetoVisita'] );
                 $this->db->bind(':nombre_inspector', $inspeccion['nombreInspector']['text'] );
                 $this->db->bind(':cal_primer_inspec', $inspeccion['notaPinspeccion']['text'] );

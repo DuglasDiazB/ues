@@ -17,12 +17,12 @@ class Reports extends MainController{
 		$parameters =[
 			'title'=> 'Reports',
 
-			/*'menu' => 'manipuladores',
-			'rutaContrBusqueda' => $rutaContrBusqueda,
-			'respuesta' => $respuesta,
-			'busqueda' => $busqueda,
-			'manipulador' => $manipulador,
-			'manipuladores' => $manipuladores,*/
+			'menu' => 'reports',
+			//'rutaContrBusqueda' => $rutaContrBusqueda,
+			//'respuesta' => $respuesta,
+			//'busqueda' => $busqueda,
+			//'manipulador' => $manipulador,
+			//'manipuladores' => $manipuladores,*/
 
 		];
 
@@ -49,6 +49,23 @@ public function wrap(){
 
 	$this->view('reportes/wrap', $parameters);
 
+}
+
+
+public function Credencial($id, $estadoCreden = 'Activo'){
+
+	$credencial = $this->ModeloReportes->generarCredencial($id, $estadoCreden);
+
+		$parameters = [
+			'title'=> 'Credencial',
+			'credencial'=>$credencial,
+		];
+
+
+
+	$this->view('reportes/ver_credencial', $parameters);
+
+
 }	
 
 
@@ -73,11 +90,33 @@ public function reporteUsuarios(){
 		$this->view('reportes/usuarios', $parameters);
 	}
 
+public function reporteUsuariosActivos(){
+		$usuarios = $this->ModeloReportes->obtenerUsuariosActivos();
+
+		$parameters = [
+			'title'=> 'Usuarios Activos',
+			'usuarios'=>$usuarios,
+		];
+		$this->view('reportes/usuarios_activos', $parameters);
+	}
+
+
+
+public function reporteUsuariosInactivos(){
+		$usuarios = $this->ModeloReportes->obtenerUsuariosInactivos();
+
+		$parameters = [
+			'title'=> 'Usuarios Inactivos',
+			'usuarios'=>$usuarios,
+		];
+		$this->view('reportes/usuarios_inactivos', $parameters);
+	}			
 
 
 
 
-/*FUNCIONES PARA LOS REPORTES DEL MODULO DE MANIPULADORES*/
+
+/*---------------FUNCIONES PARA LOS REPORTES DEL MODULO DE MANIPULADORES-------------------------*/
 	public function reporteManipuladores(){
 		$manipuladores = $this->ModeloReportes->obtenerManipuladores();
 
@@ -130,6 +169,102 @@ public function reporteUsuarios(){
 		$this->view('reportes/manipuladores_informales', $parameters);
 	}
 
+
+/*---------------FUNCIONES PARA LOS REPORTES DEL MODULO DE ESTABLECIMIENTOS-------------------------*/
+
+
+public function reporteEstablecimientos(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientos();
+
+		$parameters = [
+			'title'=> 'Establecimientos',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos', $parameters);
+	}
+
+
+public function reporteEstablecimientosActivos(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosActivos();
+
+		$parameters = [
+			'title'=> 'Establecimientos Activos',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_activos', $parameters);
+	}
+
+
+
+public function reporteEstablecimientosInactivos(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosInactivos();
+
+		$parameters = [
+			'title'=> 'Establecimientos Inactivos',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_inactivos', $parameters);
+	}
+
+public function reporteEstablecimientosA(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosA();
+
+		$parameters = [
+			'title'=> 'Establecimientos A',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_a', $parameters);
+	}
+
+public function reporteEstablecimientosB(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosB();
+
+		$parameters = [
+			'title'=> 'Establecimientos B',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_b', $parameters);
+	}
+
+
+public function reporteEstablecimientosC(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosC();
+
+		$parameters = [
+			'title'=> 'Establecimientos C',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_c', $parameters);
+	}	
+
+public function reporteEstablecimientosD(){
+		$establecimientos = $this->ModeloReportes->obtenerEstablecimientosD();
+
+		$parameters = [
+			'title'=> 'Establecimientos D',
+			'establecimientos'=>$establecimientos,
+		];
+		$this->view('reportes/establecimientos_d', $parameters);
+	}
+
+
+/*---------------FUNCIONES PARA LOS REPORTES DEL MODULO DE ESTABLECIMIENTOS-------------------------*/
+
+public function reporteInspecciones(){
+		$inspecciones = $this->ModeloReportes->obtenerInspeciones();
+
+		$parameters = [
+			'title'=> 'Inspecciones',
+			'inspecciones'=>$inspecciones,
+		];
+		$this->view('reportes/inspecciones', $parameters);
+	}
+
+
+
+
+/*-----------------------COPIA DE SEGURIDAD-------------------------------------------*/
+
 	public function copiaSeguridad(){
 		
 		$regresar = ROUTE_URL.'/Reports/index/';
@@ -163,7 +298,7 @@ public function reporteUsuarios(){
 					
 					$bck = new MySqlBackupLite($arrayDbConf);
 					$bck->backUp();
-					$bck->setFileDir('C:\backups/');
+					$bck->setFileDir('C:\xampp\htdocs\ues\backup/');
 					$bck->setFileName($arrayDbConf['name'].'_'.$fecha.'.sql');
 					$bck->saveToFile();
 					$errores['password']['form-control'] = 'success';

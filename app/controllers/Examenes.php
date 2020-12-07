@@ -2,7 +2,7 @@
     class Examenes extends MainController{
 
         public function __construct(){
-            sessionAdmin();
+            sessionUser();
             $this->modeloExamenes = $this->model('ModeloExamenes');
             $this->ModeloCredenciales = $this->model('ModeloCredenciales');
             $this->ModeloBitacoras = $this->model('ModeloBitacoras');
@@ -18,6 +18,10 @@
             } else {
                 $regresar = ROUTE_URL.'/examenes/examenesNoActos/' . $pagina . '/' . $busqueda;
             }
+
+            $examen->fechamod = ($examen->fechamod == NULL)? 'Fecha de modificación sin fecha': $examen->fechamod;
+
+            $examen->usermod = ($examen->usermod == NULL)? ' ningún usuario a modificado el registro': $examen->usermod;
 
             $parameters = [
                 'title'   => 'Ver Examen',

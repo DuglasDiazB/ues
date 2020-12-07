@@ -76,7 +76,7 @@ class ModeloManipuladores{
 
 		/*$this->db->query("SELECT nombre_manip, apellido_manip, dui_manip, puesto_manip, estado_manip, nombre_estab FROM tblmanipuladores INNER JOIN tblestablecimientos ON tblmanipuladores.id_estab = tblestablecimientos.id_estab    WHERE estado_estab = 'Activo'");*/
 
-		$this->db->query("SELECT id_estab, nombre_estab FROM tblestablecimientos WHERE estado_estab = 'Activo'");
+		$this->db->query("SELECT id_estab, nombre_estab, direccion_estab FROM tblestablecimientos WHERE estado_estab = 'Activo'");
 
 		return $this->db->registers();
 	}
@@ -98,6 +98,7 @@ class ModeloManipuladores{
 			tblmanipuladores.id_estab,
 			tblestablecimientos.tipo_estab,
 			nombre_estab,
+			direccion_estab,
 			asistencia_check,
 			tblmanipuladores.usermod,
 

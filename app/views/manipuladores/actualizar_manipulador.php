@@ -104,11 +104,12 @@
       
             <div class="form-control">
                     <!-- crear CheckBox -->
+                    <label for="">Establecimiento</label>
                      
                     <select id="id_estab" name="id_estab"> 
                      
                     <?php foreach ($parameters['establecimientos'] as $key => $estab):?>
-                            <option value="<?php echo $estab->id_estab?>" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['id_estab'] == $estab->id_estab)? 'selected': '';}?>><?php echo $estab->nombre_estab?></option>                                                        
+                            <option value="<?php echo $estab->id_estab?>" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['id_estab'] == $estab->id_estab)? 'selected': '';}?>><?php echo $estab->nombre_estab.', '.$estab->direccion_estab?></option>                                                        
                         <?php endforeach ?>
                     
                 </select>
@@ -124,6 +125,7 @@
                 <?php endif ?>
                 <small></small>
             </div>
+            <br>
 
             <div class="boton"> 
                 <!-- Boton de guardar --> 

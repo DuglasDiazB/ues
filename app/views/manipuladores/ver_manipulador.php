@@ -4,7 +4,7 @@
 <br>
 <p><?php echo $parameters['mensaje']?></p>
 <br>
-<p><?php echo  'Fecha de registro '. $parameters['manipulador']->fecha_registro_manip.'; '.$parameters['manipulador']->fecha_mod_manip .' por '. $parameters['manipulador']->usermod ?></p>
+<p><?php echo  $parameters['manipulador']->fecha_registro_manip.'; '.$parameters['manipulador']->fecha_mod_manip .' por '. $parameters['manipulador']->usermod ?></p>
 <div class="caja">
     <div class="contact-wrapper animated bounceInUp">
         <div class="contact-form">
@@ -28,7 +28,7 @@
 
 
              <div class="form-control">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre">Apellido</label>
                     <input disabled type="text" id="nombre" name="nombre" value="<?php echo $var = (isset($parameters['manipulador']->nombre_manip))?$parameters['manipulador']->apellido_manip:''?>">
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
@@ -57,7 +57,7 @@
 
          <div class="form-control">
              <label for="Establecimiento">Establecimiento</label>
-             <input disabled type="text" id="" name="establcimienti" value="<?php echo $parameters['manipulador']->nombre_estab?>">
+             <input disabled type="text" id="" name="establcimienti" value="<?php echo $parameters['manipulador']->nombre_estab. ', '.$parameters['manipulador']->direccion_estab?>">
          </div>
 
 

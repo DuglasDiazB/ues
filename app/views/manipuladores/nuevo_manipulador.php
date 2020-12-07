@@ -85,10 +85,10 @@
 
 
 
-                <div class="form-control">
+                <div class="form-control" style="display: none">
                     <!-- crear CheckBox -->
                     <label for="asistencia_check">Asistencia</label> 
-                    <select id="asistencia_check" name="asistencia_check"> 
+                    <select id="asistencia_check" displayname="asistencia_check"> 
                         <option value="Si" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['asistencia_check'] == 1)? 'selected': '';}?>>Si</option> 
                         <option value="No" <?php if($parameters['errores'] != []){echo $var = ($parameters['errores']['asistencia_check'] == 2)? 'selected': '';}?>>No</option> 
                     </select>
@@ -101,9 +101,9 @@
                     <select id="id_estab" name="id_estab"> 
                         <?php foreach ($parameters['establecimiento'] as $key => $establecimiento): ?>
 
-                           <option value="<?php echo $establecimiento->id_estab ?>">
+                           <option value="<?php echo $establecimiento->id_estab?>">
 
-                            <?php echo $establecimiento->nombre_estab;?>
+                            <?php echo $establecimiento->nombre_estab.', '.$establecimiento->direccion_estab;?>
 
                         </option> 
 
@@ -150,7 +150,7 @@
 
 
 
-
+                <br>
 
                 <!--Clase boton para los estilos   --> 
                 <div class="boton"> 

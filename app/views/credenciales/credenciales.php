@@ -100,6 +100,9 @@
                     <td data-label="Opciones">
                         <a href="<?php echo ROUTE_URL?>/credenciales/verCredencial<?php echo $var=(isset($parameters['credenciales']))? '/'.$parameters['credenciales'][$i]->id_creden.'/Activo/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
                          class="btn-ver"><i class="fas fa-eye"></i></a>
+
+                         <a href="<?php echo ROUTE_URL?>/reports/Credencial<?php echo $var=(isset($parameters['credenciales']))? '/'.$parameters['credenciales'][$i]->id_creden.'/Activo/'.$parameters['respuesta']['pagina_actual']:''?><?php echo $var = ($parameters['busqueda'] != null)?'/'.str_replace(' ', '_',$parameters['busqueda']): ''?>"
+                         class="btn-editar"><i class="fas fa-print"></i></a>
                             
                         </td>
 			    </tr>
