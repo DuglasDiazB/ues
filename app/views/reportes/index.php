@@ -8,82 +8,7 @@
     <ul class="menu-reporte">
 
  
-            
-                <li> <a href="#">
-                    Usuarios</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
-                        </li>
-
-
-                        <li>
-                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosActivos ?>">Activos</a>
-                        </li>
-
-                        <li>
-                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosInactivos ?>">Inactivos</a>
-                        </li>
-
-
-                   
-                        
-                    </ul>
-                    </li>
                 
-                <li><a href="#">
-                    Manipuladores</a>
-                    <ul class="submenu">
-                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores">
-                    General</a></li>
-
-                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresActivos">
-                    Activos</a></li>
-
-                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInactivos" >
-                    Inactivos</a></li>
-
-
-                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresFormales" >
-                    Formales</a></li>
-
-
-                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" >
-                    Informales</a></li>
-
-					</ul>
-                </li>
-
-
-
-
-
-                
-                <li> <a href="">
-                    Inspecciones</a>
-
-                    <ul class="submenu">
-                        <li><a href="<?php echo ROUTE_URL?>/reports/reporteInspecciones">General</a></li>
-                    </ul>
-
-                </li>
-
-
-
-
-
-
-                    <li> <a href="">
-                    Examenes</a></li>
-
-                    <li> <a href="">
-                    Asistencias</a></li>
-
-                    <li> <a href="">
-                    Credenciales</a></li>
-
-
-
                     <li><a href="">
                     Establecimientos</a>
                     <ul class="submenu">
@@ -112,6 +37,116 @@
 
 
                     </li>
+
+
+                    <li><a href="#">
+                    Manipuladores</a>
+                    <ul class="submenu">
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladores">
+                    General</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresActivos">
+                    Activos</a></li>
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInactivos" >
+                    Inactivos</a></li>
+
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresFormales" >
+                    Formales</a></li>
+
+
+                    <li><a href="<?php echo ROUTE_URL?>/reports/reporteManipuladoresInformales" >
+                    Informales</a></li>
+
+                    </ul>
+                </li>
+
+
+                     <li> <a href="#">
+                    Asistencias</a></li>
+
+
+                    <li> <a href="#"> Examenes</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteExamenes" >
+                    General</a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteExamenesAptos" >
+                    Aptos</a>
+                        </li>
+
+                           <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteExamenesNoAptos" >
+                    No Aptos</a>
+                        </li>
+                    </ul></li>
+
+               
+
+                    
+
+                          
+                <li> <a href="#">
+                    Inspecciones</a>
+
+                    <ul class="submenu">
+                        <li><a href="<?php echo ROUTE_URL?>/reports/reporteInspecciones">General</a></li>
+                
+
+                     
+                        <li><a href="<?php echo ROUTE_URL?>/reports/reporteInspeccionesActivas">Activas</a></li>
+                   
+
+                
+                        <li><a href="<?php echo ROUTE_URL?>/reports/reporteInspeccionesInactivas">General</a></li>
+                    </ul>
+
+                </li>
+
+
+
+                <li> <a href="#">
+                    Usuarios</a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuarios ?>">General</a>
+                        </li>
+
+
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosActivos ?>">Activos</a>
+                        </li>
+
+                        <li>
+                            <a href="<?php echo ROUTE_URL?>/reports/reporteUsuariosInactivos ?>">Inactivos</a>
+                        </li>
+
+
+                     
+                    </ul>
+                    </li>
+                
+           
+
+
+
+
+
+          
+
+
+
+
+
+
+                
+
+
+
 
                     
 

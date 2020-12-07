@@ -161,6 +161,34 @@ public function obtenerInspeciones(){
 
 
 
+public function obtenerInspecionesActivas(){
+	$this->db->query("SELECT * FROM tblinspecciones INNER JOIN tblestablecimientos on tblinspecciones.id_estab = tblestablecimientos.id_estab WHERE cal_primer_inspec >= 90 OR
+			primer_reinspec_cal >= 90 OR
+			segunda_reinspec_cal >= 90 ");
+	return $this->db->registers();
+}
+
+
+/*#################  REPORTES DEL MODULO REPORTES #########################*/
+
+public function obtenerExamenes(){
+	$this->db->query("SELECT * FROM tblexamenes INNER JOIN tblmanipuladores on tblexamenes.id_manip = tblmanipuladores.id_manip");
+	return $this->db->registers();
+}
+
+public function obtenerExamenesAptos(){
+	$this->db->query("SELECT * FROM tblexamenes INNER JOIN tblmanipuladores on tblexamenes.id_manip = tblmanipuladores.id_manip WHERE estado_exam = 'Acto'");
+	return $this->db->registers();
+}
+
+public function obtenerExamenesNoAptos(){
+	$this->db->query("SELECT * FROM tblexamenes INNER JOIN tblmanipuladores on tblexamenes.id_manip = tblmanipuladores.id_manip WHERE estado_exam = 'No acto'");
+	return $this->db->registers();
+}
+
+
+
+
 
 
 

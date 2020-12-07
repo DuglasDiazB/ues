@@ -15,14 +15,10 @@ class Reports extends MainController{
 
 
 		$parameters =[
-			'title'=> 'Reports',
+			'title'=> 'Reportes',
 
 			'menu' => 'reports',
-			//'rutaContrBusqueda' => $rutaContrBusqueda,
-			//'respuesta' => $respuesta,
-			//'busqueda' => $busqueda,
-			//'manipulador' => $manipulador,
-			//'manipuladores' => $manipuladores,*/
+	
 
 		];
 
@@ -259,6 +255,53 @@ public function reporteInspecciones(){
 		];
 		$this->view('reportes/inspecciones', $parameters);
 	}
+
+
+public function reporteInspeccionesActivas(){
+		$inspecciones = $this->ModeloReportes->obtenerInspecionesActivas();
+
+		$parameters = [
+			'title'=> 'Inspecciones Activas',
+			'inspecciones'=>$inspecciones,
+		];
+		$this->view('reportes/inspecciones_activas', $parameters);
+	}	
+
+
+
+
+/*---------------FUNCIONES PARA LOS REPORTES DEL MODULO DE EXAMENES-------------------------*/
+
+public function reporteExamenes(){
+		$examenes = $this->ModeloReportes->obtenerExamenes();
+
+		$parameters = [
+			'title'=> 'Examenes',
+			'examenes'=>$examenes,
+		];
+		$this->view('reportes/examenes', $parameters);
+	}
+
+
+public function reporteExamenesAptos(){
+		$examenes = $this->ModeloReportes->obtenerExamenesAptos();
+
+		$parameters = [
+			'title'=> 'Examenes Aptos',
+			'examenes'=>$examenes,
+		];
+		$this->view('reportes/examenes_aptos', $parameters);
+	}
+
+public function reporteExamenesNoAptos(){
+		$examenes = $this->ModeloReportes->obtenerExamenesNoAptos();
+
+		$parameters = [
+			'title'=> 'Examenes no Aptos',
+			'examenes'=>$examenes,
+		];
+		$this->view('reportes/examenes_no_aptos', $parameters);
+	}	
 
 
 
